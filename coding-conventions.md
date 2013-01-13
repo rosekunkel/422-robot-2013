@@ -5,9 +5,6 @@ This document is modeled after the [Google Code C++ style guide](http://google-s
 
 ## Header Files ##
 
-### Extension ###
-If possible, use a `.hpp` extension for C++ header files, rather than `.h`, to reduce confusion and prevent incorrect syntax highlighting.
-
 ### Guards ###
 Every header file **must** be wrapped in a `#define` gaurd. These gaurds ought to be named after the file they represent, e.g. a file named "articulated_arm.hpp" should have a `#define` gaurd like this:
 
@@ -108,7 +105,7 @@ Constants should be declared as `const type name = value;`, rather than using `#
 Use descriptive names, avoid unclear abbreviation.
 
 ### File Names ###
-File names should be lowercase and words in file names should be seperated with dashes.
+File names should be in TitleCase.
 
 ### Type Names ###
 Type names are in TitleCase. This applies to classes, structs, enums, and all other user-defined types.
