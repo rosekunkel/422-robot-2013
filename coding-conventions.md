@@ -41,7 +41,7 @@ Rather than this:
 When assigning values to member variables in a constructor, use the initialization list rather than the body of the constructor when possible. That is, do this:
 
     Foo::Foo() :
-	bar(0)
+	bar(0),
 	baz(1) {
 		//Initialize
 	}
