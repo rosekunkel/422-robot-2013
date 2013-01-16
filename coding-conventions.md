@@ -11,16 +11,16 @@ guide](http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml).
 ## Header Files ##
 
 ### Guards ###
-Every header file **must** be wrapped in a `#define` gaurd. These gaurds ought
+Every header file **must** be wrapped in a `#define` guard. These guards ought
 to be named after the file they represent, e.g. a file named
-"articulated_arm.hpp" should have a `#define` gaurd like this:
+"articulated_arm.hpp" should have a `#define` guard like this:
 
     #ifndef ARTICULATED_ARM_HPP
 	#define ARTICULATED_ARM_HPP
 	//Body of function
 	#endif //ARTICULATED_ARM_HPP
 
-Trailing comments, like the one in the example above, are reccomended.
+Trailing comments, like the one in the example above, are recommended.
 
 ### "using namespace" Statements ###
 Statements beginning with `using namespace` should never be used in header
