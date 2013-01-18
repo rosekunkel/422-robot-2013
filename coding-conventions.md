@@ -125,7 +125,7 @@ Avoid using preprocessor macros when possible, and exercise caution when using
 them.
 
 ## Values of Zero ##
-Use 0 for integers, 0.0 for reals, nullptr for pointers, and '\0' for chars.
+Use 0 for integers and pointers, 0.0 for reals, and '\0' for chars.
 
 ## Constant Values ##
 Constants should be declared as `const type name = value;`, rather than using
