@@ -46,6 +46,9 @@ Rather than this:
     int i;
 	i = 0;
 
+If variables are used only once, for readability, make them `const`
+and keep them directly above the line that they are used in.
+
 ## Classes ##
 
 ### Constructors ###
