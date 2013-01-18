@@ -235,7 +235,7 @@ Boolean expressions spanning more than one line must have the joining operator
 (either `||`or `&&`) at the beginning of each line, not the end.
 
 ### Parentheses ###
-Parenthesis should indicate order of operations in all expressions containing
+Parentheses should indicate order of operations in all expressions containing
 more than one operator, even when unnecessary, e.g. `1 + ( 1 * 2 )`.
 
 Parentheses should have a space before and after their contents, unless they are
