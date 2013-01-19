@@ -4,8 +4,8 @@
 * @author Nyle Rodgers
 */
 
-#ifndef STARTSHOOTERPUSHER_H
-#define STARTSHOOTERPUSHER_H
+#ifndef START_SHOOTER_PUSHER_H
+#define START_SHOOTER_PUSHER_H
 
 #include "../CommandBase.h"
 
@@ -14,7 +14,6 @@
  *
  * This should be run at the beginning of the match
  */
-
 class StartShooterPusher: public CommandBase {
 public:
 	StartShooterPusher();
@@ -22,4 +21,4 @@ public:
 	virtual bool IsFinished();
 };
 
-#endif // STARTSHOOTERPUSHER_H
+#endif // START_SHOOTER_PUSHER_H
