@@ -8,8 +8,19 @@
 #include "Subsystems/Shooter.h"
 #include "Commands/Scheduler.h"
 
+/**
+ * A constructor for command base
+ *
+ * @author Nyle Rodgers
+ */
 CommandBase::CommandBase(const char *name) : Command(name) {
 }
+
+/**
+ * A constructor for command base
+ *
+ * @author Nyle Rodgers
+ */
 CommandBase::CommandBase() : Command() {
 }
 
