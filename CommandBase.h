@@ -7,7 +7,7 @@
 #ifndef COMMAND_BASE_H
 #define COMMAND_BASE_H
 
-#include "Commands/StartShooterPusher.h"
+#include "Commands/Command.h"
 #include "Subsystems/Shooter.h"
 #include "OI.h"
 
@@ -23,8 +23,8 @@ public:
 	CommandBase(const char *name);
 	CommandBase();
 	static void init();
-	static Shooter *shoter;
+	static Shooter *shooter;
 	static OI *oi;
 };
 
-#endif
+#endif // COMMAND_BASE_H

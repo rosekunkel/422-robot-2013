@@ -12,7 +12,7 @@
  * @author Nyle Rodgers
  */
 StartShooterPusher::StartShooterPusher() {
-	requires(shooter);
+	Requires(shooter);
 }
 /**
  * Initialize command.

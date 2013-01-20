@@ -16,7 +16,7 @@ const float Shooter::SHOOTER_SPEED = 0.0;
 
 const float Shooter::MAX_RPS = 0.0;
 
-const double Shooter::ENCODER_RESOLUTION = 256.0;
+const float Shooter::ENCODER_RESOLUTION = 256.0;
 
 const float Shooter::MAX_PERCENT_ERROR = 1.0;
 
@@ -28,23 +28,23 @@ const float Shooter::MAX_PERCENT_ERROR = 1.0;
  */
 Shooter::Shooter() :
 	Subsystem("Shooter"),
-	motor0 ( new Talon( ROBOT_MAP.DIGITAL_MODULE_PORT_CHANNEL,
-	                     ROBOT_MAP.SHOOTER_MOTOR_0_CHANNEL ) ),
-	motor1 ( new Talon( ROBOT_MAP.DIGITAL_MODULE_PORT_CHANNEL,
-	                     ROBOT_MAP.SHOOTER_MOTOR_1_CHANNEL ) ),
-	encoder ( new Encoder( ROBOT_MAP.DIGITAL_MODULE_PORT_CHANNEL,
-	                        ROBOT_MAP.SHOOTER_ENCODER_A_CHANNEL,
-	                        ROBOT_MAP.DIGITAL_MODULE_PORT_CHANNEL,
-	                        ROBOT_MAP.SHOOTER_ENCODER_B_CHANNEL ) ),
+	motor0 ( new Talon( DIGITAL_MODULE_PORT_CHANNEL,
+	                     SHOOTER_MOTOR_0_CHANNEL ) ),
+	motor1 ( new Talon( DIGITAL_MODULE_PORT_CHANNEL,
+	                     SHOOTER_MOTOR_1_CHANNEL ) ),
+	encoder ( new Encoder( DIGITAL_MODULE_PORT_CHANNEL,
+	                        SHOOTER_ENCODER_A_CHANNEL,
+	                        DIGITAL_MODULE_PORT_CHANNEL,
+	                        SHOOTER_ENCODER_B_CHANNEL ) ),
 	controller(0),
-	pusher( new Relay( ROBOT_MAP.DIGITAL_MODULE_PORT_CHANNEL,
-	                   ROBOT_MAP.SHOOTER_PUSHER_SPIKE_CHANNEL,
-	                   kForwardOnly) ),
-	loader ( new Solenoid (ROBOT_MAP.SOLENOID_MODULE_PORT_CHANNEL,
-	                       ROBOT_MAP.SHOOTER_LOADER_SOLENOID_CHANNEL_EXTEND,
-	                       ROBOT_MAP.SHOOTER_LOADER_SOLENOID_CHANNEL_RETRACT ) ){
+	pusher( new Relay( DIGITAL_MODULE_PORT_CHANNEL,
+	                   SHOOTER_PUSHER_SPIKE_CHANNEL,
+	                   Relay::kForwardOnly) ),
+	loader ( new DoubleSolenoid (SOLENOID_MODULE_PORT_CHANNEL,
+	                       SHOOTER_LOADER_SOLENOID_CHANNEL_EXTEND,
+	                       SHOOTER_LOADER_SOLENOID_CHANNEL_RETRACT ) ){
+	encoder->SetDistancePerPulse( 1 / ENCODER_RESOLUTION );
 	controller = new PIDController( P, I, D, encoder, motor1 );
-	controller->SetDistancePerPulse( 1 / ENCODER_RESOLUTION );
 	controller->SetInputRange( -MAX_RPS, MAX_RPS );
 	controller->SetOutputRange( -1, 1 );
 	controller->SetPercentTolerance( MAX_PERCENT_ERROR );
@@ -80,7 +80,7 @@ void Shooter::stopShooter() {
  * @author Nyle Rodgers
  */
 void Shooter::extend() {
-	loader->set(kForward);
+	loader->Set(DoubleSolenoid::kForward);
 }
 
 /**
@@ -89,7 +89,7 @@ void Shooter::extend() {
  * @author Nyle Rodgers
  */
 void Shooter::retract() {
-	loader->set(kReverse);
+	loader->Set(DoubleSolenoid::kReverse);
 }
 
 /**
@@ -99,5 +99,5 @@ void Shooter::retract() {
  * @author Nyle Rodgers
  */
 void Shooter::startPusher() {
-	pusher->Set(kOn);
+	pusher->Set(Relay::kOn);
 }

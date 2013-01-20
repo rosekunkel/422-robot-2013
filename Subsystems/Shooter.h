@@ -29,9 +29,9 @@ private:
 	/// The maximum speed of the shooter motors in rotations per second
 	static const float MAX_RPS;
 	/// Ticks per revultion of the encoder
-	static const double ENCODER_RESOLUTION;
+	static const float ENCODER_RESOLUTION;
 	/// Maximum acceptable error between the setpoint and the actual speed
-	static const double MAX_PERCENT_ERROR;
+	static const float MAX_PERCENT_ERROR;
 public:
 	/// Initialize the Shooter subsystem.
 	Shooter();

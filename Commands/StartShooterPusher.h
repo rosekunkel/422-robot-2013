@@ -17,8 +17,11 @@
 class StartShooterPusher: public CommandBase {
 public:
 	StartShooterPusher();
-	virtual void Initialize();
-	virtual bool IsFinished();
+	void Initialize();
+	bool IsFinished();
+	void Execute(){};
+	void End(){};
+	void Interrupted(){};
 };
 
 #endif // START_SHOOTER_PUSHER_H

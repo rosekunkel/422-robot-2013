@@ -12,7 +12,7 @@ private:
 	virtual void RobotInit() {
 		CommandBase::init();
 		//autonomousCommand = ;// TODO: Put an autonomous command in here
-		startShooterPusher = new StartShooterPusher;
+		startShooterPusher = new StartShooterPusher();
 		lw = LiveWindow::GetInstance();
 	}
 	
