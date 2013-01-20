@@ -29,21 +29,21 @@ const float Drive::MAX_PERCENT_ERROR = 1.0;
  */
 Drive::Drive() : 
 	Subsystem("Drive"),
-	leftMotor( new Talon( ROBOT_MAP.DIGITAL_MODULE_PORT,
-	                      ROBOT_MAP.LEFT_DRIVE_CHANNEL ) ),
+	leftMotor( new Talon( DIGITAL_MODULE_PORT,
+	                      LEFT_DRIVE_CHANNEL ) ),
 
-	rightMotor( new Talon( ROBOT_MAP.DIGITAL_MODULE_PORT,
-	                       ROBOT_MAP.RIGHT_DRIVE_CHANNEL ) ),
+	rightMotor( new Talon( DIGITAL_MODULE_PORT,
+	                       RIGHT_DRIVE_CHANNEL ) ),
 
-	leftEncoder( new Encoder( ROBOT_MAP.DIGITAL_MODULE_PORT,
-	                          ROBOT_MAP.LEFT_DRIVE_ENCODER_CHANNEL_A,
-	                          ROBOT_MAP.DIGITAL_MODULE_PORT,
-	                          ROBOT_MAP.LEFT_DRIVE_ENCODER_CHANNEL_B ) ),
+	leftEncoder( new Encoder( DIGITAL_MODULE_PORT,
+	                          LEFT_DRIVE_ENCODER_CHANNEL_A,
+	                          DIGITAL_MODULE_PORT,
+	                          LEFT_DRIVE_ENCODER_CHANNEL_B ) ),
 
-	rightEncoder( new Encoder( ROBOT_MAP.DIGITAL_MODULE_PORT,
-	                           ROBOT_MAP.RIGHT_DRIVE_ENCODER_CHANNEL_A,
-	                           ROBOT_MAP.DIGITAL_MODULE_PORT,
-	                           ROBOT_MAP.RIGHT_DRIVE_ENCODER_CHANNEL_B ) ),
+	rightEncoder( new Encoder( DIGITAL_MODULE_PORT,
+	                           RIGHT_DRIVE_ENCODER_CHANNEL_A,
+	                           DIGITAL_MODULE_PORT,
+	                           RIGHT_DRIVE_ENCODER_CHANNEL_B ) ),
 
 	// We need to use the encoders & talons to initialize this, so to be safe we
 	// set it to a null pointer and assign in the constructor body.
@@ -99,41 +99,17 @@ void Drive::setMotorSpeeds( float leftSpeed, float rightSpeed ) {
 }
 
 /**
- * Drive the robot using "Cheesy Drive", where one of the joysticks controls
- * forward-and-back motion and the other controls turning.
- * 
- * @param[in] linearStick The joystick which controls forward-and-back motion
- * @param[in] turningStick The joystick which controls turning motion
- * @note The joysticks may be the same joystick
+ * Drive each motor independently at a speed given as a percentage of the
+ * maximum speed.
+ *
+ * @param[in] leftSpeed The percentage for the left motor, from -1.0 to 1.0
+ * @param[in] rightSpeed The percentage for the right motor, from -1.0 to 1.0
  *
  * @author William Kunkel
  */
-void Drive::cheesyDrive( Joystick *linearStick, Joystick *turningStick ) {
-	float forward = linearStick->GetY();
-	float turning = turningStick->GetX();
-
-	// We determine the speed multiplier by adding and subtracting the turning
-	// value from the base speed
-	float leftMultiplier = forward+turning,
-	      rightMultiplier = forward-turning;
-	
-	// We need to make sure that our speed multiplier does not exceed 100%, but
-	// simple scaling between -2 and 2 would limit linear top speed.	
-	if( ( leftMultiplier > 1 )
-	 || ( leftMultiplier < -1 ) ) {
-		// We set the multiplier to +-100%, based on it's original sign
-		leftMultiplier = copysignf( 1.0, leftMultiplier );
-	}
-
-	// Repeat with the right multiplier
-	if( ( rightMultiplier > 1 )
-	 || ( rightMultiplier < -1 ) ) {
-		rightMultiplier = copysignf( 1.0, rightMultiplier );
-	}
-
-	// Set the speed, using the multiplier as a percentage of the top speed
-	leftController->SetSetpoint( leftMultiplier * MAX_RPS );
-	rightController->SetSetpoint( rightMultiplier * MAX_RPS );
+void Drive::setMotorsNormalized( float leftSpeed, float rightSpeed ) {
+	leftController->SetSetpoint( leftSpeed * MAX_RPS );
+	rightController->SetSetpoint( rightSpeed * MAX_RPS );
 }
 
 /**
