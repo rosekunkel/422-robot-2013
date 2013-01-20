@@ -45,6 +45,8 @@ public:
 	void retract();
 	/// Starts running the pusher motor.
 	void startPusher();
+	/// Stops running the pusher motor.
+	void stopPusher();
 };
 
 #endif //SHOOTER_H

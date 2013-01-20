@@ -100,3 +100,13 @@ void Shooter::retract() {
 void Shooter::startPusher() {
 	pusher->Set(Relay::kOn);
 }
+
+/**
+ * Starts running the pusher motor. This should be done at the begining of the
+ * match.
+ * 
+ * @author Nyle Rodgers
+ */
+void Shooter::stopPusher() {
+	pusher->Set(Relay::kOff);
+}

@@ -7,12 +7,9 @@
 #ifndef OI_H
 #define OI_H
 
-// TODO: Implement the OI
 
 /**
 * @brief The operator interface
-* 
-* @TODO Document the OI once it gets implemented
 *
 * Interfaces between the operater and the code/robot.
 */
@@ -20,10 +17,17 @@
 
 class OI {
 private:
-
+	Joystick *leftPrimaryJoystick,
+	         *rightPrimaryJoystick,
+	         *secondaryJoystick;
 public:
 	/// Initilize the OI.
 	OI();
+	Joystick* getLeftPrimaryJoystick();
+	Joystick* getRightPrimaryJoystick();
+	Joystick* getSecondaryJoystick();
+	
+	
 };
 
 #endif // OI_H
