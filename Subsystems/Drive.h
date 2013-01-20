@@ -25,8 +25,8 @@ public:
 	/// Set the RPS of each motor independently.
 	void setMotorSpeeds( float leftSpeed, float rightSpeed );
 
-	/// Drive from two joysticks, one for linear motion and the other turning.
-	void cheesyDrive( Joystick *linearStick, Joystick *turningStick );
+	/// Set the motors as a percentage of their top speed, from -1.0 to 1.0.
+	void setMotorsNormailzed( float leftSpeed, float rightSpeed );
 
 	/// Slow to a stop smoothly and quickly.
 	void stop();
