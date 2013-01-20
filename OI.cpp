@@ -1,13 +1,13 @@
 /**
 * @file OI.cpp
-* @brief Implementation of the operater interface
+* @brief Implementation of the Operater Interface
 * @author Nyle Rodgers
 */
 
 #include "OI.h"
 
 /**
- * Initilize the OI
+ * Initilize the OI.
  *
  * @author Nyle Rodgers
  */

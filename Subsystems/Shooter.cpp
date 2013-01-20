@@ -21,9 +21,9 @@ const float Shooter::ENCODER_RESOLUTION = 256.0;
 const float Shooter::MAX_PERCENT_ERROR = 1.0;
 
 /**
- * Initialize the shooter's PID controller for the second wheel and the motor
- * controllers for both wheels.
- *
+ * Initialize the shooter's PID controller, motor controllers, encoder,
+ * double solenoid, and spike, and get them set up.
+ * 
  * @author Nyle Rodgers
  */
 Shooter::Shooter() :
@@ -53,9 +53,8 @@ Shooter::Shooter() :
 }
 
 /**
- * Set both shooter motors to a speed
- * 
- * @param[in] speed The speed at which to spin the shooter, in rotations/second
+ * Set both shooter motors to their predetermined speed. The first motor spins
+ * at full speed and the second uses PID to spin at SHOOTER_SPEED.
  *
  * @author Nyle Rodgers
  */
@@ -65,7 +64,7 @@ void Shooter::startShooter() {
 }
 
 /**
- * Set both shooter motors to 0.0
+ * Set both shooter motors to 0.0.
  * 
  * @author Nyle Rodgers
  */
@@ -75,7 +74,7 @@ void Shooter::stopShooter() {
 }
 
 /**
- * Extend the shooters loader solenoid
+ * Extend the shooter's loader solenoid.
  * 
  * @author Nyle Rodgers
  */
@@ -84,7 +83,7 @@ void Shooter::extend() {
 }
 
 /**
- * Retract the shooters loader solenoid
+ * Retract the shooter's loader solenoid.
  * 
  * @author Nyle Rodgers
  */
@@ -94,7 +93,7 @@ void Shooter::retract() {
 
 /**
  * Starts running the pusher motor. This should be done at the begining of the
- * match
+ * match.
  * 
  * @author Nyle Rodgers
  */

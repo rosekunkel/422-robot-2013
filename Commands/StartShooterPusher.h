@@ -1,6 +1,6 @@
 /**
 * @file Shooter.cpp
-* @brief Definition start shooter pusher command
+* @brief Definition of the start shooter pusher command
 * @author Nyle Rodgers
 */
 

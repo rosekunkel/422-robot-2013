@@ -15,7 +15,7 @@ StartShooterPusher::StartShooterPusher() {
 	Requires(shooter);
 }
 /**
- * Initialize command.
+ * Starts the shooter motor; this is all that the command needs to do.
  *
  * @author Nyle Rodgers
  */
@@ -24,7 +24,7 @@ void StartShooterPusher::Initialize() {
 }
 
 /**
- * Returns true, bucause everything is done in the initilization
+ * Returns true, bucause everything is done in the initilization.
  *
  * @author Nyle Rodgers
  */

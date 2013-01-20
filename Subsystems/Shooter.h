@@ -10,8 +10,8 @@
 
 /**
 * @brief The Shooter subsystem
-*
-* Controlls the robot's Shooter.
+* 
+* Controlls the robot's shooter.
 */
 class Shooter: public Subsystem {
 private:
@@ -24,7 +24,7 @@ private:
 	
 	static const float P,I,D;
 	
-	/// The speed at which the seconnd shooter motor shuold spin
+	/// The speed at which the second shooter motor should spin
 	static const float SHOOTER_SPEED;
 	/// The maximum speed of the shooter motors in rotations per second
 	static const float MAX_RPS;
@@ -35,13 +35,13 @@ private:
 public:
 	/// Initialize the Shooter subsystem.
 	Shooter();
-	/// Sets the shooter motors to their respective speeds.
+	/// Sets the shooter's motors to their respective speeds.
 	void startShooter();
-	/// Stop both shooter motors.
+	/// Stop both of the shooter's motors.
 	void stopShooter();
-	/// Extend the shooters loader solenoid.
+	/// Extend the shooter's loader solenoid.
 	void extend();
-	/// Retract the shooters loader solenoid.
+	/// Retract the shooter's loader solenoid.
 	void retract();
 	/// Starts running the pusher motor.
 	void startPusher();
