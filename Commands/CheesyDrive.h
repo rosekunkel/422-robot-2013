@@ -19,7 +19,7 @@
  */
 class CheesyDrive: public CommandBase {
 public:
-	/// Constructor for the CheesyDrive constructor
+	/// Constructor for the CheesyDrive command
 	CheesyDrive();
 
 	/// Implement virtual method and do nothing

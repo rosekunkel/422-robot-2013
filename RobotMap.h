@@ -1,6 +1,10 @@
 /**
  * @file RobotMap.h
- * @brief Declaration of the ROBOT_MAP constant struct
+ * @brief A mapping for ports on the robot
+ *
+ * Defines the port numbers for each module / digital sidecar port /
+ * analog module port as constants.
+ *
  * @author William Kunkel
  */
 
@@ -9,12 +13,6 @@
 
 #include "WPILib.h"
 
-/**
- * @brief A mapping for ports on the robot
- * 
- * Defines the port numbers for each module / digital sidecar port /
- * analog module port as constants.
- */
 // Module numbers
 UINT8 DIGITAL_MODULE_PORT = 2;
 
