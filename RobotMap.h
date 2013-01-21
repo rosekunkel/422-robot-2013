@@ -18,8 +18,8 @@
  * @defgroup modulePorts cRIO Module Port Numbers
  * @{
  */
-const UINT8 DIGITAL_MODULE_PORT_CHANNEL = 2,
-	        SOLENOID_MODULE_PORT_CHANNEL = 3;
+const UINT8 DIGITAL_MODULE_PORT = 2,
+	        SOLENOID_MODULE_PORT = 3;
 /**@}*/
 
 
@@ -70,7 +70,7 @@ const UINT32 HOPPER_WHEEL_CHANNEL = 0;
  * @{
  */
 // Solenoid ports for the shooter
-const UINT32 EXTEND_DSIK_PUSHER_CHANNEL = 0,
+const UINT32 EXTEND_DISK_PUSHER_CHANNEL = 0,
 	         RETRACT_DISK_PUSHER_CHANNEL = 0;
 /**@}*/
 

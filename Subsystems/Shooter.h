@@ -39,7 +39,7 @@ public:
 private:
 	Talon *initialMotor, *secondMotor;
 	Encoder *encoder;
-	PIDController *controller;
+	PIDController *initialMotorController;
 	
 	Relay *hopperWheel;
 	DoubleSolenoid *diskPusher;
