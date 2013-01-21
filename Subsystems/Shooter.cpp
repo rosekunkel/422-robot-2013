@@ -32,13 +32,13 @@ Shooter::Shooter() :
 	Subsystem("Shooter"),
 	initialMotor( new Talon( DIGITAL_MODULE_PORT,
 	                         INITIAL_SHOOTER_WHEEL_CHANNEL ) ),
-	secondMotor( new Talon( DIGITAL_MODULE_PORT_CHANNEL,
+	secondMotor( new Talon( DIGITAL_MODULE_PORT,
 	                        SECOND_SHOOTER_WHEEL_CHANNEL ) ),
 	encoder( new Encoder( DIGITAL_MODULE_PORT,
 	                      SHOOTER_ENCODER_CHANNEL_A,
 	                      DIGITAL_MODULE_PORT,
 	                      SHOOTER_ENCODER_CHANNEL_B ) ),
-	controller(0), // Initialize to 0, because we need the motor and encoder to
+	initialMotorController(0), // Initialize to 0, because we need the motor and encoder to
 	               // be initialized before setting up PID
 	hopperWheel( new Relay( DIGITAL_MODULE_PORT,
 	                        HOPPER_WHEEL_CHANNEL,

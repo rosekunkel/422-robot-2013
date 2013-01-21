@@ -26,7 +26,7 @@ public:
 	void setMotorSpeeds( float leftSpeed, float rightSpeed );
 
 	/// Set the motors as a percentage of their top speed, from -1.0 to 1.0.
-	void setMotorsNormailzed( float leftSpeed, float rightSpeed );
+	void setMotorsNormalized( float leftSpeed, float rightSpeed );
 
 	/// Slow to a stop smoothly and quickly.
 	void stop();
@@ -44,7 +44,7 @@ private:
 	static const double ENCODER_RESOLUTION;
 
 	/// Maximum acceptable error between the setpoint and the speed
-	static const double MAX_PERCENT_ERROR;
+	static const float MAX_PERCENT_ERROR;
 };
 
 #endif // DRIVE_H
