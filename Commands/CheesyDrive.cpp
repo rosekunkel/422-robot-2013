@@ -6,6 +6,9 @@
 #include "WPILib.h"
 #include "CheesyDrive.h"
 
+// We need <math.h> for copysignf in cheesyDrive
+#include <cmath>
+
 /**
  * Give the subsystem requirements for CheesyDrive.
  *
@@ -40,17 +43,17 @@ void CheesyDrive::Execute() {
 	if( ( leftMultiplier > 1 )
 	 || ( leftMultiplier < -1 ) ) {
 		// We set the multiplier to +-100%, based on it's original sign
-		leftMultiplier = copysignf( 1.0, leftMultiplier );
+		leftMultiplier = ((0.0 < leftMultiplier) - (leftMultiplier < 0.0));
 	}
 
 	// Repeat with the right multiplier
 	if( ( rightMultiplier > 1 )
 	 || ( rightMultiplier < -1 ) ) {
-		rightMultiplier = copysignf( 1.0, rightMultiplier );
+		rightMultiplier = ((0.0 < rightMultiplier) - (rightMultiplier < 0.0));
 	}
 
 	// Set the speed, using the multiplier as a percentage of the top speed
-	drive->SetMotorsNormalized( leftMultiplier, rightMultiplier );
+	drive->setMotorsNormalized( leftMultiplier, rightMultiplier );
 }
 
 /**
