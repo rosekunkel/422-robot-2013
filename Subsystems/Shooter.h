@@ -14,28 +14,6 @@
 * Controlls the robot's shooter.
 */
 class Shooter: public Subsystem {
-private:
-	Talon *initialMotor, *secondMotor;
-	Encoder *encoder;
-	PIDController *controller;
-	
-	Relay *hopperWheel;
-	DoubleSolenoid *diskPusher;
-	
-	static const float P,I,D;
-	
-	/// The speed at which the second shooter motor should spin
-	static const float SHOOTER_SPEED;
-
-	/// The maximum speed of the shooter motors in rotations per second
-	static const float MAX_RPS;
-
-	/// Ticks per revultion of the encoder
-	static const float ENCODER_RESOLUTION;
-
-	/// Maximum acceptable error between the setpoint and the actual speed
-	static const float MAX_PERCENT_ERROR;
-
 public:
 	/// Initialize the Shooter subsystem.
 	Shooter();
@@ -57,6 +35,28 @@ public:
 
 	/// Stops running the hopper motor.
 	void stopHopperWheel();
+
+private:
+	Talon *initialMotor, *secondMotor;
+	Encoder *encoder;
+	PIDController *controller;
+	
+	Relay *hopperWheel;
+	DoubleSolenoid *diskPusher;
+	
+	static const float P,I,D;
+	
+	/// The speed at which the second shooter motor should spin
+	static const float SHOOTER_SPEED;
+
+	/// The maximum speed of the shooter motors in rotations per second
+	static const float MAX_RPS;
+
+	/// Ticks per revultion of the encoder
+	static const float ENCODER_RESOLUTION;
+
+	/// Maximum acceptable error between the setpoint and the actual speed
+	static const float MAX_PERCENT_ERROR;
 };
 
 #endif //SHOOTER_H

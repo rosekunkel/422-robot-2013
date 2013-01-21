@@ -28,21 +28,22 @@ const float Shooter::MAX_PERCENT_ERROR = 1.0;
  */
 Shooter::Shooter() :
 	Subsystem("Shooter"),
-	initialMotor ( new Talon( DIGITAL_MODULE_PORT,
-	                     INITIAL_SHOOTER_WHEEL_CHANNEL ) ),
-	secondMotor ( new Talon( DIGITAL_MODULE_PORT_CHANNEL,
-	                     SECOND_SHOOTER_WHEEL_CHANNEL ) ),
-	encoder ( new Encoder( DIGITAL_MODULE_PORT,
-	                        SHOOTER_ENCODER_CHANNEL_A,
-	                        DIGITAL_MODULE_PORT,
-	                        SHOOTER_ENCODER_CHANNEL_B ) ),
+	initialMotor( new Talon( DIGITAL_MODULE_PORT,
+	                         INITIAL_SHOOTER_WHEEL_CHANNEL ) ),
+	secondMotor( new Talon( DIGITAL_MODULE_PORT_CHANNEL,
+	                        SECOND_SHOOTER_WHEEL_CHANNEL ) ),
+	encoder( new Encoder( DIGITAL_MODULE_PORT,
+	                      SHOOTER_ENCODER_CHANNEL_A,
+	                      DIGITAL_MODULE_PORT,
+	                      SHOOTER_ENCODER_CHANNEL_B ) ),
 	controller(0),
 	hopperWheel( new Relay( DIGITAL_MODULE_PORT,
-	                   HOPPER_WHEEL_CHANNEL,
-	                   Relay::kForwardOnly) ),
-	diskPusher( new DoubleSolenoid (SOLENOID_MODULE_PORT,
-	                       EXTEND_DISK_PUSHER_CHANNEL,
-	                       RETRACT_DISK_PUSHER_CHANNEL ) ){
+	                        HOPPER_WHEEL_CHANNEL,
+	                        Relay::kForwardOnly) ),
+	diskPusher( new DoubleSolenoid( SOLENOID_MODULE_PORT,
+	                                EXTEND_DISK_PUSHER_CHANNEL,
+	                                RETRACT_DISK_PUSHER_CHANNEL ) ) {
+
 	encoder->SetDistancePerPulse( 1 / ENCODER_RESOLUTION );
 	controller = new PIDController( P, I, D, encoder, initialMotor );
 	controller->SetInputRange( -MAX_RPS, MAX_RPS );

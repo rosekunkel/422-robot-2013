@@ -16,18 +16,16 @@
 #include "WPILib.h"
 
 class OI {
-private:
-	Joystick *leftPrimaryJoystick,
-	         *rightPrimaryJoystick,
-	         *secondaryJoystick;
 public:
 	/// Initilize the OI.
 	OI();
 	Joystick* getLeftPrimaryJoystick();
 	Joystick* getRightPrimaryJoystick();
 	Joystick* getSecondaryJoystick();
-	
-	
+private:
+	Joystick *leftPrimaryJoystick,
+	         *rightPrimaryJoystick,
+	         *secondaryJoystick;
 };
 
 #endif // OI_H

@@ -32,4 +32,3 @@ private:
 };
 
 START_ROBOT_CLASS(Team422Robot);
-

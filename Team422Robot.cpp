@@ -65,4 +65,3 @@ void Team422Robot::TeleopPeriodic() {
 void Team422Robot::TestPeriodic() {
 	liveWindow->Run();
 }
-
