@@ -11,16 +11,23 @@
 /**
 * @brief The operator interface
 *
-* Interfaces between the operater and the code/robot.
+* Provides means for the robot code to access the operator interface through
+* Joystick objects, etc.
+*
+* @author Nyle Rodgers
 */
 #include "WPILib.h"
 
 class OI {
 public:
-	/// Initilize the OI.
+	/// Constructor for the Operator Interface
 	OI();
+
+	/// Get the left Joystick for the primary driver
 	Joystick* getLeftPrimaryJoystick();
+	/// Get the right Joystick for the primary driver
 	Joystick* getRightPrimaryJoystick();
+	/// Get the joystick for the secondary driver
 	Joystick* getSecondaryJoystick();
 private:
 	Joystick *leftPrimaryJoystick,

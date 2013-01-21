@@ -2,7 +2,7 @@
  * @file Drive.h
  * @brief Declaration of the CheesyDrive command
  * @author William Kunkel
-*/
+ */
 
 #ifndef CHEESY_DRIVE_H
 #define CHEESY_DRIVE_H
@@ -16,7 +16,7 @@
  * forward-and-back motion and the other controls turning.
  *
  * @author William Kunkel
-*/
+ */
 class CheesyDrive: public CommandBase {
 public:
 	/// Constructor for the CheesyDrive command

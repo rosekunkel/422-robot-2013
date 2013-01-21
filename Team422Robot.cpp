@@ -8,7 +8,7 @@
 #include "Team422Robot.h"
 
 /**
- * Initialization code for the robot.
+ * Robot-wide initialization, such as allocating Commands.
  *
  * @author Nyle Rodgers
  * @author William Kunkel
@@ -21,7 +21,7 @@ void Team422Robot::RobotInit() {
 }
 
 /**
- * Initialization code for autonomous.
+ * Commands and other code to run at the beginning of the autonomous phase
  *
  * @author Nyle Rodgers
  * @author William Kunkel
@@ -31,7 +31,8 @@ void Team422Robot::AutonomousInit() {
 }
 
 /**
- * Periodic code for autonomous.
+ * Code to run periodically during the teleoperated phase, namely running the
+ * scheduler
  *
  * @author Nyle Rodgers
  */
@@ -40,16 +41,8 @@ void Team422Robot::AutonomousPeriodic() {
 }
 
 /**
- * Initialization code for Teleoperated.
- *
- * @author Nyle Rodgers
- */
-void Team422Robot::TeleopInit() {
-	
-}
-
-/**
- * Periodic code for autonomous.
+ * Code to run periodically during the autonomous phase, namely running the
+ * scheduler
  *
  * @author Nyle Rodgers
  */
@@ -58,10 +51,13 @@ void Team422Robot::TeleopPeriodic() {
 }
 
 /**
- * Periodic code for Test.
+ * Code to run periodically while in test mode, like the Live Window
  *
  * @author Nyle Rodgers
  */
 void Team422Robot::TestPeriodic() {
 	liveWindow->Run();
 }
+
+// Start the robot, the equivalent of the "main" function
+START_ROBOT_CLASS(Team422Robot);

@@ -8,7 +8,7 @@
 #include "StartHopperWheel.h"
 
 /**
- * Constructor for the command.
+ * Give the subsystem requirements for  StartHopperWheel
  *
  * @author Nyle Rodgers
  * @author William Kunkel
@@ -27,7 +27,7 @@ void StartHopperWheel::Initialize() {
 }
 
 /**
- * Returns true, bucause everything is done in the initilization.
+ * Returns true, because everything is done in the initilization.
  *
  * @author Nyle Rodgers
  */
