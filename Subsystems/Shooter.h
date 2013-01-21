@@ -1,5 +1,5 @@
 /**
-* @file Shooter.H
+* @file Shooter.h
 * @brief Decleration of the Shooter subsystem
 * @author Nyle Rodgers
 */

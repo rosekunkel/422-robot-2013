@@ -1,23 +1,22 @@
 /**
-* @file OI.H
-* @brief Declaration of the Operator Interface
-* @author Nyle Rodgers
-*/
+ * @file OI.h
+ * @brief Declaration of the Operator Interface
+ * @author Nyle Rodgers
+ */
 
 #ifndef OI_H
 #define OI_H
 
-
-/**
-* @brief The operator interface
-*
-* Provides means for the robot code to access the operator interface through
-* Joystick objects, etc.
-*
-* @author Nyle Rodgers
-*/
 #include "WPILib.h"
 
+/**
+ * @brief The operator interface
+ *
+ * Provides means for the robot code to access the operator interface through
+ * Joystick objects, etc.
+ *
+ * @author Nyle Rodgers
+ */
 class OI {
 public:
 	/// Constructor for the Operator Interface

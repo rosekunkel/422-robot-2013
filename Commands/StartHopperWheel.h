@@ -1,6 +1,6 @@
 /**
- * @file Shooter.cpp
- * @brief Definition of the start shooter pusher command
+ * @file StartHopperWheel.h
+ * @brief Declaration of the StartHopperWheel command
  * @author Nyle Rodgers
  * @author William Kunkel
  */

@@ -1,13 +1,13 @@
 /**
-* @file OI.cpp
-* @brief Implementation of the Operater Interface
-* @author Nyle Rodgers
-*/
+ * @file OI.cpp
+ * @brief Implementation of the Operater Interface
+ * @author Nyle Rodgers
+ */
 
 #include "OI.h"
 
 /**
- * Initilize the OI.
+ * Initilize the Operator Interface.
  *
  * @author Nyle Rodgers
  */
@@ -18,28 +18,28 @@ OI::OI() {
 }
 
 /**
- * Get the left primary joystick.
+ * Get the left joystick for the primary driver.
  *
  * @author Nyle Rodgers
  */
-Joystick* getLeftPrimaryJoystick() {
+Joystick* OI::getLeftPrimaryJoystick() {
 	return leftPrimaryJoystick;
 }
 
 /**
- * Get the right primary joystick.
+ * Get the right joystick for the primary driver.
  *
  * @author Nyle Rodgers
  */
-Joystick* getRightPrimaryJoystick() {
+Joystick* OI::getRightPrimaryJoystick() {
 	return rightPrimaryJoystick;
 }
 
 /**
- * Get the secondary joystick.
+ * Get the joystick for the secondary driver.
  *
  * @author Nyle Rodgers
  */
-Joystick* getSecondaryJoystick() {
+Joystick* OI::getSecondaryJoystick() {
 	return secondaryJoystick;
 }

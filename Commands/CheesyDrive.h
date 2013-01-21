@@ -1,5 +1,5 @@
 /**
- * @file Drive.h
+ * @file CheesyDrive.h
  * @brief Declaration of the CheesyDrive command
  * @author William Kunkel
  */
@@ -10,7 +10,7 @@
 #include "../CommandBase.h"
 
 /**
- * @brief The CheeseyDrive command
+ * @brief The CheesyDrive command
  *
  * Drive the robot using "Cheesy Drive", where one of the joysticks controls
  * forward-and-back motion and the other controls turning.
