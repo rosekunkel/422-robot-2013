@@ -11,7 +11,7 @@
 
 class Team422Robot : public IterativeRobot {
 private:
-	Command *startShooterPusher;
+	Command *startHopperWheel;
 	LiveWindow *liveWindow;
 	
 	void RobotInit();
@@ -19,7 +19,7 @@ private:
 	void AutonomousInit();
 	
 	void AutonomousPeriodic();
-	
+
 	void TeleopInit();
 	
 	void TeleopPeriodic();

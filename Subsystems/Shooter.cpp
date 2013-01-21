@@ -28,23 +28,23 @@ const float Shooter::MAX_PERCENT_ERROR = 1.0;
  */
 Shooter::Shooter() :
 	Subsystem("Shooter"),
-	motor0 ( new Talon( DIGITAL_MODULE_PORT_CHANNEL,
-	                     SHOOTER_MOTOR_0_CHANNEL ) ),
-	motor1 ( new Talon( DIGITAL_MODULE_PORT_CHANNEL,
-	                     SHOOTER_MOTOR_1_CHANNEL ) ),
-	encoder ( new Encoder( DIGITAL_MODULE_PORT_CHANNEL,
-	                        SHOOTER_ENCODER_A_CHANNEL,
-	                        DIGITAL_MODULE_PORT_CHANNEL,
-	                        SHOOTER_ENCODER_B_CHANNEL ) ),
+	initialMotor ( new Talon( DIGITAL_MODULE_PORT,
+	                     INITIAL_SHOOTER_WHEEL_CHANNEL ) ),
+	secondMotor ( new Talon( DIGITAL_MODULE_PORT_CHANNEL,
+	                     SECOND_SHOOTER_WHEEL_CHANNEL ) ),
+	encoder ( new Encoder( DIGITAL_MODULE_PORT,
+	                        SHOOTER_ENCODER_CHANNEL_A,
+	                        DIGITAL_MODULE_PORT,
+	                        SHOOTER_ENCODER_CHANNEL_B ) ),
 	controller(0),
-	pusher( new Relay( DIGITAL_MODULE_PORT_CHANNEL,
-	                   SHOOTER_PUSHER_SPIKE_CHANNEL,
+	hopperWheel( new Relay( DIGITAL_MODULE_PORT,
+	                   HOPPER_WHEEL_CHANNEL,
 	                   Relay::kForwardOnly) ),
-	loader ( new DoubleSolenoid (SOLENOID_MODULE_PORT_CHANNEL,
-	                       SHOOTER_LOADER_SOLENOID_CHANNEL_EXTEND,
-	                       SHOOTER_LOADER_SOLENOID_CHANNEL_RETRACT ) ){
+	diskPusher( new DoubleSolenoid (SOLENOID_MODULE_PORT,
+	                       EXTEND_DISK_PUSHER_CHANNEL,
+	                       RETRACT_DISK_PUSHER_CHANNEL ) ){
 	encoder->SetDistancePerPulse( 1 / ENCODER_RESOLUTION );
-	controller = new PIDController( P, I, D, encoder, motor1 );
+	controller = new PIDController( P, I, D, encoder, initialMotor );
 	controller->SetInputRange( -MAX_RPS, MAX_RPS );
 	controller->SetOutputRange( -1, 1 );
 	controller->SetPercentTolerance( MAX_PERCENT_ERROR );
@@ -53,13 +53,13 @@ Shooter::Shooter() :
 }
 
 /**
- * Set both shooter motors to their predetermined speed. The first motor spins
+ * Set both shooter motors to their predetermined speed. The second motor spins
  * at full speed and the second uses PID to spin at SHOOTER_SPEED.
  *
  * @author Nyle Rodgers
  */
 void Shooter::startShooter() {
-	motor0->Set(1.0);
+	secondMotor->Set(1.0);
 	controller->SetSetpoint(SHOOTER_SPEED);
 }
 
@@ -69,26 +69,26 @@ void Shooter::startShooter() {
  * @author Nyle Rodgers
  */
 void Shooter::stopShooter() {
-	motor0->Set(0.0);
+	secondMotor->Set(0.0);
 	controller->SetSetpoint(0.0);
 }
 
 /**
- * Extend the shooter's loader solenoid.
+ * Extend the shooter's disk pusher solenoid.
  * 
  * @author Nyle Rodgers
  */
 void Shooter::extend() {
-	loader->Set(DoubleSolenoid::kForward);
+	diskPusher->Set(DoubleSolenoid::kForward);
 }
 
 /**
- * Retract the shooter's loader solenoid.
+ * Retract the shooter's disk pusher solenoid.
  * 
  * @author Nyle Rodgers
  */
 void Shooter::retract() {
-	loader->Set(DoubleSolenoid::kReverse);
+	diskPusher->Set(DoubleSolenoid::kReverse);
 }
 
 /**

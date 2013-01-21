@@ -2,25 +2,28 @@
 * @file Shooter.cpp
 * @brief Implementation start shooter pusher command
 * @author Nyle Rodgers
+* @author William Kunkel
 */
 
-#include "StartShooterPusher.h"
+#include "StartHopperWheel.h"
 
 /**
  * Constructor for the command.
  *
  * @author Nyle Rodgers
+ * @author William Kunkel
  */
-StartShooterPusher::StartShooterPusher() {
+StartHopperWheel::StartHopperWheel() {
 	Requires(shooter);
 }
 /**
  * Starts the shooter motor; this is all that the command needs to do.
  *
  * @author Nyle Rodgers
+ * @author William Kunkel
  */
-void StartShooterPusher::Initialize() {
-	shooter->startPusher();
+void StartHopperWheel::Initialize() {
+	shooter->startHopperWheel();
 }
 
 /**
@@ -28,6 +31,6 @@ void StartShooterPusher::Initialize() {
  *
  * @author Nyle Rodgers
  */
-bool StartShooterPusher::IsFinished() {
+bool StartHopperWheel::IsFinished() {
 	return true;
 }

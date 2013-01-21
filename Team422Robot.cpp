@@ -10,10 +10,11 @@
  * Initialization code for the robot.
  *
  * @author Nyle Rodgers
+ * @author William Kunkel
  */
 void Team422Robot::RobotInit() {
 	CommandBase::init();
-	startShooterPusher = new StartShooterPusher();
+	startHopperWheel = new StartHopperWheel();
 	liveWindow = LiveWindow::GetInstance();
 }
 
@@ -21,9 +22,10 @@ void Team422Robot::RobotInit() {
  * Initialization code for autonomous.
  *
  * @author Nyle Rodgers
+ * @author William Kunkel
  */
 void Team422Robot::AutonomousInit() {
-	startShooterPusher->Start();
+	startHopperWheel->Start();
 }
 
 /**
