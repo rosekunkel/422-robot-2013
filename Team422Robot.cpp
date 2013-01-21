@@ -2,6 +2,7 @@
 * @file Team422Robot.cpp
 * @brief Implementation of the main class for the robot
 * @author Nyle Rodgers
+* @author William Kunkel
 */
 
 #include "Team422Robot.h"
@@ -15,6 +16,7 @@
 void Team422Robot::RobotInit() {
 	CommandBase::init();
 	startHopperWheel = new StartHopperWheel();
+	cheesyDrive = new CheeseyDrive();
 	liveWindow = LiveWindow::GetInstance();
 }
 

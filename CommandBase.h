@@ -1,7 +1,8 @@
 /**
-* @file CommandBase.h
-* @brief Decleration of the command base
-* @author Nyle Rodgers
+ * @file CommandBase.h
+ * @brief Decleration of the command base
+ * @author Nyle Rodgers
+ * @author William Kunkel 
 */
 
 #ifndef COMMAND_BASE_H
@@ -9,6 +10,7 @@
 
 #include "Commands/Command.h"
 #include "Subsystems/Shooter.h"
+#include "Subsystems/Drive.h"
 #include "OI.h"
 
 
@@ -24,6 +26,7 @@ public:
 	CommandBase();
 	static void init();
 	static Shooter *shooter;
+	static Drive *drive;
 	static OI *oi;
 };
 

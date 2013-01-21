@@ -2,6 +2,7 @@
 * @file CommandBase.cpp
 * @brief Implementation of the Shooter subsystem
 * @author Nyle Rodgers
+* @author William Kunkel
 */
 
 #include "CommandBase.h"
@@ -24,15 +25,18 @@ CommandBase::CommandBase(const char *name) : Command(name) {
 CommandBase::CommandBase() : Command() {
 }
 
-Shooter* CommandBase::shooter = NULL;
-OI* CommandBase::oi = NULL;
+Shooter* CommandBase::shooter = 0;
+Drive* CommandBase::drive = 0;
+OI* CommandBase::oi = 0;
 
 /**
  * Initialize the subsystems
  *
  * @author Nyle Rodgers
+ * @author William Kunkel
  */
 void CommandBase::init() {
 	shooter = new Shooter();
+	drive = new Drive();
 	oi = new OI();
 }
