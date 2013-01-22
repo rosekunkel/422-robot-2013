@@ -8,7 +8,7 @@
 #include "Shooter.h"
 #include "../Robotmap.h"
 
-// TODO: Tune the PID 
+// TODO: Tune the PID
 const float Shooter::P = 0.0,
             Shooter::I = 0.0,
             Shooter::D = 0.0;
@@ -30,16 +30,17 @@ const float Shooter::MAX_PERCENT_ERROR = 1.0;
  */
 Shooter::Shooter() :
 	Subsystem("Shooter"),
-	secondMotor( new Talon( DIGITAL_MODULE_PORT,
+	initialMotor( new Talon( DIGITAL_MODULE_PORT,
 	                         INITIAL_SHOOTER_WHEEL_CHANNEL ) ),
-	initialMotor( new Talon( DIGITAL_MODULE_PORT_CHANNEL,
+	secondMotor( new Talon( DIGITAL_MODULE_PORT,
 	                        SECOND_SHOOTER_WHEEL_CHANNEL ) ),
 	encoder( new Encoder( DIGITAL_MODULE_PORT,
 	                      SHOOTER_ENCODER_CHANNEL_A,
 	                      DIGITAL_MODULE_PORT,
 	                      SHOOTER_ENCODER_CHANNEL_B ) ),
-	controller(0), // Initialize to 0, because we need the motor and encoder to
-	               // be secondized before setting up PID
+
+	secondMotorController(0), // Initialize to 0, because we need the motor and encoder to
+	               // be initialized before setting up PID
 	hopperWheel( new Relay( DIGITAL_MODULE_PORT,
 	                        HOPPER_WHEEL_CHANNEL,
 	                        Relay::kForwardOnly) ),

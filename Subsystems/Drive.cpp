@@ -7,9 +7,6 @@
 #include "Drive.h"
 #include "../RobotMap.h"
 
-// We need <math.h> for copysignf in cheesyDrive
-#include <math.h>
-
 // TODO: Tune PID and get accurate RPS numbers
 const float Drive::P = 0.0,
             Drive::I = 0.0,
@@ -119,5 +116,5 @@ void Drive::setMotorsNormalized( float leftSpeed, float rightSpeed ) {
  */
 void Drive::stop() {
 	leftController->SetSetpoint(0.0);
-	rightController->SetSetPoint(0.0);
+	rightController->SetSetpoint(0.0);
 }

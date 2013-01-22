@@ -27,7 +27,8 @@ class CommandBase: public Command {
 public:
 	/// Provides a fall-through to the Command constructor
 	CommandBase(const char *name);
-
+	/// Provides a fall-through to the Command constructor
+	CommandBase();
 	/// Set up the subsystems
 	static void init();
 
@@ -37,7 +38,7 @@ protected:
 	/// The robot's Drive
 	static Drive *drive;
 	/// The operator interface for the robot
-	static OI *oi;
+	static OI *operatorInterface;
 };
 
 #endif // COMMAND_BASE_H

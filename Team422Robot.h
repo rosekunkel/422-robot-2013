@@ -8,7 +8,7 @@
 #include "WPILib.h"
 #include "Commands/Command.h"
 #include "CommandBase.h"
-#include "Commands/StartShooterPusher.h"
+#include "Commands/StartHopperWheel.h"
 #include "Commands/CheesyDrive.h"
 
 /**
@@ -37,10 +37,10 @@ private:
 	void AutonomousPeriodic();
 
 	/// Initialization for the teleoperated phase
-	void TeleopInit();
+	void TeleopInit() {};
 
 	/// Run periodically during the teleoperated phase
-	void TeleopPeriodic() {};
+	void TeleopPeriodic();
 
 	/// Run periodically when the robot is in test mode
 	void TestPeriodic();
