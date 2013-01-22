@@ -37,7 +37,7 @@ public:
 	void stopHopperWheel();
 
 private:
-	Talon *initialMotor, *secondMotor;
+	Talon *secondMotor, *initialMotor;
 	Encoder *encoder;
 	PIDController *controller;
 	
@@ -46,7 +46,7 @@ private:
 	
 	static const float P,I,D;
 	
-	/// The speed at which the second shooter motor should spin
+	/// The speed at which the initial shooter motor should spin
 	static const float SHOOTER_SPEED;
 
 	/// The maximum speed of the shooter motors in rotations per second

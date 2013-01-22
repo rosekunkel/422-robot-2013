@@ -30,16 +30,16 @@ const float Shooter::MAX_PERCENT_ERROR = 1.0;
  */
 Shooter::Shooter() :
 	Subsystem("Shooter"),
-	initialMotor( new Talon( DIGITAL_MODULE_PORT,
+	secondMotor( new Talon( DIGITAL_MODULE_PORT,
 	                         INITIAL_SHOOTER_WHEEL_CHANNEL ) ),
-	secondMotor( new Talon( DIGITAL_MODULE_PORT_CHANNEL,
+	initialMotor( new Talon( DIGITAL_MODULE_PORT_CHANNEL,
 	                        SECOND_SHOOTER_WHEEL_CHANNEL ) ),
 	encoder( new Encoder( DIGITAL_MODULE_PORT,
 	                      SHOOTER_ENCODER_CHANNEL_A,
 	                      DIGITAL_MODULE_PORT,
 	                      SHOOTER_ENCODER_CHANNEL_B ) ),
 	controller(0), // Initialize to 0, because we need the motor and encoder to
-	               // be initialized before setting up PID
+	               // be secondized before setting up PID
 	hopperWheel( new Relay( DIGITAL_MODULE_PORT,
 	                        HOPPER_WHEEL_CHANNEL,
 	                        Relay::kForwardOnly) ),
@@ -48,25 +48,25 @@ Shooter::Shooter() :
 	                                RETRACT_DISK_PUSHER_CHANNEL ) ) {
 
 	encoder->SetDistancePerPulse( 1 / ENCODER_RESOLUTION );
-	initialMotorController = new PIDController( P, I, D,
-	                                            encoder, initialMotor );
-	initialMotorController->SetInputRange( -MAX_RPS, MAX_RPS );
-	initialMotorController->SetOutputRange( -1, 1 );
-	initialMotorController->SetPercentTolerance( MAX_PERCENT_ERROR );
-	initialMotorController->SetSetpoint(0.0);
-	initialMotorController->Enable();
+	secondMotorController = new PIDController( P, I, D,
+	                                            encoder, secondMotor );
+	secondMotorController->SetInputRange( -MAX_RPS, MAX_RPS );
+	secondMotorController->SetOutputRange( -1, 1 );
+	secondMotorController->SetPercentTolerance( MAX_PERCENT_ERROR );
+	secondMotorController->SetSetpoint(0.0);
+	secondMotorController->Enable();
 }
 
 /**
- * Set both shooter motors to their predetermined speed. The second motor spins
- * at full speed and the inital motor uses PID to spin at SHOOTER_SPEED.
+ * Set both shooter motors to their predetermined speed. The initial motor spins
+ * at full speed and the second motor uses PID to spin at SHOOTER_SPEED.
  *
  * @author Nyle Rodgers
  * @author William Kunkel
  */
 void Shooter::startShooter() {
-	secondMotor->Set(1.0);
-	initialMotorController->SetSetpoint(SHOOTER_SPEED);
+	initialMotor->Set(1.0);
+	secondMotorController->SetSetpoint(SHOOTER_SPEED);
 }
 
 /**
@@ -76,8 +76,8 @@ void Shooter::startShooter() {
  * @author William Kunkel
  */
 void Shooter::stopShooter() {
-	secondMotor->Set(0.0);
-	initialMotorController->SetSetpoint(0.0);
+	initialMotor->Set(0.0);
+	secondMotorController->SetSetpoint(0.0);
 }
 
 /**
