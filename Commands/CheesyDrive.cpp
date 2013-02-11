@@ -78,11 +78,13 @@ void CheesyDrive::Execute() {
 
 	// Set the speed, using the multiplier as a percentage of the top speed
 	drive->setMotorsNormalized( leftMultiplier, rightMultiplier );
+	
+	// folowing code for testing purposes, allows to seting P with throttle on joystick
+	// the math maps the numbers to between 0 and 1
+	float p = (-1.0 * operatorInterface->getLeftPrimaryJoystick()->GetZ() + 1.0) / 2.0;
+	drive->setP(p);
 }
 
-void CheesyDrive::Interrupted() {
-	drive->stop();
-}
 /**
  * Driving never "finishes", so returns false
  *

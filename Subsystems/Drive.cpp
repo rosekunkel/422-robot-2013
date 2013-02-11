@@ -2,6 +2,7 @@
  * @file Drive.cpp
  * @brief Implementation of the Drive subsystem
  * @author William Kunkel
+ * @author Nyle Rodgers
  */
 
 #include "Drive.h"
@@ -13,18 +14,20 @@ const float Drive::P = 0.01,
             Drive::I = 0.0,
             Drive::D = 0.0;
 
-// Measured max speed
+// TODO: Remeasure max speed, make sure this is it
+//Measured max speed
 const float Drive::MAX_RPS = 12.6;
 
 const double Drive::ENCODER_RESOLUTION = 256.0;
 
-const float Drive::MAX_PERCENT_ERROR = 0.0;
+const float Drive::MAX_PERCENT_ERROR = 1.0;
 
 /**
  * Initialize the PID controllers for each side of the drive, and enable them,
  * with an initial setpoint of 0.0.
  *
  * @author William Kunkel
+ * @author Nyle Rodgers
  */
 Drive::Drive() : 
 	Subsystem("Drive"),
@@ -121,20 +124,13 @@ void Drive::setMotorSpeeds( float leftSpeed, float rightSpeed ) {
  * @param[in] rightSpeed The percentage for the right motor, from -1.0 to 1.0
  *
  * @author William Kunkel
+ * @author Nyle Rodgers
  */
+// TODO: Figure out why values such as 1, -1 replaced for the speed * MAX_RPS makes drive backwards,
+//       but Cheesy Drive works
 void Drive::setMotorsNormalized( float leftSpeed, float rightSpeed ) {
-	//leftController->SetSetpoint( -4.0 );
-	//rightController->SetSetpoint( 4.0 );// The negative is to compensate for wiring
 	leftController->SetSetpoint( leftSpeed * MAX_RPS );
 	rightController->SetSetpoint( -rightSpeed * MAX_RPS );// The negative is to compensate for wiring
-	std::cerr << "Right Encoder PID Rate: " << rightEncoder->PIDGet() << std::endl;
-	std::cerr << "Left Encoder PID Rate: " << leftEncoder->PIDGet() << std::endl;
-	std::cerr << "Right Encoder Rate: " << rightEncoder->GetRate() << std::endl;
-	std::cerr << "Left Encoder Rate: " << leftEncoder->GetRate() << std::endl;
-	std::cerr << "Right PID Error: " << rightController->GetError() << std::endl;
-	std::cerr << "Left PID Error: " << leftController->GetError() << std::endl;
-	std::cerr << "Right PID: " << rightController->Get() << std::endl;
-	std::cerr << "Left PID: " << leftController->Get() << std::endl;
 }
 
 /**
@@ -145,4 +141,10 @@ void Drive::setMotorsNormalized( float leftSpeed, float rightSpeed ) {
 void Drive::stop() {
 	leftController->SetSetpoint(0.0);
 	rightController->SetSetpoint(0.0);
+}
+
+void Drive::setP(float p) {
+	leftController->SetPID(p, I, D);
+	rightController->SetPID(p, I, D);
+	std::cerr << "PID P: " << leftController->GetP() << std::endl;
 }

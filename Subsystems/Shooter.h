@@ -7,6 +7,7 @@
 #ifndef SHOOTER_H
 #define SHOOTER_H
 #include "WPILib.h"
+#include "PIDTalonWrapper.h"
 
 /**
 * @brief The Shooter subsystem
@@ -31,16 +32,17 @@ public:
 	void retract();
 
 private:
-	Talon *secondMotor, *initialMotor;
-	Encoder *encoder;
-	PIDController *secondMotorController;
+	// firstMotor refers to the motor which the frisbee will contact first
+	PIDTalonWrapper *firstMotor, *secondMotor; 
+	Encoder *firstEncoder, *secondEncoder;
+	PIDController *firstMotorController, *secondMotorController;
 	
 	DoubleSolenoid *diskPusher;
 	
 	static const float P,I,D;
 	
 	/// The speed at which the initial shooter motor should spin
-	static const float SHOOTER_SPEED;
+	static const float FIRST_MOTOR_SPEED, SECOND_MOTOR_SPEED;
 
 	/// The maximum speed of the shooter motors in rotations per second
 	static const float MAX_RPS;

@@ -1,3 +1,8 @@
+/**
+ * @file PIDTalonWrapper.cpp
+ * @brief Implementation of the Talon wrapper class for use with PID
+ * @author Nyle Rodgers
+ */
 #include "PIDTalonWrapper.h"
 
 PIDTalonWrapper::PIDTalonWrapper(UINT8 moduleNumber, UINT32 channel):

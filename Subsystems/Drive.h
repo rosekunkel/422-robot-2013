@@ -2,6 +2,7 @@
  * @file Drive.h
  * @brief Declaration of the Drive subsystem
  * @author William Kunkel
+ * @author Nyle Rodgers
  */
 
 #ifndef DRIVE_H
@@ -35,8 +36,9 @@ public:
 	/// Slow to a stop smoothly and quickly.
 	void stop();
 	
-	PIDController* getLeftPIDController() {return leftController;};
-	PIDController* getRightPIDController() {return rightController;};
+	// For Testing, set the P value for the PID controllers to p
+	void setP(float p);
+	
 private:
 	PIDTalonWrapper *leftMotor, *rightMotor;
 	Encoder *leftEncoder, *rightEncoder, *testEncoder;

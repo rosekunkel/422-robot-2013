@@ -35,7 +35,7 @@ public:
 	void End() {};
 
 	/// Implement virtual method and do nothing
-	void Interrupted();
+	void Interrupted() {};
 private:
 	float deadzone;
 };
