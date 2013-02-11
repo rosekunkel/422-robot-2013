@@ -6,17 +6,19 @@
 
 #include "Drive.h"
 #include "../RobotMap.h"
+#include "../Commands/CheesyDrive.h"
 
 // TODO: Tune PID and get accurate RPS numbers
-const float Drive::P = 0.0,
+const float Drive::P = 0.01,
             Drive::I = 0.0,
             Drive::D = 0.0;
 
-const float Drive::MAX_RPS = 0.0;
+// Measured max speed
+const float Drive::MAX_RPS = 12.6;
 
 const double Drive::ENCODER_RESOLUTION = 256.0;
 
-const float Drive::MAX_PERCENT_ERROR = 1.0;
+const float Drive::MAX_PERCENT_ERROR = 0.0;
 
 /**
  * Initialize the PID controllers for each side of the drive, and enable them,
@@ -26,32 +28,44 @@ const float Drive::MAX_PERCENT_ERROR = 1.0;
  */
 Drive::Drive() : 
 	Subsystem("Drive"),
-	leftMotor( new Talon( DIGITAL_MODULE_PORT,
+	leftMotor( new PIDTalonWrapper( DIGITAL_MODULE_PORT,
 	                      LEFT_DRIVE_CHANNEL ) ),
 
-	rightMotor( new Talon( DIGITAL_MODULE_PORT,
+	rightMotor( new PIDTalonWrapper( DIGITAL_MODULE_PORT,
 	                       RIGHT_DRIVE_CHANNEL ) ),
 
 	leftEncoder( new Encoder( DIGITAL_MODULE_PORT,
 	                          LEFT_DRIVE_ENCODER_CHANNEL_A,
 	                          DIGITAL_MODULE_PORT,
-	                          LEFT_DRIVE_ENCODER_CHANNEL_B ) ),
+	                          LEFT_DRIVE_ENCODER_CHANNEL_B,
+	                          false,
+	                          Encoder::k1X ) ),
 
 	rightEncoder( new Encoder( DIGITAL_MODULE_PORT,
 	                           RIGHT_DRIVE_ENCODER_CHANNEL_A,
 	                           DIGITAL_MODULE_PORT,
-	                           RIGHT_DRIVE_ENCODER_CHANNEL_B ) ),
-
+	                           RIGHT_DRIVE_ENCODER_CHANNEL_B,
+	                           false,
+	                           Encoder::k1X  ) ),
 	// We need to use the encoders & talons to initialize this, so to be safe we
 	// set it to a null pointer and assign in the constructor body.
 	leftController(0),
 	rightController(0) {
+	
+	leftMotor->Set(0.0);
+	rightMotor->Set(0.0);
+	
+	leftEncoder->SetPIDSourceParameter(Encoder::kRate);
+	rightEncoder->SetPIDSourceParameter(Encoder::kRate);
+	
+	leftEncoder->SetDistancePerPulse( 1 / ENCODER_RESOLUTION );
+	rightEncoder->SetDistancePerPulse( 1 / ENCODER_RESOLUTION );
+	
+	rightEncoder->Start();
+	leftEncoder->Start();
 
 	leftController = new PIDController( P, I, D, leftEncoder, leftMotor );
 	rightController = new PIDController( P, I, D, rightEncoder, rightMotor );
-
-	leftEncoder->SetDistancePerPulse( 1 / ENCODER_RESOLUTION );
-	rightEncoder->SetDistancePerPulse( 1 / ENCODER_RESOLUTION );
 
 	leftController->SetInputRange( -MAX_RPS, MAX_RPS );
 	rightController->SetInputRange( -MAX_RPS, MAX_RPS );
@@ -67,6 +81,10 @@ Drive::Drive() :
 
 	leftController->Enable();
 	rightController->Enable();
+}
+
+void Drive::InitDefaultCommand() {
+	SetDefaultCommand( new CheesyDrive() );
 }
 
 /** 
@@ -105,8 +123,18 @@ void Drive::setMotorSpeeds( float leftSpeed, float rightSpeed ) {
  * @author William Kunkel
  */
 void Drive::setMotorsNormalized( float leftSpeed, float rightSpeed ) {
+	//leftController->SetSetpoint( -4.0 );
+	//rightController->SetSetpoint( 4.0 );// The negative is to compensate for wiring
 	leftController->SetSetpoint( leftSpeed * MAX_RPS );
-	rightController->SetSetpoint( rightSpeed * MAX_RPS );
+	rightController->SetSetpoint( -rightSpeed * MAX_RPS );// The negative is to compensate for wiring
+	std::cerr << "Right Encoder PID Rate: " << rightEncoder->PIDGet() << std::endl;
+	std::cerr << "Left Encoder PID Rate: " << leftEncoder->PIDGet() << std::endl;
+	std::cerr << "Right Encoder Rate: " << rightEncoder->GetRate() << std::endl;
+	std::cerr << "Left Encoder Rate: " << leftEncoder->GetRate() << std::endl;
+	std::cerr << "Right PID Error: " << rightController->GetError() << std::endl;
+	std::cerr << "Left PID Error: " << leftController->GetError() << std::endl;
+	std::cerr << "Right PID: " << rightController->Get() << std::endl;
+	std::cerr << "Left PID: " << leftController->Get() << std::endl;
 }
 
 /**

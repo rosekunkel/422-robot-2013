@@ -18,8 +18,8 @@
  * @defgroup modulePorts cRIO Module Port Numbers
  * @{
  */
-const UINT8 DIGITAL_MODULE_PORT = 2,
-	        SOLENOID_MODULE_PORT = 3;
+const UINT8 DIGITAL_MODULE_PORT = 1,
+	        SOLENOID_MODULE_PORT = 1;
 /**@}*/
 
 
@@ -31,8 +31,8 @@ const UINT8 DIGITAL_MODULE_PORT = 2,
  * @{
  */
 // PWM channels for the drivebase
-const UINT32 LEFT_DRIVE_CHANNEL = 0,
-	         RIGHT_DRIVE_CHANNEL = 0;
+const UINT32 LEFT_DRIVE_CHANNEL = 3,
+	         RIGHT_DRIVE_CHANNEL = 4;
 // PWM channels for the shooter
 const UINT32 INITIAL_SHOOTER_WHEEL_CHANNEL = 0,
 	         SECOND_SHOOTER_WHEEL_CHANNEL = 0;
@@ -44,23 +44,13 @@ const UINT32 INITIAL_SHOOTER_WHEEL_CHANNEL = 0,
  * @{
  */
 // Digital I/O ports for the drivebase
-const UINT32 LEFT_DRIVE_ENCODER_CHANNEL_A = 0,
-	         LEFT_DRIVE_ENCODER_CHANNEL_B = 0,
-	         RIGHT_DRIVE_ENCODER_CHANNEL_A = 0,
-	         RIGHT_DRIVE_ENCODER_CHANNEL_B = 0;
+const UINT32 LEFT_DRIVE_ENCODER_CHANNEL_A = 1,
+	         LEFT_DRIVE_ENCODER_CHANNEL_B = 2,
+	         RIGHT_DRIVE_ENCODER_CHANNEL_A = 5,
+	         RIGHT_DRIVE_ENCODER_CHANNEL_B = 6;
 // Digital I/O ports for the shooter
 const UINT32 SHOOTER_ENCODER_CHANNEL_A = 0,
 	         SHOOTER_ENCODER_CHANNEL_B = 0;
-/**@}*/
-
-
-
-/**
- * @defgroup relayChannels Relay Channel Numbers
- * @{
- */
-// Relay ports for the shooter
-const UINT32 HOPPER_WHEEL_CHANNEL = 0;
 /**@}*/
 
 

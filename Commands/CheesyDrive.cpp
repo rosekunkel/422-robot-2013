@@ -5,6 +5,7 @@
  */
 #include "WPILib.h"
 #include "CheesyDrive.h"
+#include <iostream>
 
 // We need <math.h> for copysignf in cheesyDrive
 #include <cmath>
@@ -25,18 +26,41 @@ CheesyDrive::CheesyDrive() {
  * @author William Kunkel
  */
 void CheesyDrive::Execute() {
-	float forward = operatorInterface \
-	                 ->getLeftPrimaryJoystick() \
+	deadzone = 0.1;
+	float forward = operatorInterface
+	                 ->getLeftPrimaryJoystick()
 	                 ->GetY();
-
-	float turning = operatorInterface \
-	                 ->getRightPrimaryJoystick() \
+	float turning = 0.5 * operatorInterface
+	                 ->getRightPrimaryJoystick()
 	                 ->GetX();
-
+	
+	// We add a dead zone around 0 to circumvent joysticks not being perfectly centered
+	if( forward > 0.0) {
+		forward = (forward - deadzone) / (1.0 - deadzone);
+		if (forward < 0.0) {
+			forward = 0.0;
+		}
+	} else {
+		forward = (forward + deadzone) / (1.0 - deadzone);
+		if (forward > 0.0) {
+			forward = 0.0;
+		}
+	}	
+	if( turning > 0.0) {
+		turning = (turning - deadzone) / (1.0 - deadzone);
+		if (turning < 0.0) {
+			turning = 0.0;
+		}
+	} else {
+		turning = (turning + deadzone) / (1.0 - deadzone);
+		if (turning > 0.0) {
+			turning = 0.0;
+		}
+	}
 	// We determine the speed multiplier by adding and subtracting the turning
 	// value from the base speed
-	float leftMultiplier = forward+turning,
-	      rightMultiplier = forward-turning;
+	float leftMultiplier = forward-turning,
+	      rightMultiplier = forward+turning;
 	
 	// We need to make sure that our speed multiplier does not exceed 100%, but
 	// simple scaling between -2 and 2 would limit linear top speed.	
@@ -56,6 +80,9 @@ void CheesyDrive::Execute() {
 	drive->setMotorsNormalized( leftMultiplier, rightMultiplier );
 }
 
+void CheesyDrive::Interrupted() {
+	drive->stop();
+}
 /**
  * Driving never "finishes", so returns false
  *

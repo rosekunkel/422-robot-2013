@@ -8,6 +8,7 @@
 #define DRIVE_H
 
 #include "WPILib.h"
+#include "PIDTalonWrapper.h"
 
 /**
  * @brief The Drive subsystem
@@ -18,6 +19,9 @@ class Drive: public Subsystem {
 public:
 	/// Constructor for the Drive subsystem
 	Drive();
+	
+	/// Set the default command.
+	void InitDefaultCommand();
 
 	/// Drive straight at @a speed, which can be positive or negative.
 	void driveStraight( float speed );
@@ -30,10 +34,12 @@ public:
 
 	/// Slow to a stop smoothly and quickly.
 	void stop();
-
+	
+	PIDController* getLeftPIDController() {return leftController;};
+	PIDController* getRightPIDController() {return rightController;};
 private:
-	Talon *leftMotor, *rightMotor;
-	Encoder *leftEncoder, *rightEncoder;
+	PIDTalonWrapper *leftMotor, *rightMotor;
+	Encoder *leftEncoder, *rightEncoder, *testEncoder;
 	PIDController *leftController, *rightController;
 	static const float P, I, D;
 	

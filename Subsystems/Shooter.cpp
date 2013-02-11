@@ -41,9 +41,6 @@ Shooter::Shooter() :
 
 	secondMotorController(0), // Initialize to 0, because we need the motor and encoder to
 	               // be initialized before setting up PID
-	hopperWheel( new Relay( DIGITAL_MODULE_PORT,
-	                        HOPPER_WHEEL_CHANNEL,
-	                        Relay::kForwardOnly) ),
 	diskPusher( new DoubleSolenoid( SOLENOID_MODULE_PORT,
 	                                EXTEND_DISK_PUSHER_CHANNEL,
 	                                RETRACT_DISK_PUSHER_CHANNEL ) ) {
@@ -99,26 +96,4 @@ void Shooter::extend() {
  */
 void Shooter::retract() {
 	diskPusher->Set(DoubleSolenoid::kReverse);
-}
-
-/**
- * Starts running the spring-loaded hopper wheel motor
- *
- * @note This should be done at the begining of the match.
- * 
- * @author Nyle Rodgers
- * @author William Kunkel
- */
-void Shooter::startHopperWheel() {
-	hopperWheel->Set(Relay::kOn);
-}
-
-/**
- * Stops running the spring-loaded hopper wheel motor
- * 
- * @author Nyle Rodgers
- * @author William Kunkel
- */
-void Shooter::stopHopperWheel() {
-	hopperWheel->Set(Relay::kOff);
 }

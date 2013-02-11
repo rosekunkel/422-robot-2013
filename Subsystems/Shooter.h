@@ -30,18 +30,11 @@ public:
 	/// Retract the disk pusher solenoid.
 	void retract();
 
-	/// Starts running the hopper motor.
-	void startHopperWheel();
-
-	/// Stops running the hopper motor.
-	void stopHopperWheel();
-
 private:
 	Talon *secondMotor, *initialMotor;
 	Encoder *encoder;
-	PIDController *initialMotorController;
+	PIDController *secondMotorController;
 	
-	Relay *hopperWheel;
 	DoubleSolenoid *diskPusher;
 	
 	static const float P,I,D;
