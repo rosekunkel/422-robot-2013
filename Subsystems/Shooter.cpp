@@ -16,6 +16,7 @@ const float Shooter::P = 0.0,
 const float Shooter::FIRST_MOTOR_SPEED = 0.0,
 		    Shooter::SECOND_MOTOR_SPEED = 0.0;
 
+// TODO: Measure the max RPS of the shooter wheels, make sure is same for both wheels
 const float Shooter::MAX_RPS = 0.0;
 
 const float Shooter::ENCODER_RESOLUTION = 256.0;
