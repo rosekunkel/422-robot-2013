@@ -81,8 +81,8 @@ void CheesyDrive::Execute() {
 	
 	// folowing code for testing purposes, allows to seting P with throttle on joystick
 	// the math maps the numbers to between 0 and 1
-	float p = (-1.0 * operatorInterface->getLeftPrimaryJoystick()->GetZ() + 1.0) / 2.0;
-	drive->setP(p);
+	//float p = (-1.0 * operatorInterface->getLeftPrimaryJoystick()->GetZ() + 1.0) / 8.0;
+	//drive->setP(p);
 }
 
 /**

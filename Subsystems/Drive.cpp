@@ -9,7 +9,6 @@
 #include "../RobotMap.h"
 #include "../Commands/CheesyDrive.h"
 
-// TODO: Tune PID and get accurate RPS numbers
 const float Drive::P = 0.01,
             Drive::I = 0.0,
             Drive::D = 0.0;
@@ -82,8 +81,8 @@ Drive::Drive() :
 	leftController->SetSetpoint(0.0);
 	rightController->SetSetpoint(0.0);
 
-	leftController->Enable();
-	rightController->Enable();
+	//leftController->Enable();
+	//rightController->Enable();
 }
 
 void Drive::InitDefaultCommand() {
@@ -129,8 +128,10 @@ void Drive::setMotorSpeeds( float leftSpeed, float rightSpeed ) {
 // TODO: Figure out why values such as 1, -1 replaced for the speed * MAX_RPS makes drive backwards,
 //       but Cheesy Drive works
 void Drive::setMotorsNormalized( float leftSpeed, float rightSpeed ) {
-	leftController->SetSetpoint( leftSpeed * MAX_RPS );
-	rightController->SetSetpoint( -rightSpeed * MAX_RPS );// The negative is to compensate for wiring
+	//leftController->SetSetpoint( leftSpeed * MAX_RPS );
+	//rightController->SetSetpoint( -rightSpeed * MAX_RPS );// The negative is to compensate for wiring
+	leftMotor->Set(leftSpeed);
+	rightMotor->Set(-rightSpeed);
 }
 
 /**
