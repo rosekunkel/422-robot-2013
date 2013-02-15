@@ -7,6 +7,7 @@
 
 #include "Shooter.h"
 #include "../Robotmap.h"
+#include "../Commands/OperateSolenoid.h"
 
 // TODO: Tune the PID
 const float Shooter::P = 0.0,
