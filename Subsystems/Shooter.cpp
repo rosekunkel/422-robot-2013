@@ -8,19 +8,21 @@
 #include "Shooter.h"
 #include "../Robotmap.h"
 #include "../Commands/OperateSolenoid.h"
+#include "../Commands/OperateShooter.h"
+#include <iostream>
 
 // TODO: Tune the PID
-const float Shooter::P = 0.0,
+const float Shooter::P = 0.01,
             Shooter::I = 0.0,
-            Shooter::D = 0.0;
+            Shooter::D = 0.025;
 
-const float Shooter::FIRST_MOTOR_SPEED = 0.0,
-		    Shooter::SECOND_MOTOR_SPEED = 0.0;
+const float Shooter::FIRST_MOTOR_SPEED = 20.0,
+		    Shooter::SECOND_MOTOR_SPEED = 20.0;
 
-// TODO: Measure the max RPS of the shooter wheels, make sure is same for both wheels
-const float Shooter::MAX_RPS = 0.0;
+// TODO: Check number here
+const float Shooter::MAX_RPS = 45.0;
 
-const float Shooter::ENCODER_RESOLUTION = 256.0;
+const float Shooter::ENCODER_RESOLUTION = 64.0;
 
 const float Shooter::MAX_PERCENT_ERROR = 1.0;
 
@@ -92,8 +94,15 @@ Shooter::Shooter() :
  * @author William Kunkel
  */
 void Shooter::startShooter() {
-	firstMotorController->SetSetpoint(FIRST_MOTOR_SPEED);
-	secondMotorController->SetSetpoint(SECOND_MOTOR_SPEED);
+	firstMotorController->SetSetpoint(-FIRST_MOTOR_SPEED);
+	secondMotorController->SetSetpoint(-SECOND_MOTOR_SPEED);
+	std::cerr << firstEncoder->GetRate() << std::endl;
+	//std::cerr << "Second Encoder " << secondEncoder->GetRate() << std::endl;
+}
+
+void Shooter::InitDefaultCommand() {
+	//SetDefaultCommand( new OperateSolenoid() );
+	SetDefaultCommand( new OperateShooter() );
 }
 
 /**
@@ -125,4 +134,22 @@ void Shooter::extend() {
  */
 void Shooter::retract() {
 	diskPusher->Set(DoubleSolenoid::kReverse);
+}
+
+void Shooter::setFirstMotorSpeed(float speed) {
+	firstMotor->Set(-speed);
+	std::cerr << "First Setpoint" << firstMotor->Get() << std::endl;
+	std::cerr << "First Encoder" << firstEncoder->GetRate() << std::endl;
+}
+
+void Shooter::setSecondMotorSpeed(float speed) {
+	secondMotor->Set(-speed);
+	std::cerr << "Second Setpoint" << secondMotor->Get() << std::endl;
+	std::cerr << "Second Encoder" << secondEncoder->GetRate() << std::endl;
+
+}
+
+void Shooter::setP(float p) {
+	firstMotorController->SetPID(P, I, p);
+	secondMotorController->SetPID(P, I, p);
 }
