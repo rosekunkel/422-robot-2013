@@ -15,7 +15,10 @@
  */
 void Team422Robot::RobotInit() {
 	CommandBase::init();
+	operateSolenoid = new OperateSolenoid();
 	cheesyDrive = new CheesyDrive();
+	operateShooter = new OperateShooter();
+	moveShooterArticulator = new MoveShooterArticulator();
 	liveWindow = LiveWindow::GetInstance();
 	dashboard = DriverStationLCD::GetInstance();
 }
