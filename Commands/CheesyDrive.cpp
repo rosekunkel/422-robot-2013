@@ -5,6 +5,7 @@
  */
 #include "WPILib.h"
 #include "CheesyDrive.h"
+#include "../InterfaceMap.h"
 #include <iostream>
 
 // We need <math.h> for copysignf in cheesyDrive
@@ -19,7 +20,7 @@ const float CheesyDrive::DEADZONE = 0.1;
  */
 CheesyDrive::CheesyDrive() {
 	Requires(drive);
-	forwardScale = 1;
+	forwardScale = 1.0;
 	turnScale = 0.5;
 }
 
@@ -30,6 +31,21 @@ CheesyDrive::CheesyDrive() {
  * @author William Kunkel
  */
 void CheesyDrive::Execute() {
+	if ( operatorInterface
+	     ->getLeftPrimaryJoystick()
+	     ->GetRawButton(ONE_TENTH_SPEED_MULTIPLIER ) ) {
+		forwardScale = 0.1;
+		turnScale = 0.05;
+		         ->getLeftPrimaryJoystick()
+		         ->GetRawButton(HALF_SPEED_MULTIPLIER ) ) {
+		forwardScale = 0.5;
+		turnScale = 0.25;
+	} else 	if ( operatorInterface
+	             ->GetRawButton(FULL_SPEED_MULTIPLIER ) ) {
+		forwardScale = 1.0;
+		turnScale = 0.5;
+	}
+	
 	float forward = forwardScale * operatorInterface
 	                 ->getLeftPrimaryJoystick()
 	                 ->GetY();
