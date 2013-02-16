@@ -4,6 +4,7 @@
  * @author Nyle Rodgers
  */
 #include "ShooterArticulator.h"
+#include "../Commands/OperateShooterArticulator.h"
 #include "../Robotmap.h"
 
 // TODO: put actual numbers in here
@@ -22,7 +23,7 @@ ShooterArticulator::ShooterArticulator() :
 }
     
 void ShooterArticulator::InitDefaultCommand() {
-	
+	SetDefaultCommand( new OperateShooterArticulator() );
 }
 
 /**
