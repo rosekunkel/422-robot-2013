@@ -11,6 +11,8 @@
 #include "Commands/Command.h"
 #include "Subsystems/Shooter.h"
 #include "Subsystems/Drive.h"
+#include "Subsystems/ShooterArticulator.h"
+#include "Subsystems/CompressorSystem.h"
 #include "OI.h"
 
 
@@ -37,6 +39,10 @@ protected:
 	static Shooter *shooter;
 	/// The robot's Drive
 	static Drive *drive;
+	/// The robot's Shooter Articulator
+	static ShooterArticulator *shooterArticulator;
+	/// The robot's Compressor
+	static CompressorSystem *compressorSystem;
 	/// The operator interface for the robot
 	static OI *operatorInterface;
 };
