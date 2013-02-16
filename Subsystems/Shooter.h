@@ -21,6 +21,9 @@ public:
 
 	/// Sets the shooter's motors to their respective speeds.
 	void startShooter();
+	
+	/// Set the default command.
+	void InitDefaultCommand();
 
 	/// Stop both of the shooter's motors.
 	void stopShooter();
@@ -31,6 +34,9 @@ public:
 	/// Retract the disk pusher solenoid.
 	void retract();
 
+	void setP(float p);
+	void setFirstMotorSpeed(float speed);
+	void setSecondMotorSpeed(float speed);
 private:
 	// firstMotor refers to the motor which the frisbee will contact first
 	PIDTalonWrapper *firstMotor, *secondMotor; 
