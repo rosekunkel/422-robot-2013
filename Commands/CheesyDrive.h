@@ -38,8 +38,8 @@ public:
 	void Interrupted() {};
 private:
 	static const float DEADZONE;
-	float forwardScale,
-	      turnScale;
+	float multiplier,
+	      turningMultiplier;
 };
 
 #endif // CHEESY_DRIVE_H

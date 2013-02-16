@@ -5,7 +5,6 @@
  */
 #include "WPILib.h"
 #include "CheesyDrive.h"
-#include "../InterfaceMap.h"
 #include <iostream>
 
 // We need <math.h> for copysignf in cheesyDrive
@@ -20,8 +19,8 @@ const float CheesyDrive::DEADZONE = 0.1;
  */
 CheesyDrive::CheesyDrive() {
 	Requires(drive);
-	forwardScale = 1.0;
-	turnScale = 0.5;
+	multiplier = 1.0;
+	turningMultiplier = 0.5;
 }
 
 /**
@@ -31,27 +30,23 @@ CheesyDrive::CheesyDrive() {
  * @author William Kunkel
  */
 void CheesyDrive::Execute() {
-	if ( operatorInterface
-	     ->getLeftPrimaryJoystick()
-	     ->GetRawButton(ONE_TENTH_SPEED_MULTIPLIER ) ) {
-		forwardScale = 0.1;
-		turnScale = 0.05;
-	} else 	if ( operatorInterface
-		         ->getLeftPrimaryJoystick()
-		         ->GetRawButton(HALF_SPEED_MULTIPLIER ) ) {
-		forwardScale = 0.5;
-		turnScale = 0.25;
-	} else 	if ( operatorInterface
-	             ->getRightPrimaryJoystick()
-	             ->GetRawButton(FULL_SPEED_MULTIPLIER ) ) {
-		forwardScale = 1.0;
-		turnScale = 0.5;
+	if ( operatorInterface->getOneTenthSpeedMultiplierButtonValue()) {
+		multiplier = 0.1;
+	} else 	if ( operatorInterface->getHalfSpeedMultiplierButtonValue()) {
+		multiplier = 0.5;
+	} else 	if ( operatorInterface->getFullSpeedButtonValue()) {
+		multiplier = 1.0;
+	}
+	if ( operatorInterface->getQuarterSpeedTurningMultiplierButtonValue() ) {
+		turningMultiplier = 0.25;
+	} else if ( operatorInterface->getHalfSpeedTurningMultiplierButtonValue() ) {
+		turningMultiplier = 0.5;
 	}
 	
-	float forward = forwardScale * operatorInterface
+	float forward = multiplier * operatorInterface
 	                ->getLeftPrimaryJoystick()
 	                ->GetY();
-	float turning = turnScale * operatorInterface
+	float turning = multiplier * turningMultiplier * operatorInterface
 	                ->getRightPrimaryJoystick()
 	                ->GetX();
 	
