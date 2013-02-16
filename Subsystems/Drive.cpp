@@ -125,11 +125,12 @@ void Drive::setMotorSpeeds( float leftSpeed, float rightSpeed ) {
  * @author William Kunkel
  * @author Nyle Rodgers
  */
-// TODO: Figure out why values such as 1, -1 replaced for the speed * MAX_RPS makes drive backwards,
-//       but Cheesy Drive works
+// TODO: Figure out why values such as 1, -1 replaced for the speed * MAX_RPS 
+//		makes drive backwards, but Cheesy Drive works
 void Drive::setMotorsNormalized( float leftSpeed, float rightSpeed ) {
 	leftController->SetSetpoint( leftSpeed * MAX_RPS );
-	rightController->SetSetpoint( -rightSpeed * MAX_RPS );// The negative is to compensate for wiring
+	// The negative is to compensate for wiring
+	rightController->SetSetpoint( -rightSpeed * MAX_RPS );
 }
 
 /**

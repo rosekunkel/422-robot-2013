@@ -21,7 +21,7 @@ class CheesyDrive: public CommandBase {
 public:
 	/// Constructor for the CheesyDrive command
 	CheesyDrive();
-
+	
 	/// Implement virtual method and do nothing
 	void Initialize() {};
 
@@ -37,7 +37,9 @@ public:
 	/// Implement virtual method and do nothing
 	void Interrupted() {};
 private:
-	float deadzone;
+	static const float DEADZONE;
+	float multiplier,
+	      turningMultiplier;
 };
 
 #endif // CHEESY_DRIVE_H
