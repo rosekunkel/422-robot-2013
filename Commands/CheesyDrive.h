@@ -36,6 +36,8 @@ public:
 
 	/// Implement virtual method and do nothing
 	void Interrupted() {};
+private:
+	float deadzone;
 };
 
 #endif // CHEESY_DRIVE_H
