@@ -26,6 +26,8 @@ public:
 	/// Set the speed of the talon to value
 	void Set(float value);
 	
+	float Get();
+	
 	/// Increments the speed of the talon by output
 	virtual void PIDWrite(float output);
 };

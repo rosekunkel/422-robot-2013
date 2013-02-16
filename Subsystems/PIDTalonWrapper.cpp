@@ -28,6 +28,15 @@ void PIDTalonWrapper::Set(float value) {
 }
 
 /**
+ * Gets the speed that the talon is set to
+ * 
+ * @author Nyle Rodgers
+ */
+float PIDTalonWrapper::Get() {
+	return talon->Get();
+}
+
+/**
  * Increment the speed of the talon by output, to be used by PID
  *
  * @param[in] output amount to increment the talon by
