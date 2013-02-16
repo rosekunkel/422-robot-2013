@@ -1,5 +1,5 @@
-#ifndef OPERATESOLENOID_H
-#define OPERATESOLENOID_H
+#ifndef OPERATESHOOTERARTICULATOR_H
+#define OPERATESHOOTERARTICULATOR_H
 
 #include "../CommandBase.h"
 
@@ -8,16 +8,14 @@
  *
  * @author Nyle
  */
-class OperateSolenoid: public CommandBase {
+class OperateShooterArticulator: public CommandBase {
 public:
-	OperateSolenoid();
+	OperateShooterArticulator();
 	virtual void Initialize() {};
 	virtual void Execute();
 	virtual bool IsFinished();
 	virtual void End() {};
 	virtual void Interrupted() {};
-private:
-	bool isExtended;
 };
 
 #endif

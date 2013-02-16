@@ -4,6 +4,7 @@
  * @author Nyle Rodgers
  */
 #include "ShooterArticulator.h"
+#include "../Commands/OperateShooterArticulator.h"
 #include "../Robotmap.h"
 
 // TODO: put actual numbers in here
@@ -22,7 +23,7 @@ ShooterArticulator::ShooterArticulator() :
 }
     
 void ShooterArticulator::InitDefaultCommand() {
-	
+	SetDefaultCommand( new OperateShooterArticulator() );
 }
 
 /**
@@ -31,7 +32,8 @@ void ShooterArticulator::InitDefaultCommand() {
  * @author Nyle Rodgers
  */ 
 double ShooterArticulator::getAngle() {
-	return ( (potentiometer->GetAverageVoltage() - ZERO_DEGREE_VOLTAGE) / ONE_EIGHTY_DEGREE_VOLTAGE ) * 180.0;
+	return ( ( potentiometer->GetAverageVoltage() - ZERO_DEGREE_VOLTAGE) 
+			   / ONE_EIGHTY_DEGREE_VOLTAGE ) * 180.0;
 }
 
 /**

@@ -10,6 +10,8 @@
 // We need <math.h> for copysignf in cheesyDrive
 #include <cmath>
 
+const float CheesyDrive::DEADZONE = 0.1;
+
 /**
  * Give the subsystem requirements for CheesyDrive.
  *
@@ -17,6 +19,8 @@
  */
 CheesyDrive::CheesyDrive() {
 	Requires(drive);
+	multiplier = 1.0;
+	turningMultiplier = 0.5;
 }
 
 /**
@@ -26,33 +30,45 @@ CheesyDrive::CheesyDrive() {
  * @author William Kunkel
  */
 void CheesyDrive::Execute() {
-	deadzone = 0.1;
-	float forward = operatorInterface
-	                 ->getLeftPrimaryJoystick()
-	                 ->GetY();
-	float turning = 0.5 * operatorInterface
-	                 ->getRightPrimaryJoystick()
-	                 ->GetX();
+	if ( operatorInterface->getOneTenthSpeedMultiplierButtonValue()) {
+		multiplier = 0.1;
+	} else 	if ( operatorInterface->getHalfSpeedMultiplierButtonValue()) {
+		multiplier = 0.5;
+	} else 	if ( operatorInterface->getFullSpeedButtonValue()) {
+		multiplier = 1.0;
+	}
+	if ( operatorInterface->getQuarterSpeedTurningMultiplierButtonValue() ) {
+		turningMultiplier = 0.25;
+	} else if ( operatorInterface->getHalfSpeedTurningMultiplierButtonValue() ) {
+		turningMultiplier = 0.5;
+	}
+	
+	float forward = multiplier * operatorInterface
+	                ->getLeftPrimaryJoystick()
+	                ->GetY();
+	float turning = multiplier * turningMultiplier * operatorInterface
+	                ->getRightPrimaryJoystick()
+	                ->GetX();
 	
 	// We add a dead zone around 0 to circumvent joysticks not being perfectly centered
 	if( forward > 0.0) {
-		forward = (forward - deadzone) / (1.0 - deadzone);
+		forward = (forward - DEADZONE) / (1.0 - DEADZONE);
 		if (forward < 0.0) {
 			forward = 0.0;
 		}
 	} else {
-		forward = (forward + deadzone) / (1.0 - deadzone);
+		forward = (forward + DEADZONE) / (1.0 - DEADZONE);
 		if (forward > 0.0) {
 			forward = 0.0;
 		}
 	}	
 	if( turning > 0.0) {
-		turning = (turning - deadzone) / (1.0 - deadzone);
+		turning = (turning - DEADZONE) / (1.0 - DEADZONE);
 		if (turning < 0.0) {
 			turning = 0.0;
 		}
 	} else {
-		turning = (turning + deadzone) / (1.0 - deadzone);
+		turning = (turning + DEADZONE) / (1.0 - DEADZONE);
 		if (turning > 0.0) {
 			turning = 0.0;
 		}

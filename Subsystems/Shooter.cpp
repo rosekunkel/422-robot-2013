@@ -7,7 +7,6 @@
 
 #include "Shooter.h"
 #include "../Robotmap.h"
-#include "../Commands/OperateSolenoid.h"
 #include "../Commands/OperateShooter.h"
 
 #include <iostream>
@@ -53,11 +52,9 @@ Shooter::Shooter() :
 						        false,
 		                        Encoder::k1X ) ),
 	firstMotorController(0),
-	secondMotorController(0), // Initialize to 0, because we need the motor and encoder to
-	                          // be initialized before setting up PID
-	diskPusher( new DoubleSolenoid( SOLENOID_MODULE_PORT,
-	                                EXTEND_DISK_PUSHER_CHANNEL,
-	                                RETRACT_DISK_PUSHER_CHANNEL ) ) {
+	secondMotorController(0) // Initialize to 0, because we need the motor and encoder to
+	                          // be initialized before setting up PID 
+	{
 
 	firstEncoder->SetDistancePerPulse( 1 / ENCODER_RESOLUTION );
 	secondEncoder->SetDistancePerPulse( 1 / ENCODER_RESOLUTION );
@@ -87,6 +84,11 @@ Shooter::Shooter() :
 	secondMotorController->Enable();
 }
 
+void Shooter::InitDefaultCommand() {
+	SetDefaultCommand( new OperateShooter() );
+}
+
+
 /**
  * Set both shooter motors to their predetermined speed. The initial motor spins
  * are FIRST_MOTOR_SPEED and SECOND_MOTOR_SPEED.
@@ -95,15 +97,10 @@ Shooter::Shooter() :
  * @author William Kunkel
  */
 void Shooter::startShooter() {
+	firstMotorController->Enable();
+	secondMotorController->Enable();
 	firstMotorController->SetSetpoint(-FIRST_MOTOR_SPEED);
 	secondMotorController->SetSetpoint(-SECOND_MOTOR_SPEED);
-	std::cerr << firstEncoder->GetRate() << std::endl;
-	//std::cerr << "Second Encoder " << secondEncoder->GetRate() << std::endl;
-}
-
-void Shooter::InitDefaultCommand() {
-	//SetDefaultCommand( new OperateSolenoid() );
-	SetDefaultCommand( new OperateShooter() );
 }
 
 /**
@@ -115,42 +112,15 @@ void Shooter::InitDefaultCommand() {
 void Shooter::stopShooter() {
 	firstMotorController->SetSetpoint(0.0);
 	secondMotorController->SetSetpoint(0.0);
+	firstMotorController->Disable();
+	secondMotorController->Disable();
+	firstMotor->Set(0.0);
+	secondMotor->Set(0.0);
 }
 
-/**
- * Extend the shooter's disk pusher solenoid.
- * 
- * @author Nyle Rodgers
- * @author William Kunkel
- */
-void Shooter::extend() {
-	diskPusher->Set(DoubleSolenoid::kForward);
-}
-
-/**
- * Retract the shooter's disk pusher solenoid.
- * 
- * @author Nyle Rodgers
- * @author William Kunkel
- */
-void Shooter::retract() {
-	diskPusher->Set(DoubleSolenoid::kReverse);
-}
-
-void Shooter::setFirstMotorSpeed(float speed) {
-	firstMotor->Set(-speed);
-	std::cerr << "First Setpoint" << firstMotor->Get() << std::endl;
-	std::cerr << "First Encoder" << firstEncoder->GetRate() << std::endl;
-}
-
-void Shooter::setSecondMotorSpeed(float speed) {
-	secondMotor->Set(-speed);
-	std::cerr << "Second Setpoint" << secondMotor->Get() << std::endl;
-	std::cerr << "Second Encoder" << secondEncoder->GetRate() << std::endl;
-
-}
-
-void Shooter::setP(float p) {
-	firstMotorController->SetPID(P, I, p);
-	secondMotorController->SetPID(P, I, p);
+void Shooter::setSetpoints(float firstSetpoint, float secondStepoint) {
+	firstMotorController->Enable();
+	secondMotorController->Enable();
+	firstMotorController->SetSetpoint(firstSetpoint);
+	secondMotorController->SetSetpoint(secondStepoint);
 }

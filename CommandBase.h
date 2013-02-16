@@ -12,15 +12,15 @@
 #include "Subsystems/Shooter.h"
 #include "Subsystems/Drive.h"
 #include "Subsystems/ShooterArticulator.h"
-#include "Subsystems/CompressorSystem.h"
+#include "Subsystems/Pneumatics.h"
 #include "OI.h"
 
 
 /**
  * @brief The base for all commands
  *
- * Provides a common base which all commands can use to access each subsystem as
- * well as the operator interface.
+ * Provides a common base which all commands can use to access each subsystem 
+ * as well as the operator interface.
  *
  * @author William Kunkel
  * @author Nyle Rodgers
@@ -42,7 +42,7 @@ protected:
 	/// The robot's Shooter Articulator
 	static ShooterArticulator *shooterArticulator;
 	/// The robot's Compressor
-	static CompressorSystem *compressorSystem;
+	static Pneumatics *pneumatics;
 	/// The operator interface for the robot
 	static OI *operatorInterface;
 };
