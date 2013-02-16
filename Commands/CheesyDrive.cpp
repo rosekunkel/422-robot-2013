@@ -10,6 +10,8 @@
 // We need <math.h> for copysignf in cheesyDrive
 #include <cmath>
 
+const float CheesyDrive::deadzone = 0.1;
+
 /**
  * Give the subsystem requirements for CheesyDrive.
  *
@@ -17,6 +19,8 @@
  */
 CheesyDrive::CheesyDrive() {
 	Requires(drive);
+	forwardScale = 1;
+	turnScale = 0.5;
 }
 
 /**
@@ -26,11 +30,10 @@ CheesyDrive::CheesyDrive() {
  * @author William Kunkel
  */
 void CheesyDrive::Execute() {
-	deadzone = 0.1;
-	float forward = operatorInterface
+	float forward = forwardScale * operatorInterface
 	                 ->getLeftPrimaryJoystick()
 	                 ->GetY();
-	float turning = 0.5 * operatorInterface
+	float turning = turnScale * operatorInterface
 	                 ->getRightPrimaryJoystick()
 	                 ->GetX();
 	
