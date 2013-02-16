@@ -2,37 +2,22 @@
 #include <cmath>
 #include <iostream>
 
-float p = 0.02;
-
 OperateShooter::OperateShooter() {
 	Requires(shooter);
 }
 
 // Called repeatedly when this Command is scheduled to run
 void OperateShooter::Execute() {
-//	float firstSpeed = operatorInterface->getLeftPrimaryJoystick()->GetY();
-//	float secondSpeed = operatorInterface->getRightPrimaryJoystick()->GetY();
-//	if (operatorInterface->getLeftPrimaryJoystick()->GetTrigger()) {
-//		firstSpeed = 1.0;
-//	}
-//	if (operatorInterface->getRightPrimaryJoystick()->GetTrigger()) {
-//		secondSpeed = 1.0;
-//	}
-//	shooter->setFirstMotorSpeed(firstSpeed);
-//	shooter->setSecondMotorSpeed(secondSpeed);
-	
-	if (operatorInterface->getLeftPrimaryJoystick()->GetTrigger()) {
-		shooter->startShooter();
-	} else if (operatorInterface->getRightPrimaryJoystick()->GetTrigger()) {
-		shooter->stopShooter();
-	}
-	float tempP = ( -operatorInterface
-			        ->getLeftPrimaryJoystick()
-			        ->GetZ() + 1.0) / 2.0 * 0.03;
-	if ( fabs(p - tempP) > 0.001) {
-		p = tempP;
-		std::cerr << p << std::endl;
-		shooter->setP(p);
+	// This part operates the shooter wheels
+	if ( operatorInterface
+		 ->getSetpointOneButtonValue() ) {
+		shooter->setSetpoints(20.0, 20.0);
+	} else if ( operatorInterface
+			    ->getSetpointTwoButtonValue() ) {
+		shooter->setSetpoints(30.0, 30.0);
+	} else if ( operatorInterface
+		        ->getSetpointThreeButtonValue() ) {
+		shooter->setSetpoints(40.0, 40.0);
 	}
 }
 
