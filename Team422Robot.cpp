@@ -15,9 +15,12 @@
  */
 void Team422Robot::RobotInit() {
 	CommandBase::init();
-	startHopperWheel = new StartHopperWheel();
+	operateSolenoid = new OperateSolenoid();
 	cheesyDrive = new CheesyDrive();
+	operateShooter = new OperateShooter();
+	moveShooterArticulator = new MoveShooterArticulator();
 	liveWindow = LiveWindow::GetInstance();
+	dashboard = DriverStationLCD::GetInstance();
 }
 
 /**
@@ -27,7 +30,7 @@ void Team422Robot::RobotInit() {
  * @author William Kunkel
  */
 void Team422Robot::AutonomousInit() {
-	startHopperWheel->Start();
+	
 }
 
 /**
@@ -48,6 +51,9 @@ void Team422Robot::AutonomousPeriodic() {
  */
 void Team422Robot::TeleopPeriodic() {
 	Scheduler::GetInstance()->Run();
+	dashboard->Clear();
+	dashboard->Printf(DriverStationLCD::kUser_Line1, 1, "Testing");
+	dashboard->UpdateLCD();
 }
 
 /**

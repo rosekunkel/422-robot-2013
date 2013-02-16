@@ -6,7 +6,6 @@
 */
 
 #include "CommandBase.h"
-#include "Subsystems/Shooter.h"
 #include "Commands/Scheduler.h"
 
 /**
@@ -27,6 +26,8 @@ CommandBase::CommandBase() : Command() {
 
 Shooter* CommandBase::shooter = 0;
 Drive* CommandBase::drive = 0;
+ShooterArticulator* CommandBase::shooterArticulator = 0;
+CompressorSystem* CommandBase::compressorSystem = 0;
 OI* CommandBase::operatorInterface = 0;
 
 /**
@@ -38,5 +39,7 @@ OI* CommandBase::operatorInterface = 0;
 void CommandBase::init() {
 	shooter = new Shooter();
 	drive = new Drive();
+	shooterArticulator = new ShooterArticulator();
+	compressorSystem = new CompressorSystem();
 	operatorInterface = new OI();
 }

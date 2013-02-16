@@ -8,8 +8,10 @@
 #include "WPILib.h"
 #include "Commands/Command.h"
 #include "CommandBase.h"
-#include "Commands/StartHopperWheel.h"
 #include "Commands/CheesyDrive.h"
+#include "Commands/OperateSolenoid.h"
+#include "Commands/OperateShooter.h"
+#include "Commands/MoveShooterArticulator.h"
 
 /**
  * @brief The main class for the robot
@@ -22,9 +24,12 @@
  */
 class Team422Robot : public IterativeRobot {
 private:
-	Command *startHopperWheel,
-	        *cheesyDrive;
+	Command *operateSolenoid,
+	        *cheesyDrive,
+	        *operateShooter,
+	        *moveShooterArticulator;
 
+	DriverStationLCD *dashboard;
 	LiveWindow *liveWindow;
 
 	/// Robot-wide initialization code

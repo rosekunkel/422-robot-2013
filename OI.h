@@ -24,8 +24,10 @@ public:
 
 	/// Get the left Joystick for the primary driver
 	Joystick* getLeftPrimaryJoystick();
+	
 	/// Get the right Joystick for the primary driver
 	Joystick* getRightPrimaryJoystick();
+	
 	/// Get the joystick for the secondary driver
 	Joystick* getSecondaryJoystick();
 private:
