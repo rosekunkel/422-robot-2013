@@ -27,23 +27,13 @@ public:
 
 	/// Stop both of the shooter's motors.
 	void stopShooter();
-
-	/// Extend the disk pusher solenoid.
-	void extend();
-
-	/// Retract the disk pusher solenoid.
-	void retract();
-
-	void setP(float p);
-	void setFirstMotorSpeed(float speed);
-	void setSecondMotorSpeed(float speed);
+	
+	void setSetpoints(float firstSetpoint, float secondSetpoint);
 private:
 	// firstMotor refers to the motor which the frisbee will contact first
 	PIDTalonWrapper *firstMotor, *secondMotor; 
 	Encoder *firstEncoder, *secondEncoder;
 	PIDController *firstMotorController, *secondMotorController;
-	
-	DoubleSolenoid *diskPusher;
 	
 	static const float P,I,D;
 	
