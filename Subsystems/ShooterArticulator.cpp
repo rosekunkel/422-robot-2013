@@ -31,7 +31,8 @@ void ShooterArticulator::InitDefaultCommand() {
  * @author Nyle Rodgers
  */ 
 double ShooterArticulator::getAngle() {
-	return ( (potentiometer->GetAverageVoltage() - ZERO_DEGREE_VOLTAGE) / ONE_EIGHTY_DEGREE_VOLTAGE ) * 180.0;
+	return ( ( potentiometer->GetAverageVoltage() - ZERO_DEGREE_VOLTAGE) 
+			   / ONE_EIGHTY_DEGREE_VOLTAGE ) * 180.0;
 }
 
 /**

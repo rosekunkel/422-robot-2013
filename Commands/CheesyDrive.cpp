@@ -36,22 +36,24 @@ void CheesyDrive::Execute() {
 	     ->GetRawButton(ONE_TENTH_SPEED_MULTIPLIER ) ) {
 		forwardScale = 0.1;
 		turnScale = 0.05;
+	} else 	if ( operatorInterface
 		         ->getLeftPrimaryJoystick()
 		         ->GetRawButton(HALF_SPEED_MULTIPLIER ) ) {
 		forwardScale = 0.5;
 		turnScale = 0.25;
 	} else 	if ( operatorInterface
+	             ->getRightPrimaryJoystick()
 	             ->GetRawButton(FULL_SPEED_MULTIPLIER ) ) {
 		forwardScale = 1.0;
 		turnScale = 0.5;
 	}
 	
 	float forward = forwardScale * operatorInterface
-	                 ->getLeftPrimaryJoystick()
-	                 ->GetY();
+	                ->getLeftPrimaryJoystick()
+	                ->GetY();
 	float turning = turnScale * operatorInterface
-	                 ->getRightPrimaryJoystick()
-	                 ->GetX();
+	                ->getRightPrimaryJoystick()
+	                ->GetX();
 	
 	// We add a dead zone around 0 to circumvent joysticks not being perfectly centered
 	if( forward > 0.0) {

@@ -19,8 +19,8 @@
 /**
  * @brief The base for all commands
  *
- * Provides a common base which all commands can use to access each subsystem as
- * well as the operator interface.
+ * Provides a common base which all commands can use to access each subsystem 
+ * as well as the operator interface.
  *
  * @author William Kunkel
  * @author Nyle Rodgers

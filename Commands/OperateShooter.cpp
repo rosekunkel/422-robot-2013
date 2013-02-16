@@ -26,7 +26,9 @@ void OperateShooter::Execute() {
 	} else if (operatorInterface->getRightPrimaryJoystick()->GetTrigger()) {
 		shooter->stopShooter();
 	}
-	float tempP = ( -operatorInterface->getLeftPrimaryJoystick()->GetZ() + 1.0) / 2.0 * 0.03;
+	float tempP = ( -operatorInterface
+			        ->getLeftPrimaryJoystick()
+			        ->GetZ() + 1.0) / 2.0 * 0.03;
 	if ( fabs(p - tempP) > 0.001) {
 		p = tempP;
 		std::cerr << p << std::endl;

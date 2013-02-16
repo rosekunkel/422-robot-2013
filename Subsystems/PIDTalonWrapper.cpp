@@ -4,6 +4,7 @@
  * @author Nyle Rodgers
  */
 #include "PIDTalonWrapper.h"
+#include "../Robotmap.h"
 
 /**
  * Constructor for the PIDTalonWrapper class
