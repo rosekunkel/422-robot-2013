@@ -11,6 +11,7 @@ Pneumatics::Pneumatics() :
 			                    DIGITAL_MODULE_PORT,
 			                    COMPRESSOR_RELAY_CHANNEL ) ) {
 	compressor->Start();
+	diskPusher->Set(DoubleSolenoid::kReverse);
 }
     
 void Pneumatics::InitDefaultCommand() {

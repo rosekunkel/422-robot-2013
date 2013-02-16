@@ -10,6 +10,8 @@ void OperateShooterArticulator::Execute() {
 		shooterArticulator->moveUp();
 	} else if (operatorInterface->getSecondaryJoystick()->GetY() < -0.5) {
 		shooterArticulator->moveDown();
+	} else {
+		shooterArticulator->stop();
 	}
 }
 

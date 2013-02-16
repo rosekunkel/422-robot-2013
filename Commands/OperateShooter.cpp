@@ -18,6 +18,8 @@ void OperateShooter::Execute() {
 	} else if ( operatorInterface
 		        ->getSetpointThreeButtonValue() ) {
 		shooter->setSetpoints(40.0, 40.0);
+	} else if ( operatorInterface->getSecondaryJoystick()->GetRawButton(2) ) {// TODO: do this correctly (throughOI)
+		shooter->stopShooter();
 	}
 }
 
