@@ -9,9 +9,10 @@
 #include "Commands/Command.h"
 #include "CommandBase.h"
 #include "Commands/CheesyDrive.h"
-#include "Commands/OperateSolenoid.h"
-#include "Commands/OperateShooter.h"
 #include "Commands/MoveShooterArticulator.h"
+#include "Commands/OperateShooter.h"
+#include "Commands/OperateShooterArticulator.h"
+#include "Commands/Shoot.h"
 
 /**
  * @brief The main class for the robot
@@ -24,10 +25,11 @@
  */
 class Team422Robot : public IterativeRobot {
 private:
-	Command *operateSolenoid,
-	        *cheesyDrive,
+	Command *cheesyDrive,
+	        *moveShooterArticulator,
 	        *operateShooter,
-	        *moveShooterArticulator;
+	        *operateShooterArticulator,
+	        *shoot;
 
 	DriverStationLCD *dashboard;
 	LiveWindow *liveWindow;
