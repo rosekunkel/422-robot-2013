@@ -9,7 +9,7 @@
 #include "../RobotMap.h"
 #include "../Commands/CheesyDrive.h"
 
-const float Drive::P = 0.01,
+const float Drive::P = 0.07,
             Drive::I = 0.0,
             Drive::D = 0.0;
 
@@ -31,10 +31,10 @@ const float Drive::MAX_PERCENT_ERROR = 1.0;
 Drive::Drive() : 
 	Subsystem("Drive"),
 	leftMotor( new PIDTalonWrapper( DIGITAL_MODULE_PORT,
-	                      LEFT_DRIVE_CHANNEL ) ),
+	                                LEFT_DRIVE_CHANNEL ) ),
 
 	rightMotor( new PIDTalonWrapper( DIGITAL_MODULE_PORT,
-	                       RIGHT_DRIVE_CHANNEL ) ),
+	                                RIGHT_DRIVE_CHANNEL ) ),
 
 	leftEncoder( new Encoder( DIGITAL_MODULE_PORT,
 	                          LEFT_DRIVE_ENCODER_CHANNEL_A,
@@ -81,8 +81,8 @@ Drive::Drive() :
 	leftController->SetSetpoint(0.0);
 	rightController->SetSetpoint(0.0);
 
-	//leftController->Enable();
-	//rightController->Enable();
+	leftController->Enable();
+	rightController->Enable();
 }
 
 void Drive::InitDefaultCommand() {
@@ -128,10 +128,8 @@ void Drive::setMotorSpeeds( float leftSpeed, float rightSpeed ) {
 // TODO: Figure out why values such as 1, -1 replaced for the speed * MAX_RPS makes drive backwards,
 //       but Cheesy Drive works
 void Drive::setMotorsNormalized( float leftSpeed, float rightSpeed ) {
-	//leftController->SetSetpoint( leftSpeed * MAX_RPS );
-	//rightController->SetSetpoint( -rightSpeed * MAX_RPS );// The negative is to compensate for wiring
-	leftMotor->Set(leftSpeed);
-	rightMotor->Set(-rightSpeed);
+	leftController->SetSetpoint( leftSpeed * MAX_RPS );
+	rightController->SetSetpoint( -rightSpeed * MAX_RPS );// The negative is to compensate for wiring
 }
 
 /**
@@ -147,5 +145,4 @@ void Drive::stop() {
 void Drive::setP(float p) {
 	leftController->SetPID(p, I, D);
 	rightController->SetPID(p, I, D);
-	std::cerr << "PID P: " << leftController->GetP() << std::endl;
 }
