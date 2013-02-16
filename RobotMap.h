@@ -31,8 +31,8 @@ const UINT8 DIGITAL_MODULE_PORT = 1,
  * @{
  */
 // PWM channels for the drivebase
-const UINT32 LEFT_DRIVE_CHANNEL = 3,
-	         RIGHT_DRIVE_CHANNEL = 4;
+const UINT32 LEFT_DRIVE_CHANNEL = 2,
+	         RIGHT_DRIVE_CHANNEL = 1;
 // PWM channels for the shooter
 const UINT32 FIRST_SHOOTER_WHEEL_CHANNEL = 3,
 	         SECOND_SHOOTER_WHEEL_CHANNEL = 6;
@@ -51,10 +51,10 @@ const UINT32 LEFT_DRIVE_ENCODER_CHANNEL_A = 1,
 	         RIGHT_DRIVE_ENCODER_CHANNEL_A = 5,
 	         RIGHT_DRIVE_ENCODER_CHANNEL_B = 6;
 // Digital I/O ports for the shooter
-const UINT32 FIRST_SHOOTER_ENCODER_CHANNEL_A = 4,
-	         FIRST_SHOOTER_ENCODER_CHANNEL_B = 3,
-             SECOND_SHOOTER_ENCODER_CHANNEL_A = 7,
-	         SECOND_SHOOTER_ENCODER_CHANNEL_B = 8;
+const UINT32 FIRST_SHOOTER_ENCODER_CHANNEL_A = 13,
+	         FIRST_SHOOTER_ENCODER_CHANNEL_B = 14,
+             SECOND_SHOOTER_ENCODER_CHANNEL_A = 9,
+	         SECOND_SHOOTER_ENCODER_CHANNEL_B = 10;
 // Ditital I/O port for the shooter articulator
 const UINT32 ARTICULATOR_POTENTIOMETER_CHANNEL = 0;
 // Ditital I/O ports for the compressor
@@ -69,8 +69,8 @@ const UINT32 COMPRESSOR_PRESSURE_SWITCH_CHANNEL = 0,
  * @{
  */
 // Solenoid ports for the shooter
-const UINT32 EXTEND_DISK_PUSHER_CHANNEL = 8,
-	         RETRACT_DISK_PUSHER_CHANNEL = 7;
+const UINT32 EXTEND_DISK_PUSHER_CHANNEL = 1,
+	         RETRACT_DISK_PUSHER_CHANNEL = 2;
 /**@}*/
 
 #endif // ROBOT_MAP_H
