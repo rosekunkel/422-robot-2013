@@ -37,7 +37,7 @@ public:
 	/// Implement virtual method and do nothing
 	void Interrupted() {};
 private:
-	static const float deadzone;
+	static const float DEADZONE;
 	float forwardScale,
 	      turnScale;
 };

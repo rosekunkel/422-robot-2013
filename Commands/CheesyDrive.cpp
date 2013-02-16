@@ -10,7 +10,7 @@
 // We need <math.h> for copysignf in cheesyDrive
 #include <cmath>
 
-const float CheesyDrive::deadzone = 0.1;
+const float CheesyDrive::DEADZONE = 0.1;
 
 /**
  * Give the subsystem requirements for CheesyDrive.
@@ -39,23 +39,23 @@ void CheesyDrive::Execute() {
 	
 	// We add a dead zone around 0 to circumvent joysticks not being perfectly centered
 	if( forward > 0.0) {
-		forward = (forward - deadzone) / (1.0 - deadzone);
+		forward = (forward - DEADZONE) / (1.0 - DEADZONE);
 		if (forward < 0.0) {
 			forward = 0.0;
 		}
 	} else {
-		forward = (forward + deadzone) / (1.0 - deadzone);
+		forward = (forward + DEADZONE) / (1.0 - DEADZONE);
 		if (forward > 0.0) {
 			forward = 0.0;
 		}
 	}	
 	if( turning > 0.0) {
-		turning = (turning - deadzone) / (1.0 - deadzone);
+		turning = (turning - DEADZONE) / (1.0 - DEADZONE);
 		if (turning < 0.0) {
 			turning = 0.0;
 		}
 	} else {
-		turning = (turning + deadzone) / (1.0 - deadzone);
+		turning = (turning + DEADZONE) / (1.0 - DEADZONE);
 		if (turning > 0.0) {
 			turning = 0.0;
 		}
