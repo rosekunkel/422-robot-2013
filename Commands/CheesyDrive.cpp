@@ -20,6 +20,7 @@ const float CheesyDrive::DEADZONE = 0.1;
 CheesyDrive::CheesyDrive() {
 	Requires(drive);
 	multiplier = 1.0;
+	forwardMultiplier = 1.0;
 	turningMultiplier = 0.5;
 }
 
@@ -41,6 +42,10 @@ void CheesyDrive::Execute() {
 		turningMultiplier = 0.25;
 	} else if ( operatorInterface->getHalfSpeedTurningMultiplierButtonValue() ) {
 		turningMultiplier = 0.5;
+	}
+	
+	if ( operatorInterface->getDriveReverseButtonValue() ) {
+		forwardMultiplier *= -1.0;
 	}
 	
 	float forward = operatorInterface
@@ -73,7 +78,7 @@ void CheesyDrive::Execute() {
 			turning = 0.0;
 		}
 	}
-	forward *= multiplier;
+	forward *= forwardMultiplier * multiplier;
 	turning *= turningMultiplier * multiplier;
 	
 	// We determine the speed multiplier by adding and subtracting the turning

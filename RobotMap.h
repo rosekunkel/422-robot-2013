@@ -71,6 +71,9 @@ const UINT32 COMPRESSOR_PRESSURE_SWITCH_CHANNEL = 0,
 // Solenoid ports for the shooter
 const UINT32 EXTEND_DISK_PUSHER_CHANNEL = 8,
 	         RETRACT_DISK_PUSHER_CHANNEL = 7;
+// Solenoid ports for the climber
+const UINT32 LOWER_CLIMBER_CHANNEL = 0,
+		     RAISE_CLIMBER_CHANNEL = 0;
 /**@}*/
 
 #endif // ROBOT_MAP_H
