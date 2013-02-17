@@ -121,6 +121,6 @@ void Shooter::stopShooter() {
 void Shooter::setSetpoints(float firstSetpoint, float secondStepoint) {
 	firstMotorController->Enable();
 	secondMotorController->Enable();
-	firstMotorController->SetSetpoint(firstSetpoint);
-	secondMotorController->SetSetpoint(secondStepoint);
+	firstMotorController->SetSetpoint(-firstSetpoint);
+	secondMotorController->SetSetpoint(-secondStepoint);
 }

@@ -43,10 +43,10 @@ void CheesyDrive::Execute() {
 		turningMultiplier = 0.5;
 	}
 	
-	float forward = multiplier * operatorInterface
+	float forward = operatorInterface
 	                ->getLeftPrimaryJoystick()
 	                ->GetY();
-	float turning = multiplier * turningMultiplier * operatorInterface
+	float turning = operatorInterface
 	                ->getRightPrimaryJoystick()
 	                ->GetX();
 	
@@ -73,6 +73,9 @@ void CheesyDrive::Execute() {
 			turning = 0.0;
 		}
 	}
+	forward *= multiplier;
+	turning *= turningMultiplier * multiplier;
+	
 	// We determine the speed multiplier by adding and subtracting the turning
 	// value from the base speed
 	float leftMultiplier = forward-turning,
