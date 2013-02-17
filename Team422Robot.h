@@ -13,6 +13,7 @@
 #include "Commands/OperateShooter.h"
 #include "Commands/OperateShooterArticulator.h"
 #include "Commands/Shoot.h"
+#include "Commands/ToggleClimber.h"
 
 /**
  * @brief The main class for the robot
@@ -29,7 +30,8 @@ private:
 	        *moveShooterArticulator,
 	        *operateShooter,
 	        *operateShooterArticulator,
-	        *shoot;
+	        *shoot,
+	        *toggleClimber;
 
 	DriverStationLCD *dashboard;
 	LiveWindow *liveWindow;

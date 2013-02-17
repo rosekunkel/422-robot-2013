@@ -24,10 +24,12 @@ CommandBase::CommandBase(const char *name) : Command(name) {
 CommandBase::CommandBase() : Command() {
 }
 
-Shooter* CommandBase::shooter = 0;
+Climber* CommandBase::climber = 0;
+CompressorSystem* CommandBase::compressorSystem = 0;
 Drive* CommandBase::drive = 0;
+Pusher* CommandBase::pusher = 0;
+Shooter* CommandBase::shooter = 0;
 ShooterArticulator* CommandBase::shooterArticulator = 0;
-Pneumatics* CommandBase::pneumatics = 0;
 OI* CommandBase::operatorInterface = 0;
 
 /**
@@ -37,9 +39,11 @@ OI* CommandBase::operatorInterface = 0;
  * @author William Kunkel
  */
 void CommandBase::init() {
-	shooter = new Shooter();
+	climber = new Climber();
+	compressorSystem = new CompressorSystem();
 	drive = new Drive();
+	pusher = new Pusher();
+	shooter = new Shooter();
 	shooterArticulator = new ShooterArticulator();
-	pneumatics = new Pneumatics();
 	operatorInterface = new OI();
 }

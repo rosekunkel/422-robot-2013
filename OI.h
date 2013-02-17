@@ -31,31 +31,40 @@ public:
 	/// Get the joystick for the secondary driver
 	Joystick* getSecondaryJoystick();
 	
-	/// Get the one tenth speed multiplier button
+	/// Get the one tenth speed multiplier button state
 	bool getOneTenthSpeedMultiplierButtonValue();
 	
-	/// Get the half speed multiplier button
+	/// Get the half speed multiplier button state
 	bool getHalfSpeedMultiplierButtonValue();
 	
-	/// Get the full speed button
+	/// Get the full speed button state
 	bool getFullSpeedButtonValue();
 	
-	/// Get the half speed turning multiplier button
+	/// Get the half speed turning multiplier button state
 	bool getHalfSpeedTurningMultiplierButtonValue();
 	
-	/// Get the quarter speed turning multiplier button
+	/// Get the quarter speed turning multiplier button state
 	bool getQuarterSpeedTurningMultiplierButtonValue();
 	
-	/// Get the fire button
+	/// Get the drive reverse button state
+	bool getDriveReverseButtonValue();
+	
+	/// Get the toggle climber button state
+	bool getToggleClimberButtonValue();
+	
+	/// Get the fire button state
 	bool getFireButtonValue();
 	
-	/// Get the setpoint one button
+	/// Get the setpoint zero button state
+	bool getSetpointZeroButtonValue();
+	
+	/// Get the setpoint one button state
 	bool getSetpointOneButtonValue();
 	
-	/// Get the setpoint two button
+	/// Get the setpoint two button state
 	bool getSetpointTwoButtonValue();
 	
-	/// Get the setpoint three button
+	/// Get the setpoint three button state
 	bool getSetpointThreeButtonValue();
 	
 private:
@@ -68,8 +77,14 @@ private:
 	               *fullSpeedButton,
 	               *halfSpeedTurningMultiplierButton,
 	               *quarterSpeedTurningMultiplierButton,
+	               *driveReverseButton,
+	               
+	               *toggleClimberButton,
+	               
 	               // secondary driver buttons
 	               *fireButton,
+	               
+	               *setpointZeroButton,
 	               *setpointOneButton,
 	               *setpointTwoButton,
 	               *setpointThreeButton;

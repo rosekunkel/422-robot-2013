@@ -39,6 +39,7 @@ public:
 private:
 	static const float DEADZONE;
 	float multiplier,
+	      forwardMultiplier,
 	      turningMultiplier;
 };
 
