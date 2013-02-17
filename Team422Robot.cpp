@@ -20,6 +20,7 @@ void Team422Robot::RobotInit() {
 	operateShooter = new OperateShooter();
 	operateShooterArticulator = new OperateShooterArticulator();
 	shoot = new Shoot();
+	toggleClimber = new ToggleClimber();
 	liveWindow = LiveWindow::GetInstance();
 	dashboard = DriverStationLCD::GetInstance();
 }
