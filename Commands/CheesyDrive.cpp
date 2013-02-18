@@ -44,13 +44,6 @@ void CheesyDrive::Execute() {
 		turningMultiplier = 0.5;
 	}
 	
-	if ( operatorInterface->getDriveReverseButtonValue() && !isReversePressed ) {
-		forwardMultiplier *= -1.0;
-		isReversePressed = true;
-	} else if ( !operatorInterface->getDriveReverseButtonValue() && isReversePressed ) {
-		isReversePressed = false;
-	}
-	
 	float forward = operatorInterface
 	                ->getLeftPrimaryJoystick()
 	                ->GetY();
@@ -114,4 +107,8 @@ void CheesyDrive::Execute() {
  */
 bool CheesyDrive::IsFinished() {
 	return false;
+}
+
+void CheesyDrive::Interrupted() {
+	drive->stop();
 }

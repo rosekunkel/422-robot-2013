@@ -61,11 +61,11 @@ double ShooterArticulator::getAngle() {
  * @author Nyle Rodgers
  */
 void ShooterArticulator::moveUp() {
-	if( topLimitSwitch->Get() ) {
+	//if( topLimitSwitch->Get() ) {
 		motor->Set(1.0);
-	} else {
-		stop();
-	}
+	//} else {
+	//	stop();
+	//}
 }
 
 /**
@@ -74,11 +74,11 @@ void ShooterArticulator::moveUp() {
  * @author Nyle Rodgers
  */
 void ShooterArticulator::moveDown() {
-	if( bottomLimitSwitch->Get() ) {
+	//if( bottomLimitSwitch->Get() ) {
 		motor->Set(-1.0);
-	} else {
-		stop();
-	}
+	//} else {
+	//	stop();
+	//}
 }
 
 /**

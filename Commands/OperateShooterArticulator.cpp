@@ -12,8 +12,7 @@ void OperateShooterArticulator::Execute() {
 		shooterArticulator->moveDown();
 	} else {
 		shooterArticulator->stop();
-	}
-	
+	}	
 }
 
 // Make this return true when this Command no longer needs to run execute()
