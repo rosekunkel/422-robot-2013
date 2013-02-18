@@ -4,13 +4,13 @@
  * @author Nyle Rodgers
  */
 #define _USE_MATH_DEFINES
-#include <math.h>
+#include <cmath>
 
 #include "ShooterArticulator.h"
 #include "../Commands/OperateShooterArticulator.h"
 #include "../Robotmap.h"
 
-
+const float PI = 3.14159;
 
 // TODO: put actual numbers in here
 const float ShooterArticulator::ZERO_RADIAN_VOLTAGE = 0;
@@ -35,7 +35,7 @@ ShooterArticulator::ShooterArticulator() :
 			                          ARTICULATOR_TOP_LIMIT_SWITCH_CHANNEL ) ),
 	bottomLimitSwitch( new DigitalInput( DIGITAL_MODULE_PORT,
 			                             ARTICULATOR_BOTTOM_LIMIT_SWITCH_CHANNEL ) ) {
-	encoder->SetDistancePerPulse( 2 * M_PI / ENCODER_RESOLUTION );
+	encoder->SetDistancePerPulse( 2 * PI / ENCODER_RESOLUTION );
 	encoder->Start();
 	
 }

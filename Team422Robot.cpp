@@ -19,7 +19,6 @@ void Team422Robot::RobotInit() {
 	moveShooterArticulator = new MoveShooterArticulator();
 	operateShooter = new OperateShooter();
 	operateShooterArticulator = new OperateShooterArticulator();
-	setShooterArticulator = new SetShooterArticulator();
 	shoot = new Shoot();
 	toggleClimber = new ToggleClimber();
 	liveWindow = LiveWindow::GetInstance();
