@@ -53,6 +53,7 @@ void Team422Robot::AutonomousPeriodic() {
  */
 void Team422Robot::TeleopPeriodic() {
 	Scheduler::GetInstance()->Run();
+	
 }
 
 /**

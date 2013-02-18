@@ -23,7 +23,7 @@ public:
 	/// Set the default command
 	void InitDefaultCommand();
 	
-	/// Get the current angle, in degrees, above horizontal
+	/// Get the current angle, in radians, above horizontal
 	double getAngle();
 	
 	/// Move the acticulator up at full speed
@@ -36,10 +36,14 @@ public:
 	void stop();
 private:
 	Talon *motor;
+	Encoder *encoder;
 	AnalogChannel *potentiometer;
+	DigitalInput *topLimitSwitch,
+	             *bottomLimitSwitch;
 	
-	static const float ZERO_DEGREE_VOLTAGE,
-	                   ONE_EIGHTY_DEGREE_VOLTAGE;
+	static const float ZERO_RADIAN_VOLTAGE,
+	                   ONE_RADIAN_VOLTAGE,
+	                   ENCODER_RESOLUTION;
 };
 
 #endif //SHOOTERARTICULATOR_H

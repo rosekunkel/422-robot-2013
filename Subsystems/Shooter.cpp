@@ -10,6 +10,7 @@
 #include "../Commands/OperateShooter.h"
 
 #include <iostream>
+#include <cmath>
 
 // TODO: Tune the PID
 const float Shooter::P = 0.01,
@@ -25,6 +26,8 @@ const float Shooter::MAX_RPS = 45.0;
 const float Shooter::ENCODER_RESOLUTION = 64.0;
 
 const float Shooter::MAX_PERCENT_ERROR = 1.0;
+
+const float Shooter::ACCEPTABLE_ERROR = 1.0;
 
 /**
  * Initialize the shooter's PID controller, motor controllers, encoder,
@@ -123,4 +126,28 @@ void Shooter::setSetpoints(float firstSetpoint, float secondStepoint) {
 	secondMotorController->Enable();
 	firstMotorController->SetSetpoint(-firstSetpoint);
 	secondMotorController->SetSetpoint(-secondStepoint);
+}
+
+float Shooter::getFirstWheelSpeed() {
+	return firstEncoder->GetRate();
+}
+
+float Shooter::getSecondWheelSpeed() {
+	return secondEncoder->GetRate();
+}
+
+bool Shooter::isAtSpeed() {
+	return ( fabs( firstEncoder->GetRate() - firstMotorController->GetSetpoint() ) 
+	       < ACCEPTABLE_ERROR) &&
+	       ( fabs( secondEncoder->GetRate() - secondMotorController->GetSetpoint() ) 
+	       < ACCEPTABLE_ERROR);
+}
+
+void Shooter::goFullSpeed() {
+	firstMotorController->SetSetpoint(0.0);
+	secondMotorController->SetSetpoint(0.0);
+	firstMotorController->Disable();
+	secondMotorController->Disable();
+	firstMotor->Set(-1.0);
+	secondMotor->Set(-1.0);
 }
