@@ -28,7 +28,15 @@ public:
 	/// Stop both of the shooter's motors.
 	void stopShooter();
 	
+	float getFirstWheelSpeed();
+	
+	float getSecondWheelSpeed();
+	
+	bool isAtSpeed();
+	
 	void setSetpoints(float firstSetpoint, float secondSetpoint);
+	
+	void goFullSpeed();
 private:
 	// firstMotor refers to the motor which the frisbee will contact first
 	PIDTalonWrapper *firstMotor, *secondMotor; 
@@ -48,6 +56,9 @@ private:
 
 	/// Maximum acceptable error between the setpoint and the actual speed
 	static const float MAX_PERCENT_ERROR;
+	
+	/// The maximum acceptable error for the isAtSpeed method, in RPS, should probably be given a better name
+	static const float ACCEPTABLE_ERROR;
 };
 
 #endif //SHOOTER_H

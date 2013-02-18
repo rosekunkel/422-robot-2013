@@ -1,7 +1,7 @@
 #include "SetShooterArticulator.h"
 #include <cmath>
 
-const float MAX_ERROR = 0.02;
+const float SetShooterArticulator::MAX_ERROR = 0.02;
 
 /// angle is in radians
 SetShooterArticulator::SetShooterArticulator(float angle) {
