@@ -41,6 +41,7 @@ private:
 	float multiplier,
 	      forwardMultiplier,
 	      turningMultiplier;
+	bool isReversePressed;
 };
 
 #endif // CHEESY_DRIVE_H
