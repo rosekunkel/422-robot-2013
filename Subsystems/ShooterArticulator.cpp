@@ -3,22 +3,40 @@
  * @brief Implementation of the Shooter articulator subsystem
  * @author Nyle Rodgers
  */
+#define _USE_MATH_DEFINES
+#include <math.h>
+
 #include "ShooterArticulator.h"
 #include "../Commands/OperateShooterArticulator.h"
 #include "../Robotmap.h"
 
+
+
 // TODO: put actual numbers in here
-const float ShooterArticulator::ZERO_DEGREE_VOLTAGE = 0;
-const float ShooterArticulator::ONE_EIGHTY_DEGREE_VOLTAGE = 1;
+const float ShooterArticulator::ZERO_RADIAN_VOLTAGE = 0;
+const float ShooterArticulator::ONE_RADIAN_VOLTAGE = 1;
+const float ShooterArticulator::ENCODER_RESOLUTION = 64;
 
 
 ShooterArticulator::ShooterArticulator() : 
 	Subsystem("ShooterArticulator"),
 	motor( new Talon( DIGITAL_MODULE_PORT,
-			          ARTICULATOR_MOTOR_CHANNEL) ),
+			          ARTICULATOR_MOTOR_CHANNEL ) ),
 	
+	encoder( new Encoder( DIGITAL_MODULE_PORT,
+	                      ARTICULATOR_ENCODER_CHANNEL_A,
+	                      DIGITAL_MODULE_PORT,
+	                      ARTICULATOR_ENCODER_CHANNEL_B,
+	                      false,
+	                      Encoder::k1X  ) ),
 	potentiometer( new AnalogChannel( DIGITAL_MODULE_PORT,
-			                          ARTICULATOR_POTENTIOMETER_CHANNEL ) ) {
+			                          ARTICULATOR_POTENTIOMETER_CHANNEL ) ),
+	topLimitSwitch( new DigitalInput( DIGITAL_MODULE_PORT,
+			                          ARTICULATOR_TOP_LIMIT_SWITCH_CHANNEL ) ),
+	bottomLimitSwitch( new DigitalInput( DIGITAL_MODULE_PORT,
+			                             ARTICULATOR_BOTTOM_LIMIT_SWITCH_CHANNEL ) ) {
+	encoder->SetDistancePerPulse( 2 * M_PI / ENCODER_RESOLUTION );
+	encoder->Start();
 	
 }
     
@@ -27,13 +45,14 @@ void ShooterArticulator::InitDefaultCommand() {
 }
 
 /**
- * Get the current angle, in degrees, above horizontal
+ * Get the current angle, in radians, above horizontal
  *
  * @author Nyle Rodgers
  */ 
 double ShooterArticulator::getAngle() {
-	return ( ( potentiometer->GetAverageVoltage() - ZERO_DEGREE_VOLTAGE) 
-			   / ONE_EIGHTY_DEGREE_VOLTAGE ) * 180.0;
+	return encoder->GetDistance();
+//	return ( ( potentiometer->GetAverageVoltage() - ZERO_RADIAN_VOLTAGE) 
+//			   / ONE_RADIAN_VOLTAGE );
 }
 
 /**
@@ -42,7 +61,11 @@ double ShooterArticulator::getAngle() {
  * @author Nyle Rodgers
  */
 void ShooterArticulator::moveUp() {
-	motor->Set(1.0);
+	if( topLimitSwitch->Get() ) {
+		motor->Set(1.0);
+	} else {
+		stop();
+	}
 }
 
 /**
@@ -51,7 +74,11 @@ void ShooterArticulator::moveUp() {
  * @author Nyle Rodgers
  */
 void ShooterArticulator::moveDown() {
-	motor->Set(-1.0);
+	if( bottomLimitSwitch->Get() ) {
+		motor->Set(-1.0);
+	} else {
+		stop();
+	}
 }
 
 /**
