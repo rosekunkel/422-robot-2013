@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{3EF70246-A40B-4D7E-9671-C4D6AEA1AEBE}</ProjectGuid>
+    <Keyword>MakeFileProj</Keyword>
+    <RootNamespace>C:\FRCROBOT\422-robot-2013-master</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <NMakeBuildCommandLine>C:\WindRiver\vxworks-6.3\host\x86-win32\bin\make -C C:\WindRiver\workspace\422Robot\PPC603gnu --no-print-directory BUILD_SPEC=PPC603gnu DEBUG_MODE=1 TRACE=1</NMakeBuildCommandLine>
+    <NMakeOutput>FRC_UserProgram.out</NMakeOutput>
+    <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <LibraryPath>C:\WindRiver\vxworks-6.3\target\lib;C:\WindRiver\vxworks-6.3\target\h\WPILib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\WindRiver\vxworks-6.3\target\usr\h;C:\WindRiver\vxworks-6.3\target\h;C:\WindRiver\vxworks-6.3\target\h\WPILib;$(IncludePath)</IncludePath>
+    <ReferencePath>C:\WindRiver\vxworks-6.3\target\usr\h;C:\WindRiver\vxworks-6.3\target\h;C:\WindRiver\vxworks-6.3\target\h\WPILib;$(ReferencePath)</ReferencePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <NMakeBuildCommandLine>C:\WindRiver\workspace\422Robot\PPC603gnu&gt;C:\WindRiver\workbench-3.0\x86-win32\bin\make -C C:\WindRiver\workspace\422Robot\PPC603gnu --no-print-directory BUILD_SPEC=PPC603gnu DEBUG_MODE=1 TRACE=1</NMakeBuildCommandLine>
+    <NMakeOutput>FRC_UserProgram.out</NMakeOutput>
+    <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Text Include="readme.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CommandBase.cpp" />
+    <ClCompile Include="Commands\CheesyDrive.cpp" />
+    <ClCompile Include="Commands\MoveShooterArticulator.cpp" />
+    <ClCompile Include="Commands\OperateShooter.cpp" />
+    <ClCompile Include="Commands\OperateShooterArticulator.cpp" />
+    <ClCompile Include="Commands\Shoot.cpp" />
+    <ClCompile Include="Commands\ToggleClimber.cpp" />
+    <ClCompile Include="OI.cpp" />
+    <ClCompile Include="Subsystems\Climber.cpp" />
+    <ClCompile Include="Subsystems\CompressorSystem.cpp" />
+    <ClCompile Include="Subsystems\Drive.cpp" />
+    <ClCompile Include="Subsystems\PIDTalonWrapper.cpp" />
+    <ClCompile Include="Subsystems\Pneumatics.cpp" />
+    <ClCompile Include="Subsystems\Pusher.cpp" />
+    <ClCompile Include="Subsystems\Shooter.cpp" />
+    <ClCompile Include="Subsystems\ShooterArticulator.cpp" />
+    <ClCompile Include="Team422Robot.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CommandBase.h" />
+    <ClInclude Include="Commands\CheesyDrive.h" />
+    <ClInclude Include="Commands\MoveShooterArticulator.h" />
+    <ClInclude Include="Commands\OperateShooter.h" />
+    <ClInclude Include="Commands\OperateShooterArticulator.h" />
+    <ClInclude Include="Commands\Shoot.h" />
+    <ClInclude Include="Commands\ToggleClimber.h" />
+    <ClInclude Include="OI.h" />
+    <ClInclude Include="RobotMap.h" />
+    <ClInclude Include="Subsystems\Climber.h" />
+    <ClInclude Include="Subsystems\CompressorSystem.h" />
+    <ClInclude Include="Subsystems\Drive.h" />
+    <ClInclude Include="Subsystems\PIDTalonWrapper.h" />
+    <ClInclude Include="Subsystems\Pneumatics.h" />
+    <ClInclude Include="Subsystems\Pusher.h" />
+    <ClInclude Include="Subsystems\Shooter.h" />
+    <ClInclude Include="Subsystems\ShooterArticulator.h" />
+    <ClInclude Include="Team422Robot.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

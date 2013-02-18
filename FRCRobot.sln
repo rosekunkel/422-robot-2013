@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2012 for Windows Desktop
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FRCRobot", "FRCRobot.vcxproj", "{3EF70246-A40B-4D7E-9671-C4D6AEA1AEBE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3EF70246-A40B-4D7E-9671-C4D6AEA1AEBE}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3EF70246-A40B-4D7E-9671-C4D6AEA1AEBE}.Debug|Win32.Build.0 = Debug|Win32
+		{3EF70246-A40B-4D7E-9671-C4D6AEA1AEBE}.Release|Win32.ActiveCfg = Release|Win32
+		{3EF70246-A40B-4D7E-9671-C4D6AEA1AEBE}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
