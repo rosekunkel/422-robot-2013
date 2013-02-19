@@ -7,6 +7,7 @@
 #include "OI.h"
 #include "Commands/Shoot.h"
 #include "Commands/ToggleClimber.h"
+#include "Commands/SpinHalfRotation.h"
 
 /**
  * Initilize the Operator Interface.
@@ -27,9 +28,10 @@ OI::OI():
 	halfSpeedTurningMultiplierButton( new JoystickButton( rightPrimaryJoystick, 5 ) ),
 	quarterSpeedTurningMultiplierButton( new JoystickButton( rightPrimaryJoystick, 4 ) ),
 	
-	driveReverseButton( new JoystickButton( leftPrimaryJoystick, 3 ) ),
+	spinAroundLeftButton( new JoystickButton( leftPrimaryJoystick, 4 ) ),
+	spinAroundRightButton( new JoystickButton( leftPrimaryJoystick, 5 ) ),
 	
-	toggleClimberButton( new JoystickButton( rightPrimaryJoystick, 7 ) ),
+	toggleClimberButton( new JoystickButton( rightPrimaryJoystick, 2 ) ),
 	
 	// Secondary
 	
@@ -42,6 +44,9 @@ OI::OI():
 	toggleClimberButton->WhenPressed( new ToggleClimber() );
 	
 	fireButton->WhenPressed(new Shoot());
+	
+	spinAroundLeftButton->WhenPressed( new SpinHalfRotation( true ) );
+	spinAroundRightButton->WhenPressed( new SpinHalfRotation( false ) );
 }
 
 /**
@@ -117,12 +122,21 @@ bool OI::getQuarterSpeedTurningMultiplierButtonValue() {
 }
 
 /**
- * Get the drive reverse button state.
+ * Get the spin around left button state.
  *
  * @author Nyle Rodgers
  */
-bool OI::getDriveReverseButtonValue() {
-	return driveReverseButton->Get();
+bool OI::getSpinAroundLeftButtonValue() {
+	return spinAroundLeftButton->Get();
+}
+
+/**
+ * Get the spin around right button state.
+ *
+ * @author Nyle Rodgers
+ */
+bool OI::getSpinAroundRightButtonValue() {
+	return spinAroundRightButton->Get();
 }
 
 /**

@@ -12,7 +12,9 @@
 #include "Commands/MoveShooterArticulator.h"
 #include "Commands/OperateShooter.h"
 #include "Commands/OperateShooterArticulator.h"
+#include "Commands/SetShooterArticulator.h"
 #include "Commands/Shoot.h"
+#include "Commands/SpinHalfRotation.h"
 #include "Commands/ToggleClimber.h"
 
 /**
@@ -30,6 +32,7 @@ private:
 	        *moveShooterArticulator,
 	        *operateShooter,
 	        *operateShooterArticulator,
+	        *setShooterArticulator,
 	        *shoot,
 	        *toggleClimber;
 
