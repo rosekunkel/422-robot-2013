@@ -39,6 +39,8 @@ public:
 	// For Testing, set the P value for the PID controllers to p
 	void setP(float p);
 	
+	//Turn quickly in a direction
+	void uMadBro(int direction);
 private:
 	PIDTalonWrapper *leftMotor, *rightMotor;
 	Encoder *leftEncoder, *rightEncoder, *testEncoder;

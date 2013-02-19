@@ -147,3 +147,12 @@ void Drive::setP(float p) {
 	leftController->SetPID(p, I, D);
 	rightController->SetPID(p, I, D);
 }
+/**
+ * Turn quickly in a direction (1=right, -1=left)
+ *
+ * @author Lucario
+ */
+void Drive::uMadBro( int direction ) {
+	leftController->SetSetpoint( direction * MAX_RPS );
+	rightController->SetSetpoint( direction * MAX_RPS );
+}

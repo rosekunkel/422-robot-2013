@@ -57,15 +57,18 @@
   <ItemGroup>
     <ClCompile Include="CommandBase.cpp" />
     <ClCompile Include="Commands\CheesyDrive.cpp" />
+    <ClCompile Include="Commands\ControlLights.cpp" />
     <ClCompile Include="Commands\MoveShooterArticulator.cpp" />
     <ClCompile Include="Commands\OperateShooter.cpp" />
     <ClCompile Include="Commands\OperateShooterArticulator.cpp" />
+    <ClCompile Include="Commands\SetShooterArticulator.cpp" />
     <ClCompile Include="Commands\Shoot.cpp" />
     <ClCompile Include="Commands\ToggleClimber.cpp" />
     <ClCompile Include="OI.cpp" />
     <ClCompile Include="Subsystems\Climber.cpp" />
     <ClCompile Include="Subsystems\CompressorSystem.cpp" />
     <ClCompile Include="Subsystems\Drive.cpp" />
+    <ClCompile Include="Subsystems\Lights.cpp" />
     <ClCompile Include="Subsystems\PIDTalonWrapper.cpp" />
     <ClCompile Include="Subsystems\Pneumatics.cpp" />
     <ClCompile Include="Subsystems\Pusher.cpp" />
@@ -76,9 +79,11 @@
   <ItemGroup>
     <ClInclude Include="CommandBase.h" />
     <ClInclude Include="Commands\CheesyDrive.h" />
+    <ClInclude Include="Commands\ControlLights.h" />
     <ClInclude Include="Commands\MoveShooterArticulator.h" />
     <ClInclude Include="Commands\OperateShooter.h" />
     <ClInclude Include="Commands\OperateShooterArticulator.h" />
+    <ClInclude Include="Commands\SetShooterArticulator.h" />
     <ClInclude Include="Commands\Shoot.h" />
     <ClInclude Include="Commands\ToggleClimber.h" />
     <ClInclude Include="OI.h" />
@@ -86,6 +91,7 @@
     <ClInclude Include="Subsystems\Climber.h" />
     <ClInclude Include="Subsystems\CompressorSystem.h" />
     <ClInclude Include="Subsystems\Drive.h" />
+    <ClInclude Include="Subsystems\Lights.h" />
     <ClInclude Include="Subsystems\PIDTalonWrapper.h" />
     <ClInclude Include="Subsystems\Pneumatics.h" />
     <ClInclude Include="Subsystems\Pusher.h" />

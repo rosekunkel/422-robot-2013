@@ -104,7 +104,13 @@ void CheesyDrive::Execute() {
 	}
 
 	// Set the speed, using the multiplier as a percentage of the top speed
+	if(operatorInterface->getuMadLeftButtonValue()) {
+		drive->uMadBro(-1);
+	} else if (operatorInterface->getuMadRightButtonValue()) {
+		drive->uMadBro(1);
+	} else {
 	drive->setMotorsNormalized( leftMultiplier, rightMultiplier );
+	}
 }
 
 /**

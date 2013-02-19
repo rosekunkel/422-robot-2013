@@ -80,4 +80,16 @@ const UINT32 LOWER_CLIMBER_CHANNEL = 0,
 		     RAISE_CLIMBER_CHANNEL = 0;
 /**@}*/
 
+/**
+ * @defgroup LED Channel Numbers
+ * @{
+ * TODO: Get actual relay channels
+ */
+// Red Relay Ports
+const UINT32 RED_RELAY_CHANNEL = 0;
+// Blue Relay Ports
+const UINT32 BLUE_RELAY_CHANNEL = 0;
+// Green Relay Ports
+const UINT32 GREEN_RELAY_CHANNEL = 0;
+/**@}*/
 #endif // ROBOT_MAP_H

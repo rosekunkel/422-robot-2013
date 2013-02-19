@@ -30,6 +30,7 @@ Drive* CommandBase::drive = 0;
 Pusher* CommandBase::pusher = 0;
 Shooter* CommandBase::shooter = 0;
 ShooterArticulator* CommandBase::shooterArticulator = 0;
+Lights* CommandBase::lights = 0;
 OI* CommandBase::operatorInterface = 0;
 
 /**
@@ -45,5 +46,6 @@ void CommandBase::init() {
 	pusher = new Pusher();
 	shooter = new Shooter();
 	shooterArticulator = new ShooterArticulator();
+	lights = new Lights();
 	operatorInterface = new OI();
 }

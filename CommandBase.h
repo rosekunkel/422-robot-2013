@@ -15,7 +15,7 @@
 #include "Subsystems/Pusher.h"
 #include "Subsystems/Shooter.h"
 #include "Subsystems/ShooterArticulator.h"
-
+#include "Subsystems\Lights.h"
 #include "OI.h"
 
 
@@ -50,6 +50,8 @@ protected:
 	static Shooter *shooter;
 	/// The robot's Shooter Articulator
 	static ShooterArticulator *shooterArticulator;
+	/// The robot's LED's
+	static Lights *lights;
 	/// The operator interface for the robot
 	static OI *operatorInterface;
 };
