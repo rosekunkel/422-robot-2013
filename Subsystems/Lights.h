@@ -9,9 +9,9 @@
 #include "WPILib.h"
 
 /**
- * @brief The Pusher subsystem
+ * @brief The Lights subsystem
  * 
- * Controls the disk pusher of the robot.
+ * Controls the LED's on the bottom of the robot.
  */
 class Lights: public Subsystem {
 public:
@@ -23,7 +23,7 @@ public:
 	void toggleBlueLight();
 	void toggleGreenLight();
 
-	/// Retract the disk pusher solenoid.
+	/// Turn the Light off.
 	void turnLightOff();
 private:
 	Relay *redLight;
@@ -31,4 +31,4 @@ private:
 	Relay *greenLight;
 };
 
-#endif //PUSHER_H
+#endif //LIGHTS_H
