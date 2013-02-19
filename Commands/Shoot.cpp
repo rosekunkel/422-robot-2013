@@ -3,11 +3,12 @@
 Shoot::Shoot() {
 	Requires(pusher);
 	SetInterruptible(false);
+	isFired = false;
 	SetTimeout(0.1);
 }
 
 // Called just before this Command runs the first time
-void Shoot::Initialize() {
+void Shoot::Execute() {
 	pusher->extend();
 }
 

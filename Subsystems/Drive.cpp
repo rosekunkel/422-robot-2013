@@ -15,7 +15,7 @@ const float Drive::P = 0.07,
 
 // TODO: Remeasure max speed, make sure this is it
 //Measured max speed
-const float Drive::MAX_RPS = 12.6;
+const float Drive::MAX_RPS = 13.0;
 
 const double Drive::ENCODER_RESOLUTION = 256.0;
 
@@ -146,4 +146,13 @@ void Drive::stop() {
 void Drive::setP(float p) {
 	leftController->SetPID(p, I, D);
 	rightController->SetPID(p, I, D);
+}
+/**
+ * Turn quickly in a direction (1=right, -1=left)
+ *
+ * @author Lucario
+ */
+void Drive::uMadBro( int direction ) {
+	leftController->SetSetpoint( direction * MAX_RPS );
+	rightController->SetSetpoint( direction * MAX_RPS );
 }

@@ -7,6 +7,7 @@
 #include "OI.h"
 #include "Commands/Shoot.h"
 #include "Commands/ToggleClimber.h"
+#include "Commands/ControlLights.h"
 
 /**
  * Initilize the Operator Interface.
@@ -37,11 +38,21 @@ OI::OI():
 	setpointZeroButton( new JoystickButton ( secondaryJoystick, 2 )),
 	setpointOneButton( new JoystickButton( secondaryJoystick, 4 ) ),
 	setpointTwoButton( new JoystickButton( secondaryJoystick, 3 ) ),
+	// Added for uMadBro
+    uMadLeftButton( new JoystickButton ( secondaryJoystick, 10)),
+    uMadRightButton( new JoystickButton (secondaryJoystick, 11)),
+	// End uMadBro
+	toggleRedButton( new JoystickButton ( secondaryJoystick, 6)),
+    toggleBlueButton( new JoystickButton (secondaryJoystick, 7)),
+	toggleGreenButton( new JoystickButton (secondaryJoystick, 8)),
 	setpointThreeButton( new JoystickButton( secondaryJoystick, 5 ) ) {
-	
 	toggleClimberButton->WhenPressed( new ToggleClimber() );
-	
+	toggleRedButton->WhenPressed( new ControlLights() );
+	toggleBlueButton->WhenPressed( new ControlLights() );
+	toggleGreenButton->WhenPressed( new ControlLights() );
 	fireButton->WhenPressed(new Shoot());
+
+
 }
 
 /**
@@ -172,4 +183,36 @@ bool OI::getSetpointTwoButtonValue() {
  */
 bool OI::getSetpointThreeButtonValue() {
 	return setpointThreeButton->Get();
+}
+
+/**
+ * Get the uMadBro left button state.
+ *
+ * @author Lucario
+ */
+bool OI::getuMadLeftButtonValue() {
+	return uMadLeftButton->Get();
+}
+
+/**
+ * Get the uMadBro right button state.
+ *
+ * @author Lucario
+ */
+bool OI::getuMadRightButtonValue() {
+	return uMadRightButton->Get();
+}
+/**
+ * Color States
+ *
+ * @author Lucario
+ */
+bool OI::getToggleRedButtonValue() {
+	return toggleRedButton->Get();
+}
+bool OI::getToggleBlueButtonValue() {
+	return toggleBlueButton->Get();
+}
+bool OI::getToggleGreenButtonValue() {
+	return toggleGreenButton->Get();
 }
