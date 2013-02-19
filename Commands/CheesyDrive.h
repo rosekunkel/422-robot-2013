@@ -34,8 +34,8 @@ public:
 	/// Implement virtual method and do nothing
 	void End() {};
 
-	/// Implement virtual method and do nothing
-	void Interrupted() {};
+	/// What to do when it gets interupted
+	void Interrupted();
 private:
 	static const float DEADZONE;
 	float multiplier,

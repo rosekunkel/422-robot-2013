@@ -39,6 +39,10 @@ public:
 	// For Testing, set the P value for the PID controllers to p
 	void setP(float p);
 	
+	void resetEncoders();
+	
+	float getAmountSpun();
+	
 private:
 	PIDTalonWrapper *leftMotor, *rightMotor;
 	Encoder *leftEncoder, *rightEncoder, *testEncoder;

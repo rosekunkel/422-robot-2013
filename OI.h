@@ -46,8 +46,11 @@ public:
 	/// Get the quarter speed turning multiplier button state
 	bool getQuarterSpeedTurningMultiplierButtonValue();
 	
-	/// Get the drive reverse button state
-	bool getDriveReverseButtonValue();
+	/// Get the drive spin around left button state
+	bool getSpinAroundLeftButtonValue();
+	
+	/// Get the drive spin around right button state
+	bool getSpinAroundRightButtonValue();
 	
 	/// Get the toggle climber button state
 	bool getToggleClimberButtonValue();
@@ -77,7 +80,8 @@ private:
 	               *fullSpeedButton,
 	               *halfSpeedTurningMultiplierButton,
 	               *quarterSpeedTurningMultiplierButton,
-	               *driveReverseButton,
+	               *spinAroundLeftButton,
+	               *spinAroundRightButton,
 	               
 	               *toggleClimberButton,
 	               
