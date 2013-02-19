@@ -13,15 +13,19 @@
 #include <cmath>
 
 // TODO: Tune the PID
-const float Shooter::P = 0.01,
-            Shooter::I = 0.0,
-            Shooter::D = 0.025;
+const float Shooter::P_FIRST = 0.01,
+            Shooter::I_FIRST = 0.0,
+            Shooter::D_FIRST = 0.03;
+const float Shooter::P_SECOND = 0.015,
+            Shooter::I_SECOND = 0.0,
+            Shooter::D_SECOND = 0.03;
 
 const float Shooter::FIRST_MOTOR_SPEED = 20.0,
 		    Shooter::SECOND_MOTOR_SPEED = 20.0;
 
 // TODO: Check number here
-const float Shooter::MAX_RPS = 45.0;
+const float Shooter::FIRST_MOTOR_MAX_RPS = 60.0,
+		    Shooter::SECOND_MOTOR_MAX_RPS = 65.0;
 
 const float Shooter::ENCODER_RESOLUTION = 64.0;
 
@@ -68,11 +72,11 @@ Shooter::Shooter() :
 	firstEncoder->Start();
 	secondEncoder->Start();
 	
-	firstMotorController = new PIDController( P, I, D, firstEncoder, firstMotor );
-	secondMotorController = new PIDController( P, I, D, secondEncoder, secondMotor );
+	firstMotorController = new PIDController( P_FIRST, I_FIRST, D_FIRST, firstEncoder, firstMotor );
+	secondMotorController = new PIDController( P_SECOND, I_SECOND, D_SECOND, secondEncoder, secondMotor );
 	
-	firstMotorController->SetInputRange( -MAX_RPS, MAX_RPS );
-	secondMotorController->SetInputRange( -MAX_RPS, MAX_RPS );
+	firstMotorController->SetInputRange( -FIRST_MOTOR_MAX_RPS, FIRST_MOTOR_MAX_RPS );
+	secondMotorController->SetInputRange( -SECOND_MOTOR_MAX_RPS, SECOND_MOTOR_MAX_RPS );
 	
 	firstMotorController->SetOutputRange( -1, 1 );
 	secondMotorController->SetOutputRange( -1, 1 );
@@ -136,18 +140,17 @@ float Shooter::getSecondWheelSpeed() {
 	return secondEncoder->GetRate();
 }
 
+float Shooter::getFirstWheelOfset() {
+	return firstMotorController->GetSetpoint() - firstEncoder->GetRate();
+}
+
+float Shooter::getSecondWheelOfset() {
+	return secondMotorController->GetSetpoint() - secondEncoder->GetRate();
+}
+
 bool Shooter::isAtSpeed() {
 	return ( fabs( firstEncoder->GetRate() - firstMotorController->GetSetpoint() ) 
 	       < ACCEPTABLE_ERROR) &&
 	       ( fabs( secondEncoder->GetRate() - secondMotorController->GetSetpoint() ) 
 	       < ACCEPTABLE_ERROR);
-}
-
-void Shooter::goFullSpeed() {
-	firstMotorController->SetSetpoint(0.0);
-	secondMotorController->SetSetpoint(0.0);
-	firstMotorController->Disable();
-	secondMotorController->Disable();
-	firstMotor->Set(-1.0);
-	secondMotor->Set(-1.0);
 }
