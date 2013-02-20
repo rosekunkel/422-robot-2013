@@ -98,6 +98,8 @@ void Drive::InitDefaultCommand() {
  * @author William Kunkel
  */
 void Drive::driveStraight( float speed ) {
+	leftController->Enable();
+	rightController->Enable();
 	leftController->SetSetpoint(speed);
 	rightController->SetSetpoint(speed);
 }
@@ -111,6 +113,8 @@ void Drive::driveStraight( float speed ) {
  * @author William Kunkel
  */
 void Drive::setMotorSpeeds( float leftSpeed, float rightSpeed ) {
+	leftController->Enable();
+	rightController->Enable();
 	leftController->SetSetpoint(leftSpeed);
 	rightController->SetSetpoint(rightSpeed);
 }
@@ -128,6 +132,8 @@ void Drive::setMotorSpeeds( float leftSpeed, float rightSpeed ) {
 // TODO: Figure out why values such as 1, -1 replaced for the speed * MAX_RPS 
 //		makes drive backwards, but Cheesy Drive works
 void Drive::setMotorsNormalized( float leftSpeed, float rightSpeed ) {
+	leftController->Enable();
+	rightController->Enable();
 	leftController->SetSetpoint( leftSpeed * MAX_RPS );
 	// The negative is to compensate for wiring
 	rightController->SetSetpoint( -rightSpeed * MAX_RPS );
@@ -143,9 +149,13 @@ void Drive::stop() {
 	rightController->SetSetpoint(0.0);
 }
 
-void Drive::setP(float p) {
-	leftController->SetPID(p, I, D);
-	rightController->SetPID(p, I, D);
+void Drive::stopAndDisable() {
+	leftController->SetSetpoint(0.0);
+	rightController->SetSetpoint(0.0);
+	leftController->Disable();
+	rightController->Disable();
+	rightMotor->Set(0.0);
+	leftMotor->Set(0.0);
 }
 
 void Drive::resetEncoders() {

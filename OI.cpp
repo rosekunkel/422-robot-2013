@@ -6,7 +6,7 @@
 
 #include "OI.h"
 #include "Commands/Shoot.h"
-#include "Commands/ToggleClimber.h"
+#include "Commands/RaiseClimber.h"
 #include "Commands/SpinHalfRotation.h"
 
 /**
@@ -31,7 +31,9 @@ OI::OI():
 	spinAroundLeftButton( new JoystickButton( leftPrimaryJoystick, 4 ) ),
 	spinAroundRightButton( new JoystickButton( leftPrimaryJoystick, 5 ) ),
 	
-	toggleClimberButton( new JoystickButton( rightPrimaryJoystick, 2 ) ),
+	stopDriveButton( new JoystickButton( leftPrimaryJoystick, 3 ) ),
+	
+	raiseClimberButton( new JoystickButton( rightPrimaryJoystick, 2 ) ),
 	
 	// Secondary
 	
@@ -41,7 +43,7 @@ OI::OI():
 	setpointTwoButton( new JoystickButton( secondaryJoystick, 3 ) ),
 	setpointThreeButton( new JoystickButton( secondaryJoystick, 5 ) ) {
 	
-	toggleClimberButton->WhenPressed( new ToggleClimber() );
+	raiseClimberButton->WhenPressed( new RaiseClimber() );
 	
 	fireButton->WhenPressed(new Shoot());
 	
@@ -140,12 +142,21 @@ bool OI::getSpinAroundRightButtonValue() {
 }
 
 /**
+ * Get the stop drive button state.
+ *
+ * @author Nyle Rodgers
+ */
+bool OI::getStopDriveButtonValue() {
+	return stopDriveButton->Get();
+}
+
+/**
  * Get the toggle climber button state.
  *
  * @author Nyle Rodgers
  */
-bool OI::getToggleClimberButtonValue() {
-	return toggleClimberButton->Get();
+bool OI::getRaiseClimberButtonValue() {
+	return raiseClimberButton->Get();
 }
 
 /**

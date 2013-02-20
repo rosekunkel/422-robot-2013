@@ -52,8 +52,11 @@ public:
 	/// Get the drive spin around right button state
 	bool getSpinAroundRightButtonValue();
 	
+	/// Get the stop drive button state
+	bool getStopDriveButtonValue();
+	
 	/// Get the toggle climber button state
-	bool getToggleClimberButtonValue();
+	bool getRaiseClimberButtonValue();
 	
 	/// Get the fire button state
 	bool getFireButtonValue();
@@ -83,7 +86,9 @@ private:
 	               *spinAroundLeftButton,
 	               *spinAroundRightButton,
 	               
-	               *toggleClimberButton,
+	               *stopDriveButton,
+	               
+	               *raiseClimberButton,
 	               
 	               // secondary driver buttons
 	               *fireButton,
