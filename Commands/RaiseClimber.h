@@ -1,5 +1,5 @@
-#ifndef TOGGLECLIMBER_H
-#define TOGGLECLIMBER_H
+#ifndef RAISECLIMBER_H
+#define RAISECLIMBER_H
 
 #include "../CommandBase.h"
 
@@ -8,9 +8,9 @@
  *
  * @author Nyle
  */
-class ToggleClimber: public CommandBase {
+class RaiseClimber: public CommandBase {
 public:
-	ToggleClimber();
+	RaiseClimber();
 	virtual void Initialize();
 	virtual void Execute() {};
 	virtual bool IsFinished();
