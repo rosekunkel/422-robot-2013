@@ -47,9 +47,9 @@ OI::OI():
 	toggleGreenButton( new JoystickButton (secondaryJoystick, 8)),
 	setpointThreeButton( new JoystickButton( secondaryJoystick, 5 ) ) {
 	toggleClimberButton->WhenPressed( new ToggleClimber() );
-	toggleRedButton->WhenPressed( new ControlLights() );
-	toggleBlueButton->WhenPressed( new ControlLights() );
-	toggleGreenButton->WhenPressed( new ControlLights() );
+	toggleRedButton->WhenPressed( new ControlLights(0) );
+	toggleBlueButton->WhenPressed( new ControlLights(1) );
+	toggleGreenButton->WhenPressed( new ControlLights(2) );
 	fireButton->WhenPressed(new Shoot());
 
 

@@ -153,6 +153,6 @@ void Drive::setP(float p) {
  * @author Lucario
  */
 void Drive::uMadBro( int direction ) {
-	leftController->SetSetpoint( direction * MAX_RPS );
-	rightController->SetSetpoint( direction * MAX_RPS );
+	//leftController->SetSetpoint( direction * MAX_RPS );
+	//rightController->SetSetpoint( direction * MAX_RPS );
 }

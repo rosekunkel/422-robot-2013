@@ -86,10 +86,10 @@ const UINT32 LOWER_CLIMBER_CHANNEL = 0,
  * TODO: Get actual relay channels
  */
 // Red Relay Ports
-const UINT32 RED_RELAY_CHANNEL = 0;
+const UINT32 RED_RELAY_CHANNEL = 5;
 // Blue Relay Ports
-const UINT32 BLUE_RELAY_CHANNEL = 0;
+const UINT32 BLUE_RELAY_CHANNEL = 6;
 // Green Relay Ports
-const UINT32 GREEN_RELAY_CHANNEL = 0;
+const UINT32 GREEN_RELAY_CHANNEL = 7;
 /**@}*/
 #endif // ROBOT_MAP_H
