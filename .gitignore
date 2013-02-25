@@ -33,3 +33,8 @@ bin/
 Icon?
 ehthumbs.db
 Thumbs.db
+
+# CMake Generated Files
+CMakeCache.txt
+CMakeFiles/
+Makefile
