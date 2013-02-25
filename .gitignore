@@ -22,6 +22,7 @@
 # Binaries
 PPC32diab/
 PPC603gnu/
+bin/
 
 # OS Generated Files
 .DS_Store
