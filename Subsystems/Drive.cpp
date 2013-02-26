@@ -4,7 +4,7 @@
  * @author William Kunkel
  * @author Nyle Rodgers
  */
-#include <cmath>
+
 #include "Drive.h"
 #include "../RobotMap.h"
 #include "../Commands/CheesyDrive.h"
@@ -147,12 +147,8 @@ void Drive::setP(float p) {
 	leftController->SetPID(p, I, D);
 	rightController->SetPID(p, I, D);
 }
-
-void Drive::resetEncoders() {
-	leftEncoder->Reset();
-	rightEncoder->Reset();
-}
-
-float Drive::getAmountSpun() {
-	return fabs( leftEncoder->GetDistance() + rightEncoder->GetDistance() );
-}
+/**
+ * Turn quickly in a direction (1=right, -1=left)
+ *
+ * @author Lucario
+ */

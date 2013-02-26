@@ -44,6 +44,13 @@ void CheesyDrive::Execute() {
 		turningMultiplier = 0.5;
 	}
 	
+	if ( operatorInterface->getDriveReverseButtonValue() && !isReversePressed ) {
+		forwardMultiplier *= -1.0;
+		isReversePressed = true;
+	} else if ( !operatorInterface->getDriveReverseButtonValue() && isReversePressed ) {
+		isReversePressed = false;
+	}
+	
 	float forward = operatorInterface
 	                ->getLeftPrimaryJoystick()
 	                ->GetY();
@@ -96,8 +103,6 @@ void CheesyDrive::Execute() {
 		rightMultiplier = ((0.0 < rightMultiplier) - (rightMultiplier < 0.0));
 	}
 
-	// Set the speed, using the multiplier as a percentage of the top speed
-	drive->setMotorsNormalized( leftMultiplier, rightMultiplier );
 }
 
 /**
@@ -107,8 +112,4 @@ void CheesyDrive::Execute() {
  */
 bool CheesyDrive::IsFinished() {
 	return false;
-}
-
-void CheesyDrive::Interrupted() {
-	drive->stop();
 }
