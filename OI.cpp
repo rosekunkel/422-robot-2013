@@ -38,10 +38,6 @@ OI::OI():
 	setpointZeroButton( new JoystickButton ( secondaryJoystick, 2 )),
 	setpointOneButton( new JoystickButton( secondaryJoystick, 4 ) ),
 	setpointTwoButton( new JoystickButton( secondaryJoystick, 3 ) ),
-	// Added for uMadBro
-    uMadLeftButton( new JoystickButton ( secondaryJoystick, 10)),
-    uMadRightButton( new JoystickButton (secondaryJoystick, 11)),
-	// End uMadBro
 	toggleRedButton( new JoystickButton ( secondaryJoystick, 6)),
     toggleBlueButton( new JoystickButton (secondaryJoystick, 7)),
 	toggleGreenButton( new JoystickButton (secondaryJoystick, 8)),
@@ -185,23 +181,7 @@ bool OI::getSetpointThreeButtonValue() {
 	return setpointThreeButton->Get();
 }
 
-/**
- * Get the uMadBro left button state.
- *
- * @author Lucario
- */
-bool OI::getuMadLeftButtonValue() {
-	return uMadLeftButton->Get();
-}
 
-/**
- * Get the uMadBro right button state.
- *
- * @author Lucario
- */
-bool OI::getuMadRightButtonValue() {
-	return uMadRightButton->Get();
-}
 /**
  * Color States
  *

@@ -66,12 +66,6 @@ public:
 	
 	/// Get the setpoint three button state
 	bool getSetpointThreeButtonValue();
-	
-	/// Get the uMad Left button state
-	bool getuMadLeftButtonValue();
-
-	/// Get the uMad Right button state
-	bool getuMadRightButtonValue();
 
 	/// Get LED Button states
 	bool getToggleRedButtonValue();
