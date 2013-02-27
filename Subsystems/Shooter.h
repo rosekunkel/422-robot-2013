@@ -32,27 +32,24 @@ public:
 	
 	float getSecondWheelSpeed();
 	
-	float getFirstWheelOfset();
-	
-	float getSecondWheelOfset();
-	
 	bool isAtSpeed();
 	
 	void setSetpoints(float firstSetpoint, float secondSetpoint);
+	
+	void goFullSpeed();
 private:
 	// firstMotor refers to the motor which the frisbee will contact first
 	PIDTalonWrapper *firstMotor, *secondMotor; 
 	Encoder *firstEncoder, *secondEncoder;
 	PIDController *firstMotorController, *secondMotorController;
 	
-	static const float P_FIRST, I_FIRST, D_FIRST,
-	                   P_SECOND, I_SECOND, D_SECOND;
+	static const float P,I,D;
 	
 	/// The speed at which the initial shooter motor should spin
 	static const float FIRST_MOTOR_SPEED, SECOND_MOTOR_SPEED;
 
 	/// The maximum speed of the shooter motors in rotations per second
-	static const float FIRST_MOTOR_MAX_RPS, SECOND_MOTOR_MAX_RPS;
+	static const float MAX_RPS;
 
 	/// Ticks per revultion of the encoder
 	static const float ENCODER_RESOLUTION;
