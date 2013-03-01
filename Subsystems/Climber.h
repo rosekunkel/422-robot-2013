@@ -20,15 +20,8 @@ public:
 	
 	/// Raise the climber
 	void raise();
-	
-	/// Lower the climber
-	void lower();
-	
-	/// Toggle the climber
-	void toggle();
 private:
-	DoubleSolenoid *solenoid;
-	bool isRaised;
+	Servo *rightServo, *leftServo;
 };
 
 #endif //CLIMBER_H
