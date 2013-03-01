@@ -157,8 +157,3 @@ void Drive::stopAndDisable() {
 	rightMotor->Set(0.0);
 	leftMotor->Set(0.0);
 }
-/**
- * Turn quickly in a direction (1=right, -1=left)
- *
- * @author Lucario
- */

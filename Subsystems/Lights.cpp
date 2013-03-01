@@ -5,7 +5,7 @@
  */
 #include "Lights.h"
 #include "Relay.h"
-#include "../Robotmap.h"
+#include "../RobotMap.h"
 
 Lights::Lights() : 
 	Subsystem("Lights"),

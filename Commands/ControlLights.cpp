@@ -9,11 +9,11 @@ ControlLights::ControlLights(int whichLight) {
 void ControlLights::Initialize() {
 	Requires(lights);
 	
-	if (light = 0) {
+	if (light == 0) {
 		lights->toggleRedLight();
-	}	else if (light = 1) {
+	}	else if (light == 1) {
 		lights->toggleBlueLight();
-	}	else if (light = 2) {
+	}	else if (light == 2) {
 		lights->toggleGreenLight();
 	}	
 }
