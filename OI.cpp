@@ -22,34 +22,39 @@ OI::OI():
 	secondaryJoystick( new Joystick(3) ),
 	
 	// Primary
-	oneTenthSpeedMultiplierButton( new JoystickButton( leftPrimaryJoystick, 2 ) ),
-	halfSpeedMultiplierButton( new JoystickButton( leftPrimaryJoystick, 1 ) ),
-	fullSpeedButton( new JoystickButton( rightPrimaryJoystick, 1 ) ),
-	
-	halfSpeedTurningMultiplierButton( new JoystickButton( rightPrimaryJoystick, 5 ) ),
-	quarterSpeedTurningMultiplierButton( new JoystickButton( rightPrimaryJoystick, 4 ) ),
+	oneTenthSpeedMultiplierButton(
+   	   new JoystickButton( leftPrimaryJoystick, 2 ) ),
+	halfSpeedMultiplierButton(
+		new JoystickButton( leftPrimaryJoystick, 1 ) ),
+	fullSpeedButton(
+		new JoystickButton( rightPrimaryJoystick, 1 ) ),
+
+	halfSpeedTurningMultiplierButton(
+		new JoystickButton( rightPrimaryJoystick, 5 ) ),
+	quarterSpeedTurningMultiplierButton(
+		new JoystickButton( rightPrimaryJoystick, 4 ) ),
 	
 	driveReverseButton( new JoystickButton( leftPrimaryJoystick, 3 ) ),
-	
 	stopDriveButton( new JoystickButton( leftPrimaryJoystick, 3 ) ),
 	
 	raiseClimberButton( new JoystickButton( rightPrimaryJoystick, 2 ) ),
 	
-	// Secondary
-	
+	// Secondary	
 	fireButton( new JoystickButton( secondaryJoystick, 1 ) ),
+
 	setpointZeroButton( new JoystickButton ( secondaryJoystick, 2 )),
 	setpointOneButton( new JoystickButton( secondaryJoystick, 4 ) ),
 	setpointTwoButton( new JoystickButton( secondaryJoystick, 3 ) ),
+	setpointThreeButton( new JoystickButton( secondaryJoystick, 5 ) ),
+
 	toggleRedButton( new JoystickButton ( secondaryJoystick, 6)),
-    toggleBlueButton( new JoystickButton (secondaryJoystick, 7)),
-	toggleGreenButton( new JoystickButton (secondaryJoystick, 8)),
-	setpointThreeButton( new JoystickButton( secondaryJoystick, 5 ) ) {
+    toggleGreenButton( new JoystickButton (secondaryJoystick, 7)),
+	toggleBlueButton( new JoystickButton (secondaryJoystick, 8)) {
 	
 	raiseClimberButton->WhenPressed( new RaiseClimber() );
 	toggleRedButton->WhenPressed( new ControlLights(0) );
-	toggleBlueButton->WhenPressed( new ControlLights(1) );
-	toggleGreenButton->WhenPressed( new ControlLights(2) );
+	toggleGreenButton->WhenPressed( new ControlLights(1) );
+	toggleBlueButton->WhenPressed( new ControlLights(2) );
 
 	fireButton->WhenPressed(new Shoot());
 

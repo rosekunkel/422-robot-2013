@@ -72,37 +72,38 @@ public:
 
 	/// Get LED Button states
 	bool getToggleRedButtonValue();
-	bool getToggleBlueButtonValue();
 	bool getToggleGreenButtonValue();
+	bool getToggleBlueButtonValue();
 	
 private:
 	Joystick *leftPrimaryJoystick,
 	         *rightPrimaryJoystick,
 	         *secondaryJoystick;
-	JoystickButton // primary driver buttons
-	               *oneTenthSpeedMultiplierButton,
+
+	               // Primary driver buttons
+	JoystickButton *oneTenthSpeedMultiplierButton,
 	               *halfSpeedMultiplierButton,
 	               *fullSpeedButton,
+
 	               *halfSpeedTurningMultiplierButton,
 	               *quarterSpeedTurningMultiplierButton,
+
 	               *driveReverseButton,
-	               
 	               *stopDriveButton,
-	               
+
 	               *raiseClimberButton,
 	               
-	               // secondary driver buttons
+	               // Secondary driver buttons
 	               *fireButton,
-	               
+
 	               *setpointZeroButton,
 	               *setpointOneButton,
 	               *setpointTwoButton,
 	               *setpointThreeButton,
-                   *uMadRightButton,
-				   *uMadLeftButton,
+
                    *toggleRedButton,
-				   *toggleBlueButton,
-				   *toggleGreenButton;
+				   *toggleGreenButton,
+				   *toggleBlueButton;
 };
 
 #endif // OI_H
