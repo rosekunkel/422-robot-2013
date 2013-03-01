@@ -36,8 +36,7 @@ public:
 	/// Slow to a stop smoothly and quickly.
 	void stop();
 	
-	// For Testing, set the P value for the PID controllers to p
-	void setP(float p);
+	void stopAndDisable();
 	
 	void resetEncoders();
 	
