@@ -8,37 +8,20 @@
 
 Climber::Climber() : 
 	Subsystem("Climber"),
-	solenoid( new DoubleSolenoid( SOLENOID_MODULE_PORT,
-		                          LOWER_CLIMBER_CHANNEL,
-		                          RAISE_CLIMBER_CHANNEL) ){
-	solenoid->Set(DoubleSolenoid::kForward);
-	isRaised = false;
+	rightServo( new Servo( DIGITAL_MODULE_PORT,
+			               CLIMBER_RIGHT_SERVO_CHANNEL) ),
+	leftServo( new Servo( DIGITAL_MODULE_PORT,
+						   CLIMBER_LEFT_SERVO_CHANNEL) ) {
+	rightServo->Set(0.0);
+	leftServo->Set(0.0);
 }
 
 /**
- * Raise the climber.
+ * Raise the climber. This is a one way operation, it can't be raised after
  * 
  * @author Nyle Rodgers
  */
 void Climber::raise() {
-	solenoid->Set(DoubleSolenoid::kReverse);
-	isRaised = true;
-}
-
-/**
- * Lower the climber.
- * 
- * @author Nyle Rodgers
- */
-void Climber::lower() {
-	solenoid->Set(DoubleSolenoid::kForward);
-	isRaised = false;
-}
-
-void Climber::toggle() {
-	if( isRaised ) {
-		lower();
-	} else {
-		raise();
-	}
+	rightServo->Set(0.5);
+	leftServo->Set(0.5);
 }
