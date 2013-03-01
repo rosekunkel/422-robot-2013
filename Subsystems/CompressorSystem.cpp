@@ -4,7 +4,7 @@
  * @author Nyle Rodgers
  */
 #include "CompressorSystem.h"
-#include "../Robotmap.h"
+#include "../RobotMap.h"
 
 CompressorSystem::CompressorSystem() : 
 	Subsystem("CompressorSystem"),

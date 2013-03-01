@@ -6,7 +6,7 @@
  */
 
 #include "Shooter.h"
-#include "../Robotmap.h"
+#include "../RobotMap.h"
 #include "../Commands/OperateShooter.h"
 
 #include <iostream>

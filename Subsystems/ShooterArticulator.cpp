@@ -8,7 +8,7 @@
 
 #include "ShooterArticulator.h"
 #include "../Commands/OperateShooterArticulator.h"
-#include "../Robotmap.h"
+#include "../RobotMap.h"
 
 const float PI = 3.14159;
 

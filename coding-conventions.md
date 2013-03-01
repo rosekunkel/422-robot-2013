@@ -161,7 +161,7 @@ Enums should be named in TitleCase, where enum values should be named in
 UPPERCASE\_WITH\_UNDERSCORES.
 
 ### Macro Names ###
-Macros should be named in UPPERCASE\_WITH\_UNDERSCORES.
+acros should be named in UPPERCASE\_WITH\_UNDERSCORES.
 
 ## Comments ##
 
