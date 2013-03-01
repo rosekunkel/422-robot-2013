@@ -4,7 +4,7 @@
  * @author Nyle Rodgers
  */
 #include "Climber.h"
-#include "../Robotmap.h"
+#include "../RobotMap.h"
 
 Climber::Climber() : 
 	Subsystem("Climber"),
