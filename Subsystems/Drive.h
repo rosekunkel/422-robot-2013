@@ -38,10 +38,6 @@ public:
 	
 	void stopAndDisable();
 	
-	void resetEncoders();
-	
-	float getAmountSpun();
-	
 private:
 	PIDTalonWrapper *leftMotor, *rightMotor;
 	Encoder *leftEncoder, *rightEncoder, *testEncoder;

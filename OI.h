@@ -46,11 +46,8 @@ public:
 	/// Get the quarter speed turning multiplier button state
 	bool getQuarterSpeedTurningMultiplierButtonValue();
 	
-	/// Get the drive spin around left button state
-	bool getSpinAroundLeftButtonValue();
-	
-	/// Get the drive spin around right button state
-	bool getSpinAroundRightButtonValue();
+	/// Get the drive reverse button state
+	bool getDriveReverseButtonValue();
 	
 	/// Get the stop drive button state
 	bool getStopDriveButtonValue();
@@ -72,6 +69,11 @@ public:
 	
 	/// Get the setpoint three button state
 	bool getSetpointThreeButtonValue();
+
+	/// Get LED Button states
+	bool getToggleRedButtonValue();
+	bool getToggleBlueButtonValue();
+	bool getToggleGreenButtonValue();
 	
 private:
 	Joystick *leftPrimaryJoystick,
@@ -83,8 +85,7 @@ private:
 	               *fullSpeedButton,
 	               *halfSpeedTurningMultiplierButton,
 	               *quarterSpeedTurningMultiplierButton,
-	               *spinAroundLeftButton,
-	               *spinAroundRightButton,
+	               *driveReverseButton,
 	               
 	               *stopDriveButton,
 	               
@@ -96,7 +97,12 @@ private:
 	               *setpointZeroButton,
 	               *setpointOneButton,
 	               *setpointTwoButton,
-	               *setpointThreeButton;
+	               *setpointThreeButton,
+                   *uMadRightButton,
+				   *uMadLeftButton,
+                   *toggleRedButton,
+				   *toggleBlueButton,
+				   *toggleGreenButton;
 };
 
 #endif // OI_H

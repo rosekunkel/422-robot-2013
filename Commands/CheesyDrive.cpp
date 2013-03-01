@@ -33,6 +33,39 @@ CheesyDrive::CheesyDrive() {
 void CheesyDrive::Execute() {
 	if ( operatorInterface->getStopDriveButtonValue() ) {
 		drive->stop();
+	if ( operatorInterface->getOneTenthSpeedMultiplierButtonValue()) {
+		multiplier = 0.1;
+	} else 	if ( operatorInterface->getHalfSpeedMultiplierButtonValue()) {
+		multiplier = 0.5;
+	} else 	if ( operatorInterface->getFullSpeedButtonValue()) {
+		multiplier = 1.0;
+	}
+	if ( operatorInterface->getQuarterSpeedTurningMultiplierButtonValue() ) {
+		turningMultiplier = 0.25;
+	} else if ( operatorInterface->getHalfSpeedTurningMultiplierButtonValue() ) {
+		turningMultiplier = 0.5;
+	}
+	
+	if ( operatorInterface->getDriveReverseButtonValue() && !isReversePressed ) {
+		forwardMultiplier *= -1.0;
+		isReversePressed = true;
+	} else if ( !operatorInterface->getDriveReverseButtonValue() && isReversePressed ) {
+		isReversePressed = false;
+	}
+	
+	float forward = operatorInterface
+	                ->getLeftPrimaryJoystick()
+	                ->GetY();
+	float turning = operatorInterface
+	                ->getRightPrimaryJoystick()
+	                ->GetX();
+	
+	// We add a dead zone around 0 to circumvent joysticks not being perfectly centered
+	if( forward > 0.0) {
+		forward = (forward - DEADZONE) / (1.0 - DEADZONE);
+		if (forward < 0.0) {
+			forward = 0.0;
+		}
 	} else {
 		if ( operatorInterface->getOneTenthSpeedMultiplierButtonValue()) {
 			multiplier = 0.1;
@@ -102,6 +135,13 @@ void CheesyDrive::Execute() {
 		// Set the speed, using the multiplier as a percentage of the top speed
 		drive->setMotorsNormalized( leftMultiplier, rightMultiplier );
 	}
+
+	// Repeat with the right multiplier
+	if( ( rightMultiplier > 1 )
+	 || ( rightMultiplier < -1 ) ) {
+		rightMultiplier = ((0.0 < rightMultiplier) - (rightMultiplier < 0.0));
+	}
+
 }
 
 /**
@@ -111,8 +151,4 @@ void CheesyDrive::Execute() {
  */
 bool CheesyDrive::IsFinished() {
 	return false;
-}
-
-void CheesyDrive::Interrupted() {
-	drive->stop();
 }

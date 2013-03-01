@@ -8,6 +8,7 @@
 #include "Commands/Shoot.h"
 #include "Commands/RaiseClimber.h"
 #include "Commands/SpinHalfRotation.h"
+#include "Commands/ControlLights.h"
 
 /**
  * Initilize the Operator Interface.
@@ -28,8 +29,7 @@ OI::OI():
 	halfSpeedTurningMultiplierButton( new JoystickButton( rightPrimaryJoystick, 5 ) ),
 	quarterSpeedTurningMultiplierButton( new JoystickButton( rightPrimaryJoystick, 4 ) ),
 	
-	spinAroundLeftButton( new JoystickButton( leftPrimaryJoystick, 4 ) ),
-	spinAroundRightButton( new JoystickButton( leftPrimaryJoystick, 5 ) ),
+	driveReverseButton( new JoystickButton( leftPrimaryJoystick, 3 ) ),
 	
 	stopDriveButton( new JoystickButton( leftPrimaryJoystick, 3 ) ),
 	
@@ -41,14 +41,19 @@ OI::OI():
 	setpointZeroButton( new JoystickButton ( secondaryJoystick, 2 )),
 	setpointOneButton( new JoystickButton( secondaryJoystick, 4 ) ),
 	setpointTwoButton( new JoystickButton( secondaryJoystick, 3 ) ),
+	toggleRedButton( new JoystickButton ( secondaryJoystick, 6)),
+    toggleBlueButton( new JoystickButton (secondaryJoystick, 7)),
+	toggleGreenButton( new JoystickButton (secondaryJoystick, 8)),
 	setpointThreeButton( new JoystickButton( secondaryJoystick, 5 ) ) {
 	
 	raiseClimberButton->WhenPressed( new RaiseClimber() );
-	
+	toggleRedButton->WhenPressed( new ControlLights(0) );
+	toggleBlueButton->WhenPressed( new ControlLights(1) );
+	toggleGreenButton->WhenPressed( new ControlLights(2) );
+
 	fireButton->WhenPressed(new Shoot());
-	
-	spinAroundLeftButton->WhenPressed( new SpinHalfRotation( true ) );
-	spinAroundRightButton->WhenPressed( new SpinHalfRotation( false ) );
+
+
 }
 
 /**
@@ -124,21 +129,12 @@ bool OI::getQuarterSpeedTurningMultiplierButtonValue() {
 }
 
 /**
- * Get the spin around left button state.
+ * Get the drive reverse button state.
  *
  * @author Nyle Rodgers
  */
-bool OI::getSpinAroundLeftButtonValue() {
-	return spinAroundLeftButton->Get();
-}
-
-/**
- * Get the spin around right button state.
- *
- * @author Nyle Rodgers
- */
-bool OI::getSpinAroundRightButtonValue() {
-	return spinAroundRightButton->Get();
+bool OI::getDriveReverseButtonValue() {
+	return driveReverseButton->Get();
 }
 
 /**
@@ -197,4 +193,20 @@ bool OI::getSetpointTwoButtonValue() {
  */
 bool OI::getSetpointThreeButtonValue() {
 	return setpointThreeButton->Get();
+}
+
+
+/**
+ * Color States
+ *
+ * @author Lucario
+ */
+bool OI::getToggleRedButtonValue() {
+	return toggleRedButton->Get();
+}
+bool OI::getToggleBlueButtonValue() {
+	return toggleBlueButton->Get();
+}
+bool OI::getToggleGreenButtonValue() {
+	return toggleGreenButton->Get();
 }

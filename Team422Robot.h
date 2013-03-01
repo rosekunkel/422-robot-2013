@@ -15,7 +15,11 @@
 #include "Commands/RaiseClimber.h"
 #include "Commands/SetShooterArticulator.h"
 #include "Commands/Shoot.h"
+<<<<<<< HEAD
 #include "Commands/SpinHalfRotation.h"
+=======
+#include "Commands/ToggleClimber.h"
+>>>>>>> 645a960cf79c595bc16b2c6cb5c505d781d6e395
 
 /**
  * @brief The main class for the robot
