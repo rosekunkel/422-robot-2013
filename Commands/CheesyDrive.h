@@ -40,7 +40,7 @@ private:
 	float valueWithDeadzone( float, float );
 	float truncateOutOfBounds( float );
 	void updateMultipliers();
-	void updateReversStatus();
+	void updateReverseStatus();
 
 	static const float DEADZONE;
 	float multiplier,

@@ -31,16 +31,8 @@ CheesyDrive::CheesyDrive() {
  * @author William Kunkel
  */
 void CheesyDrive::Execute() {
-
 	updateMultipliers();
 	updateReverseStatus();
-	
-	float forward = operatorInterface
-	                ->getLeftPrimaryJoystick()
-	                ->GetY();
-	float turning = operatorInterface
-	                ->getRightPrimaryJoystick()
-	                ->GetX();
 
 	if ( operatorInterface->getStopDriveButtonValue() ) {
 		drive->stop();
