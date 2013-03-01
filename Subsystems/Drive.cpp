@@ -5,6 +5,7 @@
  * @author Nyle Rodgers
  */
 
+#include <cmath>
 #include "Drive.h"
 #include "../RobotMap.h"
 #include "../Commands/CheesyDrive.h"
@@ -156,4 +157,13 @@ void Drive::stopAndDisable() {
 	rightController->Disable();
 	rightMotor->Set(0.0);
 	leftMotor->Set(0.0);
+}
+
+void Drive::resetEncoders() {
+	leftEncoder->Reset();
+	rightEncoder->Reset();
+}
+
+float Drive::getAmountSpun() {
+	return fabs( leftEncoder->GetDistance() + rightEncoder->GetDistance() );
 }

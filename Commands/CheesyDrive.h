@@ -37,6 +37,11 @@ public:
 	/// Implement virtual method and do nothing
 	void Interrupted() {};
 private:
+	float valueWithDeadzone( float, float );
+	float truncateOutOfBounds( float );
+	void updateMultipliers();
+	void updateReversStatus();
+
 	static const float DEADZONE;
 	float multiplier,
 	      forwardMultiplier,
