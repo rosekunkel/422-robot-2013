@@ -20,15 +20,15 @@ public:
 
 	/// Turn the lights on
 	void toggleRedLight();
-	void toggleBlueLight();
 	void toggleGreenLight();
+	void toggleBlueLight();
 
 	/// Turn the Light off.
 	void turnLightOff();
 private:
 	Relay *redLight;
-	Relay *blueLight;
 	Relay *greenLight;
+	Relay *blueLight;
 };
 
 #endif //LIGHTS_H
