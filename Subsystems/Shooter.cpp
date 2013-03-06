@@ -8,6 +8,7 @@
 #include "Shooter.h"
 #include "../RobotMap.h"
 #include "../Commands/OperateShooter.h"
+#include "../Commands/BangBangShooterControll.h"
 
 #include <iostream>
 #include <cmath>
@@ -88,7 +89,8 @@ Shooter::Shooter() :
 }
 
 void Shooter::InitDefaultCommand() {
-	SetDefaultCommand( new OperateShooter() );
+	//SetDefaultCommand( new OperateShooter() );
+	SetDefaultCommand( new BangBangShooterControll() );
 }
 
 
@@ -150,4 +152,26 @@ void Shooter::goFullSpeed() {
 	secondMotorController->Disable();
 	firstMotor->Set(-1.0);
 	secondMotor->Set(-1.0);
+}
+
+void Shooter::setFirstWheelOn(bool on) {
+	firstMotorController->SetSetpoint(0.0);
+	firstMotorController->Disable();
+	if(on){
+		firstMotor->Set(-1.0);
+	}
+	else {
+		firstMotor->Set(0.0);
+	}
+}
+
+void Shooter::setSecondWheelOn(bool on) {
+	secondMotorController->SetSetpoint(0.0);
+	secondMotorController->Disable();
+	if(on){
+		secondMotor->Set(-1.0);
+	}
+	else {
+		secondMotor->Set(0.0);
+	}
 }

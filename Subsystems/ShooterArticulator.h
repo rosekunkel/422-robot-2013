@@ -1,8 +1,8 @@
 /**
-* @file Shooter.h
-* @brief Decleration of the Shooter subsystem
-* @author Nyle Rodgers
-*/
+ * @file Shooter.h
+ * @brief Decleration of the Shooter subsystem
+ * @author Nyle Rodgers
+ */
 #ifndef SHOOTERARTICULATOR_H
 #define SHOOTERARTICULATOR_H
 #include "Commands/Subsystem.h"
@@ -43,7 +43,17 @@ private:
 	
 	static const float ZERO_RADIAN_VOLTAGE,
 	                   ONE_RADIAN_VOLTAGE,
-	                   ENCODER_RESOLUTION;
+	                   ENCODER_RESOLUTION,
+					   DISTANCE_PER_REVOLUTION,
+					   BASE_LENGTH,
+					   SHOOTER_LENGTH,
+					   ARTICULATOR_MOUNT_LENGTH,
+					   // The length at which the articulator shaft is at when 
+					   // the encoder reads zero. This is measured from the 
+					   // closest point of the line the shaft falls on to the 
+					   // pivot of the mount for the shaft motor to the pivot 
+					   //of the shaft on the shooter
+					   ARTICULATOR_SHAFT_ZERO;
 };
 
 #endif //SHOOTERARTICULATOR_H

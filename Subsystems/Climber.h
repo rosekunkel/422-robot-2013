@@ -20,8 +20,14 @@ public:
 	
 	/// Raise the climber
 	void raise();
+	
+	/// Lower the climber
+	void lower();
+	
+	void toggle();
 private:
 	Servo *rightServo, *leftServo;
+	bool isRaised;
 };
 
 #endif //CLIMBER_H
