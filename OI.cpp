@@ -7,6 +7,7 @@
 #include "OI.h"
 #include "Commands/Shoot.h"
 #include "Commands/RaiseClimber.h"
+#include "Commands/ToggleClimber.h"
 #include "Commands/SpinHalfRotation.h"
 #include "Commands/ControlLights.h"
 
@@ -51,7 +52,7 @@ OI::OI():
     toggleGreenButton( new JoystickButton (secondaryJoystick, 7)),
 	toggleBlueButton( new JoystickButton (secondaryJoystick, 8)) {
 	
-	raiseClimberButton->WhenPressed( new RaiseClimber() );
+	raiseClimberButton->WhenPressed( new ToggleClimber() );
 	toggleRedButton->WhenPressed( new ControlLights(0) );
 	toggleGreenButton->WhenPressed( new ControlLights(1) );
 	toggleBlueButton->WhenPressed( new ControlLights(2) );
