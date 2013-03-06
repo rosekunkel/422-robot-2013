@@ -37,6 +37,10 @@ public:
 	void setSetpoints(float firstSetpoint, float secondSetpoint);
 	
 	void goFullSpeed();
+	
+	void setFirstWheelOn(bool on);
+	void setSecondWheelOn(bool on);
+	
 private:
 	// firstMotor refers to the motor which the frisbee will contact first
 	PIDTalonWrapper *firstMotor, *secondMotor; 
