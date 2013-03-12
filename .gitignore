@@ -38,3 +38,11 @@ Thumbs.db
 CMakeCache.txt
 CMakeFiles/
 Makefile
+
+#Visual Studio Files
+*.sdf
+*.sln
+*.suo
+*.vcxproj
+*.filters
+*.user
