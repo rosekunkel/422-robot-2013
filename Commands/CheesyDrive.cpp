@@ -38,13 +38,21 @@ void CheesyDrive::Execute() {
 		drive->stop();
 	}
 	else {
+#ifdef USE_PS3_CONTROLLER
+		float forward = operatorInterface
+		                ->getPrimaryJoystick()
+		                ->GetRawAxis(2);
+		float turning = operatorInterface
+		                ->getPrimaryJoystick()
+		                ->GetRawAxis(4);
+#else
 		float forward = operatorInterface
 						->getLeftPrimaryJoystick()
 						->GetY();
 		float turning = operatorInterface
 						->getRightPrimaryJoystick()
 						->GetX();
-		
+#endif
 		// We add a dead zone around 0 to circumvent joysticks not being perfectly centered
 		forward = valueWithDeadzone( forward, DEADZONE );
 		turning = valueWithDeadzone( turning, DEADZONE );

@@ -6,14 +6,21 @@ OperateShooterArticulator::OperateShooterArticulator() {
 
 // Called repeatedly when this Command is scheduled to run
 void OperateShooterArticulator::Execute() {
-	if (operatorInterface->getSecondaryJoystick()->GetY() > 0.5) {
+#ifdef USE_GAMECUBE_CONTROLLER
+	// The gamecube controller maps from -0.75 to 0.75, we need to adjust
+	float y = operatorInterface->getSecondaryJoystick()->GetY() * (4/3);
+#else
+	float y = operatorInterface->getSecondaryJoystick()->GetY();
+#endif
+	if (y > 0.5) {
 		shooterArticulator->moveUp();
-	} else if (operatorInterface->getSecondaryJoystick()->GetY() < -0.5) {
+	}
+	else if (y < -0.5) {
 		shooterArticulator->moveDown();
-	} else {
+	}
+	else {
 		shooterArticulator->stop();
 	}
-	
 }
 
 // Make this return true when this Command no longer needs to run execute()

@@ -23,52 +23,37 @@ public:
 	/// Constructor for the Operator Interface
 	OI();
 
+#ifdef USE_PS3_CONTROLLER
+	/// Get the controller for the primary driver
+	Joystick* getPrimaryJoystick();
+#else
 	/// Get the left Joystick for the primary driver
 	Joystick* getLeftPrimaryJoystick();
 	
 	/// Get the right Joystick for the primary driver
 	Joystick* getRightPrimaryJoystick();
+#endif
 	
 	/// Get the joystick for the secondary driver
 	Joystick* getSecondaryJoystick();
 	
-	/// Get the one tenth speed multiplier button state
+	
 	bool getOneTenthSpeedMultiplierButtonValue();
-	
-	/// Get the half speed multiplier button state
 	bool getHalfSpeedMultiplierButtonValue();
-	
-	/// Get the full speed button state
 	bool getFullSpeedButtonValue();
 	
-	/// Get the half speed turning multiplier button state
 	bool getHalfSpeedTurningMultiplierButtonValue();
-	
-	/// Get the quarter speed turning multiplier button state
 	bool getQuarterSpeedTurningMultiplierButtonValue();
 	
-	/// Get the drive reverse button state
 	bool getDriveReverseButtonValue();
-	
-	/// Get the stop drive button state
 	bool getStopDriveButtonValue();
 	
-	/// Get the toggle climber button state
 	bool getRaiseClimberButtonValue();
-	
-	/// Get the fire button state
 	bool getFireButtonValue();
 	
-	/// Get the setpoint zero button state
 	bool getSetpointZeroButtonValue();
-	
-	/// Get the setpoint one button state
 	bool getSetpointOneButtonValue();
-	
-	/// Get the setpoint two button state
 	bool getSetpointTwoButtonValue();
-	
-	/// Get the setpoint three button state
 	bool getSetpointThreeButtonValue();
 
 	/// Get LED Button states
@@ -77,9 +62,15 @@ public:
 	bool getToggleBlueButtonValue();
 	
 private:
+	
+#ifdef USE_PS3_CONTROLLER
+	Joystick *primaryJoystick;
+#else
 	Joystick *leftPrimaryJoystick,
-	         *rightPrimaryJoystick,
-	         *secondaryJoystick;
+	         *rightPrimaryJoystick;
+#endif
+	
+	Joystick *secondaryJoystick;
 
 	               // Primary driver buttons
 	JoystickButton *oneTenthSpeedMultiplierButton,
