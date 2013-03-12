@@ -4,7 +4,7 @@
  * @author Nyle Rodgers
  */
 #define _USE_MATH_DEFINES
-#include <cmath>
+#include <math.h>
 
 #include "ShooterArticulator.h"
 #include "../Commands/OperateShooterArticulator.h"
@@ -16,6 +16,12 @@ const float PI = 3.14159;
 const float ShooterArticulator::ZERO_RADIAN_VOLTAGE = 0;
 const float ShooterArticulator::ONE_RADIAN_VOLTAGE = 1;
 const float ShooterArticulator::ENCODER_RESOLUTION = 64;
+const float ShooterArticulator::DISTANCE_PER_REVOLUTION = 0.5;//< in inches
+const float ShooterArticulator::BASE_LENGTH = 24.0;//< in inches
+const float ShooterArticulator::SHOOTER_LENGTH = 28.0;//< in inches
+const float ShooterArticulator::ARTICULATOR_MOUNT_LENGTH = 2.0;//< in inches
+// TODO: Put in actual value for this
+const float ShooterArticulator::ARTICULATOR_SHAFT_ZERO = 10.0;//< in inches
 
 
 ShooterArticulator::ShooterArticulator() : 
@@ -35,7 +41,7 @@ ShooterArticulator::ShooterArticulator() :
 			                          ARTICULATOR_TOP_LIMIT_SWITCH_CHANNEL ) ),
 	bottomLimitSwitch( new DigitalInput( DIGITAL_MODULE_PORT,
 			                             ARTICULATOR_BOTTOM_LIMIT_SWITCH_CHANNEL ) ) {
-	encoder->SetDistancePerPulse( 2 * PI / ENCODER_RESOLUTION );
+	encoder->SetDistancePerPulse( DISTANCE_PER_REVOLUTION / ENCODER_RESOLUTION );
 	encoder->Start();
 	
 }
@@ -50,9 +56,11 @@ void ShooterArticulator::InitDefaultCommand() {
  * @author Nyle Rodgers
  */ 
 double ShooterArticulator::getAngle() {
-	return encoder->GetDistance();
-//	return ( ( potentiometer->GetAverageVoltage() - ZERO_RADIAN_VOLTAGE) 
-//			   / ONE_RADIAN_VOLTAGE );
+	return acos( ( pow( BASE_LENGTH, 2.0 )
+			       + pow( SHOOTER_LENGTH, 2.0 )
+			       - ( pow( encoder->GetDistance() + ARTICULATOR_SHAFT_ZERO, 2.0 ) 
+			           + pow( ARTICULATOR_MOUNT_LENGTH, 2.0 ) ) )
+			     / ( 2 * BASE_LENGTH * SHOOTER_LENGTH ) );
 }
 
 /**

@@ -13,15 +13,37 @@ Climber::Climber() :
 	leftServo( new Servo( DIGITAL_MODULE_PORT,
 						   CLIMBER_LEFT_SERVO_CHANNEL) ) {
 	rightServo->Set(0.0);
-	leftServo->Set(0.0);
+	leftServo->Set(1.0);
+	isRaised = false;
 }
 
 /**
- * Raise the climber. This is a one way operation, it can't be raised after
+ * Raise the climber.
  * 
  * @author Nyle Rodgers
  */
 void Climber::raise() {
 	rightServo->Set(0.5);
 	leftServo->Set(0.5);
+	isRaised = true;
+}
+
+/**
+ * Lower the climber.
+ * 
+ * @author Nyle Rodgers
+ */
+void Climber::lower() {
+	rightServo->Set(0.0);
+	leftServo->Set(1.0);
+	isRaised = false;
+}
+
+void Climber::toggle() {
+	if( isRaised ) {
+		lower();
+	}
+	else {
+		raise();
+	}
 }
