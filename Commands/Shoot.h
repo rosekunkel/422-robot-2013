@@ -2,6 +2,7 @@
 #define SHOOT_H
 
 #include "../CommandBase.h"
+#include "../CompilationSettings.h"
 
 /**
  *

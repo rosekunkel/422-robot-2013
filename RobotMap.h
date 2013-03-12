@@ -13,6 +13,7 @@
 #define ROBOT_MAP_H
 
 #include "WPILib.h"
+#include "CompilationSettings.h"
 
 /**
  * @defgroup modulePorts cRIO Module Port Numbers

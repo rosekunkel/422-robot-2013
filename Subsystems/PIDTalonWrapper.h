@@ -7,6 +7,7 @@
 #define PIDTALONWRAPPER_H
 
 #include "WPILib.h"
+#include "../CompilationSettings.h"
 
 /**
  * @brief the wrapper used to allow the PID controll to work with the tallons

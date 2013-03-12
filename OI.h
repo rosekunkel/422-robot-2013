@@ -8,6 +8,7 @@
 #define OI_H
 
 #include "WPILib.h"
+#include "CompilationSettings.h"
 
 /**
  * @brief The operator interface

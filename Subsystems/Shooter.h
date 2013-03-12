@@ -8,6 +8,7 @@
 #define SHOOTER_H
 #include "WPILib.h"
 #include "PIDTalonWrapper.h"
+#include "../CompilationSettings.h"
 
 /**
 * @brief The Shooter subsystem

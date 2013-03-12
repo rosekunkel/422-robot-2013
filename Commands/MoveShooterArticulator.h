@@ -7,6 +7,7 @@
 #define MOVESHOOTERARTICULATOR_H
 
 #include "../CommandBase.h"
+#include "../CompilationSettings.h"
 
 /**
  * @brief The command to move the shooter arciculator

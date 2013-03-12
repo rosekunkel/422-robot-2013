@@ -9,6 +9,7 @@
 #define DRIVE_H
 
 #include "WPILib.h"
+#include "../CompilationSettings.h"
 #include "PIDTalonWrapper.h"
 
 /**

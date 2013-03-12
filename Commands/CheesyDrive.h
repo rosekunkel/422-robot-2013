@@ -8,6 +8,7 @@
 #define CHEESY_DRIVE_H
 
 #include "../CommandBase.h"
+#include "../CompilationSettings.h"
 
 /**
  * @brief The CheesyDrive command

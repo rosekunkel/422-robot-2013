@@ -9,6 +9,8 @@
 #include "Commands/Command.h"
 #include "CommandBase.h"
 
+#include "CompilationSettings.h"
+
 #include "Commands/CheesyDrive.h"
 #include "Commands/MoveShooterArticulator.h"
 #include "Commands/OperateShooter.h"

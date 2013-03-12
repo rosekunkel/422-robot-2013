@@ -2,6 +2,7 @@
 #define TOGGLECLIMBER_H
 
 #include "../CommandBase.h"
+#include "../CompilationSettings.h"
 
 /**
  *

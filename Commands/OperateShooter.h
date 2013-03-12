@@ -2,6 +2,7 @@
 #define OPERATESHOOTER_H
 
 #include "../CommandBase.h"
+#include "../CompilationSettings.h"
 
 /**
  *

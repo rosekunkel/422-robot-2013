@@ -8,6 +8,8 @@
 #ifndef COMMAND_BASE_H
 #define COMMAND_BASE_H
 
+#include "CompilationSettings.h"
+
 #include "Commands/Command.h"
 #include "Subsystems/Climber.h"
 #include "Subsystems/CompressorSystem.h"

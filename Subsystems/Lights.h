@@ -7,6 +7,7 @@
 #define LIGHTS_H
 #include "Commands/Subsystem.h"
 #include "WPILib.h"
+#include "../CompilationSettings.h"
 
 /**
  * @brief The Lights subsystem

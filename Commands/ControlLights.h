@@ -2,6 +2,7 @@
 #define CONTROLLIGHTS_H
 
 #include "../CommandBase.h"
+#include "../CompilationSettings.h"
 
 /**
  *

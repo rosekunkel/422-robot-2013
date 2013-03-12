@@ -2,6 +2,7 @@
 #define OPERATESHOOTERARTICULATOR_H
 
 #include "../CommandBase.h"
+#include "../CompilationSettings.h"
 
 /**
  *
