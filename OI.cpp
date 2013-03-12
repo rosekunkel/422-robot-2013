@@ -40,7 +40,8 @@ OI::OI():
 	
 	raiseClimberButton( new JoystickButton( rightPrimaryJoystick, 2 ) ),
 	
-	// Secondary	
+	// Secondary for Joysticks	
+	/*
 	fireButton( new JoystickButton( secondaryJoystick, 1 ) ),
 
 	setpointZeroButton( new JoystickButton ( secondaryJoystick, 2 )),
@@ -59,9 +60,28 @@ OI::OI():
 
 	fireButton->WhenPressed(new Shoot());
 
+}
+*/
+//Controls for the Gamecube Controller
+	fireButton( new JoystickButton( secondaryJoystick, 1 ) ),
+
+	setpointZeroButton( new JoystickButton ( secondaryJoystick, 2 )),
+	setpointOneButton( new JoystickButton( secondaryJoystick, 9 ) ),
+	setpointTwoButton( new JoystickButton( secondaryJoystick, 12 ) ),
+	setpointThreeButton( new JoystickButton( secondaryJoystick, 10 ) ),
+
+	toggleRedButton( new JoystickButton ( secondaryJoystick, 5)),
+    toggleGreenButton( new JoystickButton (secondaryJoystick, 6)),
+	toggleBlueButton( new JoystickButton (secondaryJoystick, 7)) {
+	
+	raiseClimberButton->WhenPressed( new ToggleClimber() );
+	toggleRedButton->WhenPressed( new ControlLights(0) );
+	toggleGreenButton->WhenPressed( new ControlLights(1) );
+	toggleBlueButton->WhenPressed( new ControlLights(2) );
+
+	fireButton->WhenPressed(new Shoot());
 
 }
-
 /**
  * Get the left joystick for the primary driver.
  *
