@@ -46,3 +46,4 @@ Makefile
 *.vcxproj
 *.filters
 *.user
+*.opensdf
