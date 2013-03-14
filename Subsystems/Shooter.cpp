@@ -15,12 +15,10 @@
 #endif
 
 #ifndef USE_BANG_BANG
-// TODO: Tune the PID
 const float Shooter::P = 0.01,
             Shooter::I = 0.0,
             Shooter::D = 0.025;
 
-// TODO: Check shooter max RPS
 const float Shooter::MAX_RPS = 45.0;
 
 const float Shooter::MAX_PERCENT_ERROR = 1.0;

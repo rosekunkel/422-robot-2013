@@ -44,14 +44,12 @@ OI::OI():
    	halfSpeedButton( new JoystickButton( leftPrimaryJoystick, 1 ) ),
 	fullSpeedButton( new JoystickButton( rightPrimaryJoystick, 1 ) ),
 
-	// TODO: Get a button mapped for the full-speed turning multiplier
 	quarterTurnSpeedButton( new JoystickButton( rightPrimaryJoystick, 4 ) ),
-	halfTurnSpeedButton( new JoystickButton( rightPrimaryJoystick, 5 ) ),
-	fullTurnSpeedButton( new JoystickButton( leftPrimaryJoystick, 1 ) ),
+	halfTurnSpeedButton( new JoystickButton( rightPrimaryJoystick, 3 ) ),
+	fullTurnSpeedButton( new JoystickButton( rightPrimaryJoystick, 5 ) ),
 	
-	// TODO: Get a button mapped for the 180 turn
-	turn180Button( new JoystickButton( leftPrimaryJoystick, 1 ) ),
-	toggleClimberButton( new JoystickButton( rightPrimaryJoystick, 2 ) ),
+	turn180Button( new JoystickButton( rightPrimaryJoystick, 2 ) ),
+	toggleClimberButton( new JoystickButton( rightPrimaryJoystick, 10 ) ),
 #endif
 	
 	// Secondary driver controls
@@ -62,10 +60,11 @@ OI::OI():
 	lowSetpointButton( new JoystickButton( secondaryJoystick, GC_LEFT ) ),
 	midSetpointButton( new JoystickButton( secondaryJoystick, GC_UP ) ),
 	highSetpointButton( new JoystickButton( secondaryJoystick, GC_RIGHT ) ),
+	increaseSetpointButton( new JoystickButton( secondaryJoystick, GC_Y) ),
+	decreaseSetpointButton( new JoystickButton( secondaryJoystick, GC_X) ),
 
 	toggleRedButton( new JoystickButton( secondaryJoystick, GC_L ) ),
-    toggleGreenButton( new JoystickButton(secondaryJoystick, GC_R ) ),
-	toggleBlueButton( new JoystickButton(secondaryJoystick, GC_Z ) )
+	toggleBlueButton( new JoystickButton(secondaryJoystick, GC_R ) )
 #else
 	fireButton( new JoystickButton( secondaryJoystick, 1 ) ),
 
@@ -73,17 +72,18 @@ OI::OI():
 	lowSetpointButton( new JoystickButton( secondaryJoystick, 4 ) ),
 	midSetpointButton( new JoystickButton( secondaryJoystick, 3 ) ),
 	highSetpointButton( new JoystickButton( secondaryJoystick, 5 ) ),
+	increaseSetpointButton( new JoystickButton( secondaryJoystick, 11) ),
+	decreaseSetpointButton( new JoystickButton( secondaryJoystick, 10) ),
+	
 
 	toggleRedButton( new JoystickButton( secondaryJoystick, 6 ) ),
-    toggleGreenButton( new JoystickButton(secondaryJoystick, 7 ) ),
-	toggleBlueButton( new JoystickButton(secondaryJoystick, 8 ) )
+	toggleBlueButton( new JoystickButton(secondaryJoystick, 7 ) )
 #endif
 {
 	toggleClimberButton->WhenPressed( new ToggleClimber() );
 	turn180Button->WhenPressed( new SpinHalfRotation() );
 	
 	toggleRedButton->WhenPressed( new ControlLights(ControlLights::RED) );
-	toggleGreenButton->WhenPressed( new ControlLights(ControlLights::GREEN) );
 	toggleBlueButton->WhenPressed( new ControlLights(ControlLights::BLUE) );
 
 	fireButton->WhenPressed( new Shoot() );

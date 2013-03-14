@@ -25,7 +25,14 @@ public:
 	void toggleBlueLight();
 
 	/// Turn the Light off.
-	void turnLightOff();
+	void turnOffRedLight();
+	void turnOffGreenLight();
+	void turnOffBlueLight();
+	
+	void turnOnRedLight();
+	void turnOnGreenLight();
+	void turnOnBlueLight();
+
 private:
 	Relay *redLight;
 	Relay *greenLight;

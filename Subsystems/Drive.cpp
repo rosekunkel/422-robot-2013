@@ -14,9 +14,7 @@ const float Drive::P = 0.07,
             Drive::I = 0.0,
             Drive::D = 0.0;
 
-// TODO: Remeasure max speed, make sure this is it
-//Measured max speed
-const float Drive::MAX_RPS = 13.0;
+const float Drive::MAX_RPS = 13.5;
 
 const double Drive::ENCODER_RESOLUTION = 256.0;
 

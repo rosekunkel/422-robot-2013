@@ -31,7 +31,7 @@ public:
 	Joystick* getRightPrimaryJoystick() { return rightPrimaryJoystick; }
 #endif
 
-	Joystick* getSecondaryJoystick();
+	Joystick* getSecondaryJoystick() { return secondaryJoystick; }
 	
 	bool tenthSpeedButtonPressed() { return tenthSpeedButton->Get(); }
 	bool halfSpeedButtonPressed() { return halfSpeedButton->Get(); }
@@ -51,10 +51,12 @@ public:
 	bool lowSetpointButtonPressed() { return lowSetpointButton->Get(); }
 	bool midSetpointButtonPressed() { return midSetpointButton->Get(); }
 	bool highSetpointButtonPressed() { return highSetpointButton->Get(); }
+	// TODO: Resolve lines below not being <= 80 columns
+	bool increaseSetpointButtonPressed() { return increaseSetpointButton->Get(); }
+	bool decreaseSetpointButtonPressed() { return decreaseSetpointButton->Get(); }
 
 	// Underglow controls
 	bool toggleRedButtonPressed() { return toggleRedButton->Get(); }
-	bool toggleGreenButtonPressed() { return toggleGreenButton->Get(); }
 	bool toggleBlueButtonPressed() { return toggleBlueButton->Get(); }
 	
 private:
@@ -87,9 +89,11 @@ private:
 	               *lowSetpointButton,
 	               *midSetpointButton,
 	               *highSetpointButton,
+	               
+	               *increaseSetpointButton,
+	               *decreaseSetpointButton,
 
                    *toggleRedButton,
-				   *toggleGreenButton,
 				   *toggleBlueButton;
 };
 

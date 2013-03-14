@@ -16,6 +16,10 @@ public:
 	void Interrupted() {}
 private:
 	DriverStationLCD *dashboard;
+	bool isIncreaseButtonPressed,
+		 isDecreaseButtonPressed;
+	float leftSetpoint,
+		  rightSetpoint;
 };
 
 #endif

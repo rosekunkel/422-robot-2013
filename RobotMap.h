@@ -97,7 +97,9 @@ const UINT32 GREEN_RELAY_CHANNEL = 7;
  * @defgroup Analog Channel Numbers
  * @{
  */
-const UINT32 VARIABLE_DIAL_CHANNEL = 8;
+const UINT32 LEFT_ANTENNA_CHANNEL = 1,
+	         RIGHT_ANTENNA_CHANNEL = 2,
+	         VARIABLE_DIAL_CHANNEL = 8;
 
 /**
  * @defgroup PS3 Controller Mappings

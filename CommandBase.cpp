@@ -32,6 +32,7 @@ Shooter* CommandBase::shooter = 0;
 ShooterArticulator* CommandBase::shooterArticulator = 0;
 Lights* CommandBase::lights = 0;
 VariableDial* CommandBase::variableDial = 0;
+Antennae* CommandBase::antennae = 0;
 OI* CommandBase::operatorInterface = 0;
 
 /**
@@ -49,5 +50,6 @@ void CommandBase::init() {
 	shooterArticulator = new ShooterArticulator();
 	lights = new Lights();
 	variableDial = new VariableDial();
+	antennae = new Antennae();
 	operatorInterface = new OI();
 }

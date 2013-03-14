@@ -27,7 +27,6 @@ void Team422Robot::RobotInit() {
  * @author William Kunkel
  */
 void Team422Robot::AutonomousInit() {
-	// TODO: Determine what state the climber starts in
 	autonomousCommand->Start();
 }
 

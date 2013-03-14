@@ -46,3 +46,27 @@ void Lights::toggleBlueLight() {
 		blueLight->Set(Relay::kOn);
 	}
 }
+
+void Lights::turnOnRedLight() {
+	redLight->Set(Relay::kOn);
+}
+
+void Lights::turnOnGreenLight() {
+	greenLight->Set(Relay::kOn);
+}
+
+void Lights::turnOnBlueLight() {
+	blueLight->Set(Relay::kOn);
+}
+
+void Lights::turnOffRedLight() {
+	redLight->Set(Relay::kOff);
+}
+
+void Lights::turnOffGreenLight() {
+	greenLight->Set(Relay::kOff);
+}
+
+void Lights::turnOffBlueLight() {
+	blueLight->Set(Relay::kOff);
+}
