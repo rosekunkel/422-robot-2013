@@ -51,7 +51,9 @@ private:
 					   // closest point of the line the shaft falls on to the 
 					   // pivot of the mount for the shaft motor to the pivot 
 					   // of the shaft on the shooter
-					   ARTICULATOR_SHAFT_ZERO;
+					   ARTICULATOR_SHAFT_ZERO,
+					   STARTING_DISTANCE;
+	DriverStationLCD *dashboard;
 };
 
 #endif //SHOOTER_ARTICULATOR_H

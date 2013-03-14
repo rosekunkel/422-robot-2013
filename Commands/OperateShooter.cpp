@@ -53,8 +53,8 @@ void OperateShooter::Execute() {
 	else {
 		dashboard->Printf(DriverStationLCD::kUser_Line1, 1, "Spinning up");
 	}
-	dashboard->Printf(DriverStationLCD::kUser_Line2, 1, "%g", shooter->getFirstWheelSpeed() );
-	dashboard->Printf(DriverStationLCD::kUser_Line3, 1, "%g", shooter->getSecondWheelSpeed() );
+	dashboard->Printf(DriverStationLCD::kUser_Line2, 1, "%f", shooter->getFirstWheelSpeed() );
+	dashboard->Printf(DriverStationLCD::kUser_Line3, 1, "%f", shooter->getSecondWheelSpeed() );
 	dashboard->UpdateLCD();
 }
 

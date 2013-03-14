@@ -46,9 +46,9 @@ void BangBangShooterControl::Execute() {
 	}
 	
 	dashboard->Clear();
-	dashboard->Printf(DriverStationLCD::kUser_Line1, 1, "%g", 
+	dashboard->Printf(DriverStationLCD::kUser_Line1, 1, "%f", 
 			shooter->getFirstWheelSpeed() - firstWheelSetpoint );
-	dashboard->Printf(DriverStationLCD::kUser_Line2, 1, "%g", 
+	dashboard->Printf(DriverStationLCD::kUser_Line2, 1, "%f", 
 			shooter->getSecondWheelSpeed() - secondWheelSetpoint );
 	dashboard->UpdateLCD();
 }

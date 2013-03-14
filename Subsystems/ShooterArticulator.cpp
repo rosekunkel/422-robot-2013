@@ -19,7 +19,7 @@ const float ShooterArticulator::BASE_LENGTH = 24.0; // in inches
 const float ShooterArticulator::SHOOTER_LENGTH = 28.0; // in inches
 const float ShooterArticulator::ARTICULATOR_MOUNT_LENGTH = 2.0; // in inches
 const float ShooterArticulator::ARTICULATOR_SHAFT_ZERO = 10.0; // in inches
-
+const float ShooterArticulator::STARTING_DISTANCE = 0.0;
 
 ShooterArticulator::ShooterArticulator() : 
 	Subsystem("ShooterArticulator"),
@@ -35,10 +35,10 @@ ShooterArticulator::ShooterArticulator() :
 	topLimitSwitch( new DigitalInput( DIGITAL_MODULE_PORT,
 			                          ARTICULATOR_TOP_LIMIT_SWITCH_CHANNEL ) ),
 	bottomLimitSwitch( new DigitalInput( DIGITAL_MODULE_PORT,
-			                             ARTICULATOR_BOTTOM_LIMIT_SWITCH_CHANNEL ) ) {
+			                             ARTICULATOR_BOTTOM_LIMIT_SWITCH_CHANNEL ) ),
+	dashboard( DriverStationLCD::GetInstance() ) {
 	encoder->SetDistancePerPulse( DISTANCE_PER_REVOLUTION / ENCODER_RESOLUTION );
 	encoder->Start();
-	
 }
     
 void ShooterArticulator::InitDefaultCommand() {
@@ -66,7 +66,11 @@ double ShooterArticulator::getAngle() {
 void ShooterArticulator::moveUp() {
 	if( topLimitSwitch->Get() ) {
 		motor->Set(1.0);
-	} else {
+		float distance = STARTING_DISTANCE + encoder->GetDistance();
+		dashboard->PrintfLine( DriverStationLCD::kUser_Line6, "SA: %g", distance );
+		dashboard->UpdateLCD();
+	}
+	else {
 		stop();
 	}
 }
@@ -79,7 +83,11 @@ void ShooterArticulator::moveUp() {
 void ShooterArticulator::moveDown() {
 	if( bottomLimitSwitch->Get() ) {
 		motor->Set(-1.0);
-	} else {
+		float distance = STARTING_DISTANCE + encoder->GetDistance();
+		dashboard->PrintfLine( DriverStationLCD::kUser_Line6, "SA: %g", distance );
+		dashboard->UpdateLCD();
+	}
+	else {
 		stop();
 	}
 }
