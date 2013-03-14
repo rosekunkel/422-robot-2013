@@ -5,10 +5,11 @@
  */
 #include "WPILib.h"
 #include "CheesyDrive.h"
-#include <iostream>
+#include "../RobotMap.h"
 
-// We need <cmath> for copysignf in cheesyDrive
+#ifdef USE_CPP_11
 #include <cmath>
+#endif
 
 const float CheesyDrive::DEADZONE = 0.1;
 
@@ -19,7 +20,6 @@ const float CheesyDrive::DEADZONE = 0.1;
  */
 CheesyDrive::CheesyDrive() {
 	Requires(drive);
-	multiplier = 1.0;
 	forwardMultiplier = 1.0;
 	turningMultiplier = 0.5;
 }
@@ -32,52 +32,41 @@ CheesyDrive::CheesyDrive() {
  */
 void CheesyDrive::Execute() {
 	updateMultipliers();
-	updateReverseStatus();
-
-	if ( operatorInterface->getStopDriveButtonValue() ) {
-		drive->stop();
-	}
-	else {
 #ifdef USE_PS3_CONTROLLER
-		float forward = operatorInterface
-		                ->getPrimaryJoystick()
-		                ->GetRawAxis(2);
-		float turning = operatorInterface
-		                ->getPrimaryJoystick()
-		                ->GetRawAxis(4);
+	float forward = operatorInterface
+					->getPrimaryJoystick()
+					->GetRawAxis(PS3_LEFT_Y);
+	float turning = operatorInterface
+					->getPrimaryJoystick()
+					->GetRawAxis(PS3_RIGHT_X);
 #else
-		float forward = operatorInterface
-						->getLeftPrimaryJoystick()
-						->GetY();
-		float turning = operatorInterface
-						->getRightPrimaryJoystick()
-						->GetX();
+	float forward = operatorInterface
+					->getLeftPrimaryJoystick()
+					->GetY();
+	float turning = operatorInterface
+					->getRightPrimaryJoystick()
+					->GetX();
 #endif
-		// We add a dead zone around 0 to circumvent joysticks not being perfectly centered
-		forward = valueWithDeadzone( forward, DEADZONE );
-		turning = valueWithDeadzone( turning, DEADZONE );
+	// We add a dead zone around 0 to circumvent joysticks not being perfectly centered
+	forward = valueWithDeadzone( forward, DEADZONE );
+	turning = valueWithDeadzone( turning, DEADZONE );
 
-		// Scale the values by the multiplier we selected
-		forward *= forwardMultiplier * multiplier;
-		turning *= turningMultiplier * multiplier;
-		
-		if ( operatorInterface->getDriveReverseButtonValue() && !isReversePressed ) {
-			forward = -forward;
-		}
+	// Scale the values by the multiplier we selected
+	forward *= forwardMultiplier;
+	turning *= turningMultiplier;
 
-		// We determine the speed multiplier by adding and subtracting the turning
-		// value from the base speed
-		float leftMultiplier  = forward-turning,
-			  rightMultiplier = forward+turning;
-		
-		// We need to make sure that our speed multiplier does not exceed 100%, but
-		// simple scaling between -2 and 2 would limit linear top speed.	
-		leftMultiplier  = truncateOutOfBounds( leftMultiplier );
-		rightMultiplier = truncateOutOfBounds( rightMultiplier );
+	// We determine the speed multiplier by adding and subtracting the turning
+	// value from the base speed
+	float leftMultiplier  = forward-turning,
+		  rightMultiplier = forward+turning;
+	
+	// We need to make sure that our speed multiplier does not exceed 100%, but
+	// simple scaling between -2 and 2 would limit linear top speed.	
+	leftMultiplier  = truncateOutOfBounds( leftMultiplier );
+	rightMultiplier = truncateOutOfBounds( rightMultiplier );
 
-		// Set the speed, using the multiplier as a percentage of the top speed
-		drive->setMotorsNormalized( leftMultiplier, rightMultiplier );
-	}
+	// Set the speed, using the multiplier as a percentage of the top speed
+	drive->setMotorsNormalized( leftMultiplier, rightMultiplier );
 }
 
 /**
@@ -89,65 +78,59 @@ bool CheesyDrive::IsFinished() {
 	return false;
 }
 
-float CheesyDrive::valueWithDeadzone( float value, float deadzone ) {
-	float newValue = 0.0;
-
+float CheesyDrive::valueWithDeadzone( float value, const float deadzone ) {
 	if( deadzone >= 1 ) {
 		return 0.0;
 	}
 
 	if( value > 0.0) {
-   		newValue = (value - deadzone) / (1.0 - deadzone);
-		if (newValue < 0.0) {
-			newValue = 0.0;
+   		value = (value - deadzone) / (1.0 - deadzone);
+		if (value < 0.0) {
+			value = 0.0;
 		}
 	}
 	else {
-		newValue = (value + deadzone) / (1.0 - deadzone);
-		if (newValue > 0.0) {
-			newValue = 0.0;
+		value = (value + deadzone) / (1.0 - deadzone);
+		if (value > 0.0) {
+			value = 0.0;
 		}
 	}
 
-	return newValue;
+	return value;
 }
 
 float CheesyDrive::truncateOutOfBounds( float value ) {
-	float newValue = value;
-
 	if( ( value > 1 )
 	 || ( value < -1 ) ) {
 		// We set the multiplier to +-100%, based on its original sign
-		newValue = ((0.0 < newValue) - (newValue < 0.0));
+#ifdef USE_CPP_11
+		value = std::copysign( 1.0, value )
+#else
+		value = ((0.0 < value) - (value < 0.0));
+#endif
 	}
 
-	return newValue;
+	return value;
 }
 
 void CheesyDrive::updateMultipliers() {
-   	if ( operatorInterface->getOneTenthSpeedMultiplierButtonValue() ) {
-		multiplier = 0.1;
+   	if( operatorInterface->tenthSpeedButtonPressed() ) {
+		forwardMultiplier = 0.1;
 	}
-	else if ( operatorInterface->getHalfSpeedMultiplierButtonValue() ) {
-		multiplier = 0.5;
+	else if( operatorInterface->halfSpeedButtonPressed() ) {
+		forwardMultiplier = 0.5;
 	}
-	else if ( operatorInterface->getFullSpeedButtonValue() ) {
-		multiplier = 1.0;
+	else if( operatorInterface->fullSpeedButtonPressed() ) {
+		forwardMultiplier = 1.0;
 	}
 
-	if ( operatorInterface->getQuarterSpeedTurningMultiplierButtonValue() ) {
+	if( operatorInterface->quarterTurnSpeedButtonPressed() ) {
 		turningMultiplier = 0.25;
 	}
-	else if ( operatorInterface->getHalfSpeedTurningMultiplierButtonValue() ) {
+	else if( operatorInterface->halfTurnSpeedButtonPressed() ) {
 		turningMultiplier = 0.5;
 	}
-}
-
-void CheesyDrive::updateReverseStatus() {
-	if ( operatorInterface->getDriveReverseButtonValue() && !isReversePressed ) {
-		isReversePressed = true;
-	}
-	else if ( !operatorInterface->getDriveReverseButtonValue() && isReversePressed ) {
-		isReversePressed = false;
+	else if( operatorInterface->fullTurnSpeedButtonPressed() ) {
+		turningMultiplier = 1.0;
 	}
 }

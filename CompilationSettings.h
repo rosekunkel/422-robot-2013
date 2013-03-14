@@ -2,6 +2,10 @@
 #define COMPILATION_SETTINGS_H
 
 //#define USE_PS3_CONTROLLER
-#define USE_GAMECUBE_CONTROLLER
+//#define USE_GAMECUBE_CONTROLLER
+//#define USE_CPP_11
+
+// Make sure the jumpers are set to coast when using bang-bang
+//#define USE_BANG_BANG
 
 #endif // COMPILATION_SETTINGS_H

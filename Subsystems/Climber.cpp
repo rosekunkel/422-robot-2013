@@ -9,9 +9,9 @@
 Climber::Climber() : 
 	Subsystem("Climber"),
 	rightServo( new Servo( DIGITAL_MODULE_PORT,
-			               CLIMBER_RIGHT_SERVO_CHANNEL) ),
+			               CLIMBER_RIGHT_SERVO_CHANNEL ) ),
 	leftServo( new Servo( DIGITAL_MODULE_PORT,
-						   CLIMBER_LEFT_SERVO_CHANNEL) ) {
+						   CLIMBER_LEFT_SERVO_CHANNEL ) ) {
 	rightServo->Set(0.0);
 	leftServo->Set(1.0);
 	isRaised = false;

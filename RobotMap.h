@@ -19,13 +19,13 @@
  * @defgroup modulePorts cRIO Module Port Numbers
  * @{
  */
-const UINT8 DIGITAL_MODULE_PORT = 1,
+const UINT8 ANALOG_MODULE_PORT = 1,
+	        DIGITAL_MODULE_PORT = 1,
 	        SOLENOID_MODULE_PORT = 1;
 /**@}*/
 
 
 
-// TODO: Get real port numbers
 
 /**
  * @defgroup pwmChannels PWM Channel Numbers
@@ -84,7 +84,6 @@ const UINT32 CLIMBER_RIGHT_SERVO_CHANNEL = 9,
 /**
  * @defgroup LED Channel Numbers
  * @{
- * TODO: Get actual relay channels
  */
 // Red Relay Ports
 const UINT32 RED_RELAY_CHANNEL = 5;
@@ -93,4 +92,66 @@ const UINT32 BLUE_RELAY_CHANNEL = 6;
 // Green Relay Ports
 const UINT32 GREEN_RELAY_CHANNEL = 7;
 /**@}*/
+
+/**
+ * @defgroup Analog Channel Numbers
+ * @{
+ */
+const UINT32 VARIABLE_DIAL_CHANNEL = 8;
+
+/**
+ * @defgroup PS3 Controller Mappings
+ * @{
+ */
+#ifdef USE_PS3_CONTROLLER
+const UINT32 PS3_LEFT_X = 1,
+	         PS3_LEFT_Y = 2,
+	         PS3_RIGHT_X = 4,
+	         PS3_RIGHT_Y = 3;
+
+const int PS3_SELECT   =  1,
+	      PS3_L3       =  2,
+	      PS3_R3       =  3,
+	      PS3_START    =  4,
+	      PS3_UP       =  5,
+	      PS3_RIGHT    =  6,
+	      PS3_DOWN     =  7,
+	      PS3_LEFT     =  8,
+	      PS3_R1       =  9,
+	      PS3_R2       = 10,
+	      PS3_L1       = 11,
+	      PS3_L2       = 12,
+	      PS3_TRIANGLE = 13,
+	      PS3_CIRCLE   = 14,
+	      PS3_X        = 15,
+	      PS3_SQUARE   = 16,
+	      PS3_HOME     = 17;
+#endif
+/**@}*/
+
+/**
+ * @defgroup GameCube Controller Mappings
+ * @{
+ */
+#ifdef USE_GAMECUBE_CONTROLLER
+const UINT32 GC_LEFT_X = 1,
+	         GC_LEFT_Y = 2,
+	         GC_C_STICK_X = 3,
+	         GC_C_STICK_Y = 4;
+
+const int GC_A     =  1,
+	      GC_B     =  2,
+	      GC_X     =  3,
+	      GC_Y     =  4,
+	      GC_L     =  5,
+	      GC_R     =  6,
+	      GC_Z     =  7,
+	      GC_START =  8,
+	      GC_LEFT  =  9,
+	      GC_RIGHT = 10,
+	      GC_DOWN  = 11,
+	      GC_UP    = 12;
+#endif
+/**@}*/
+
 #endif // ROBOT_MAP_H

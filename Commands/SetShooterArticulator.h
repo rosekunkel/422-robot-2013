@@ -1,5 +1,5 @@
-#ifndef SETSHOOTERARTICULATOR_H
-#define SETSHOOTERARTICULATOR_H
+#ifndef SET_SHOOTER_ARTICULATOR_H
+#define SET_SHOOTER_ARTICULATOR_H
 
 #include "../CommandBase.h"
 #include "../CompilationSettings.h"

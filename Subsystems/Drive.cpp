@@ -130,6 +130,7 @@ void Drive::setMotorSpeeds( float leftSpeed, float rightSpeed ) {
  * @author William Kunkel
  * @author Nyle Rodgers
  */
+
 // TODO: Figure out why values such as 1, -1 replaced for the speed * MAX_RPS 
 //		makes drive backwards, but Cheesy Drive works
 void Drive::setMotorsNormalized( float leftSpeed, float rightSpeed ) {

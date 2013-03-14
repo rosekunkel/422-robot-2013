@@ -41,13 +41,10 @@ private:
 	float valueWithDeadzone( float, float );
 	float truncateOutOfBounds( float );
 	void updateMultipliers();
-	void updateReverseStatus();
 
 	static const float DEADZONE;
-	float multiplier,
-	      forwardMultiplier,
+	float forwardMultiplier,
 	      turningMultiplier;
-	bool isReversePressed;
 };
 
 #endif // CHEESY_DRIVE_H

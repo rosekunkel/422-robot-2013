@@ -3,7 +3,6 @@
 Shoot::Shoot() {
 	Requires(pusher);
 	SetInterruptible(false);
-	isFired = false;
 	SetTimeout(0.1);
 }
 

@@ -3,8 +3,8 @@
  * @brief Decleration of the Shooter subsystem
  * @author Nyle Rodgers
  */
-#ifndef SHOOTERARTICULATOR_H
-#define SHOOTERARTICULATOR_H
+#ifndef SHOOTER_ARTICULATOR_H
+#define SHOOTER_ARTICULATOR_H
 #include "Commands/Subsystem.h"
 #include "WPILib.h"
 #include "../CompilationSettings.h"
@@ -38,23 +38,20 @@ public:
 private:
 	Talon *motor;
 	Encoder *encoder;
-	AnalogChannel *potentiometer;
 	DigitalInput *topLimitSwitch,
 	             *bottomLimitSwitch;
 	
-	static const float ZERO_RADIAN_VOLTAGE,
-	                   ONE_RADIAN_VOLTAGE,
-	                   ENCODER_RESOLUTION,
+	static const float ENCODER_RESOLUTION,
 					   DISTANCE_PER_REVOLUTION,
 					   BASE_LENGTH,
 					   SHOOTER_LENGTH,
 					   ARTICULATOR_MOUNT_LENGTH,
-					   // The length at which the articulator shaft is at when 
+					   // The length which the articulator shaft is at when 
 					   // the encoder reads zero. This is measured from the 
 					   // closest point of the line the shaft falls on to the 
 					   // pivot of the mount for the shaft motor to the pivot 
-					   //of the shaft on the shooter
+					   // of the shaft on the shooter
 					   ARTICULATOR_SHAFT_ZERO;
 };
 
-#endif //SHOOTERARTICULATOR_H
+#endif //SHOOTER_ARTICULATOR_H

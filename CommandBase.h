@@ -18,6 +18,7 @@
 #include "Subsystems/Shooter.h"
 #include "Subsystems/ShooterArticulator.h"
 #include "Subsystems/Lights.h"
+#include "Subsystems/VariableDial.h"
 #include "OI.h"
 
 
@@ -54,6 +55,8 @@ protected:
 	static ShooterArticulator *shooterArticulator;
 	/// The robot's LED's
 	static Lights *lights;
+	/// The dial used to delay autonomous
+	static VariableDial *variableDial;
 	/// The operator interface for the robot
 	static OI *operatorInterface;
 };

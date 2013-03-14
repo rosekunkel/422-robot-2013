@@ -7,9 +7,11 @@
 
 #include <cmath>
 
+// TODO: Set an acceptable error
 const float MoveShooterArticulator::MAX_ERROR = 0.0;
 
-MoveShooterArticulator::MoveShooterArticulator() {
+MoveShooterArticulator::MoveShooterArticulator( float angle ) :
+	setpoint( angle ) {
 	Requires(shooterArticulator);
 }
 

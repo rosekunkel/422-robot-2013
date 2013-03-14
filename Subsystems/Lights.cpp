@@ -1,7 +1,7 @@
 /**
  * @file Lights.cpp
  * @brief Implementation of the LED subsystem
- * @author Lucario
+ * @author Alan
  */
 #include "Lights.h"
 #include "Relay.h"

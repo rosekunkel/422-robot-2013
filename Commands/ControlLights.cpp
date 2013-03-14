@@ -3,24 +3,20 @@
 #include "../Subsystems/Lights.h"
 #include "../OI.h"
 // Called just before this Command runs the first time
-ControlLights::ControlLights(int whichLight) {
-	light = whichLight;
+ControlLights::ControlLights(Color whichLight) :
+	light( whichLight ) {
+	Requires(lights);
 }
 void ControlLights::Initialize() {
-	Requires(lights);
-	
-	if (light == 0) {
+	if (light == RED) {
 		lights->toggleRedLight();
-	}	else if (light == 1) {
-		lights->toggleBlueLight();
-	}	else if (light == 2) {
+	}
+	else if (light == GREEN) {
 		lights->toggleGreenLight();
+	}
+	else if (light == BLUE) {
+		lights->toggleBlueLight();
 	}	
-}
-
-// Called repeatedly when this Command is scheduled to run
-void ControlLights::Execute() {	
-
 }
 
 // Make this return true when this Command no longer needs to run execute()

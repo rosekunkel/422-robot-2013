@@ -1,7 +1,7 @@
 /**
  * @file Lights.h
  * @brief Declaration of the LED subsystem
- * @author Lucario
+ * @author Alan
  */
 #ifndef LIGHTS_H
 #define LIGHTS_H

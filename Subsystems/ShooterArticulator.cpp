@@ -4,7 +4,7 @@
  * @author Nyle Rodgers
  */
 #define _USE_MATH_DEFINES
-#include <math.h>
+#include <cmath>
 
 #include "ShooterArticulator.h"
 #include "../Commands/OperateShooterArticulator.h"
@@ -12,16 +12,13 @@
 
 const float PI = 3.14159;
 
-// TODO: put actual numbers in here
-const float ShooterArticulator::ZERO_RADIAN_VOLTAGE = 0;
-const float ShooterArticulator::ONE_RADIAN_VOLTAGE = 1;
+// TODO: Get accurate numbers for all measurements
 const float ShooterArticulator::ENCODER_RESOLUTION = 64;
-const float ShooterArticulator::DISTANCE_PER_REVOLUTION = 0.5;//< in inches
-const float ShooterArticulator::BASE_LENGTH = 24.0;//< in inches
-const float ShooterArticulator::SHOOTER_LENGTH = 28.0;//< in inches
-const float ShooterArticulator::ARTICULATOR_MOUNT_LENGTH = 2.0;//< in inches
-// TODO: Put in actual value for this
-const float ShooterArticulator::ARTICULATOR_SHAFT_ZERO = 10.0;//< in inches
+const float ShooterArticulator::DISTANCE_PER_REVOLUTION = 0.5; // in inches
+const float ShooterArticulator::BASE_LENGTH = 24.0; // in inches
+const float ShooterArticulator::SHOOTER_LENGTH = 28.0; // in inches
+const float ShooterArticulator::ARTICULATOR_MOUNT_LENGTH = 2.0; // in inches
+const float ShooterArticulator::ARTICULATOR_SHAFT_ZERO = 10.0; // in inches
 
 
 ShooterArticulator::ShooterArticulator() : 
@@ -35,8 +32,6 @@ ShooterArticulator::ShooterArticulator() :
 	                      ARTICULATOR_ENCODER_CHANNEL_B,
 	                      false,
 	                      Encoder::k1X  ) ),
-	potentiometer( new AnalogChannel( DIGITAL_MODULE_PORT,
-			                          ARTICULATOR_POTENTIOMETER_CHANNEL ) ),
 	topLimitSwitch( new DigitalInput( DIGITAL_MODULE_PORT,
 			                          ARTICULATOR_TOP_LIMIT_SWITCH_CHANNEL ) ),
 	bottomLimitSwitch( new DigitalInput( DIGITAL_MODULE_PORT,

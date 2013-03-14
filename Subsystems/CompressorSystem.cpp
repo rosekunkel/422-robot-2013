@@ -13,5 +13,4 @@ CompressorSystem::CompressorSystem() :
 			                    DIGITAL_MODULE_PORT,
 			                    COMPRESSOR_RELAY_CHANNEL ) ) {
 	compressor->Start();
-	
 }

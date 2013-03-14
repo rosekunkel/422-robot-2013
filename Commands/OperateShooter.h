@@ -1,24 +1,22 @@
-#ifndef OPERATESHOOTER_H
-#define OPERATESHOOTER_H
+#ifndef OPERATE_SHOOTER_H
+#define OPERATE_SHOOTER_H
+
+#include "../CompilationSettings.h"
+#ifndef USE_BANG_BANG
 
 #include "../CommandBase.h"
-#include "../CompilationSettings.h"
 
-/**
- *
- *
- * @author Nyle
- */
 class OperateShooter: public CommandBase {
 public:
 	OperateShooter();
-	virtual void Initialize() {};
-	virtual void Execute();
-	virtual bool IsFinished();
-	virtual void End() {};
-	virtual void Interrupted() {};
+	void Initialize() {}
+	void Execute();
+	bool IsFinished();
+	void End() {}
+	void Interrupted() {}
 private:
 	DriverStationLCD *dashboard;
 };
 
+#endif
 #endif

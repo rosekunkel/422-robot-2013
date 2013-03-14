@@ -1,22 +1,17 @@
-#ifndef TOGGLECLIMBER_H
-#define TOGGLECLIMBER_H
+#ifndef TOGGLE_CLIMBER_H
+#define TOGGLE_CLIMBER_H
 
 #include "../CommandBase.h"
 #include "../CompilationSettings.h"
 
-/**
- *
- *
- * @author Nyle
- */
 class ToggleClimber: public CommandBase {
 public:
 	ToggleClimber();
-	virtual void Initialize();
-	virtual void Execute() {};
-	virtual bool IsFinished();
-	virtual void End() {};
-	virtual void Interrupted() {};
+	void Initialize();
+	void Execute() {}
+	bool IsFinished();
+	void End() {}
+	void Interrupted() {}
 };
 
 #endif

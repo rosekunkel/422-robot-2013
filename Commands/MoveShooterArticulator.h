@@ -1,10 +1,13 @@
+// TODO: Figure out what the hell this is
+
 /**
  * @file MoveShooterArticulator.h
  * @brief Declaration of the MoveShooterArticulator command
  * @author Nyle Rodgers
  */
-#ifndef MOVESHOOTERARTICULATOR_H
-#define MOVESHOOTERARTICULATOR_H
+
+#ifndef MOVE_SHOOTER_ARTICULATOR_H
+#define MOVE_SHOOTER_ARTICULATOR_H
 
 #include "../CommandBase.h"
 #include "../CompilationSettings.h"
@@ -12,7 +15,7 @@
 /**
  * @brief The command to move the shooter arciculator
  * 
- * Operates the shooter articulator, using bang-bang controll to move it to
+ * Operates the shooter articulator, using bang-bang control to move it to
  * a set angle
  *
  * @author Nyle
@@ -20,7 +23,7 @@
 class MoveShooterArticulator: public CommandBase {
 public:
 	/// Constructor for the MoveShooterArticulator command
-	MoveShooterArticulator();
+	MoveShooterArticulator( float angle );
 	
 	/// Initilize the command
 	void Initialize();
@@ -32,15 +35,15 @@ public:
 	bool IsFinished();
 	
 	/// Implement virtual method and do nothing
-	void End() {};
+	void End() {}
 	
 	/// Implement virtual method and do nothing
-	void Interrupted() {};
+	void Interrupted() {}
 private:
 	/// Maximum acceptable error, in degrees
 	static const float MAX_ERROR;
 	/// The angle to set the shooter articulator
-	float setpoint;// TODO: set way to set this
+	float setpoint;
 };
 
-#endif //MOVESHOOTERARTICULATOR_H
+#endif // MOVE_SHOOTER_ARTICULATOR_H

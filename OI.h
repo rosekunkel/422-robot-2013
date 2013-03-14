@@ -24,42 +24,38 @@ public:
 	OI();
 
 #ifdef USE_PS3_CONTROLLER
-	/// Get the controller for the primary driver
-	Joystick* getPrimaryJoystick();
+	Joystick* getPrimaryJoystick() { return primaryJoystick; }
 #else
-	/// Get the left Joystick for the primary driver
-	Joystick* getLeftPrimaryJoystick();
-	
-	/// Get the right Joystick for the primary driver
-	Joystick* getRightPrimaryJoystick();
+	Joystick* getLeftPrimaryJoystick() { return leftPrimaryJoystick; }
+
+	Joystick* getRightPrimaryJoystick() { return rightPrimaryJoystick; }
 #endif
-	
-	/// Get the joystick for the secondary driver
+
 	Joystick* getSecondaryJoystick();
 	
+	bool tenthSpeedButtonPressed() { return tenthSpeedButton->Get(); }
+	bool halfSpeedButtonPressed() { return halfSpeedButton->Get(); }
+	bool fullSpeedButtonPressed() { return fullSpeedButton->Get(); }
 	
-	bool getOneTenthSpeedMultiplierButtonValue();
-	bool getHalfSpeedMultiplierButtonValue();
-	bool getFullSpeedButtonValue();
+	// TODO: Resolve line below not being <= 80 columns
+	bool quarterTurnSpeedButtonPressed() { return quarterTurnSpeedButton->Get(); }
+	bool halfTurnSpeedButtonPressed() { return halfTurnSpeedButton->Get(); }
+	bool fullTurnSpeedButtonPressed() { return fullTurnSpeedButton->Get(); }
 	
-	bool getHalfSpeedTurningMultiplierButtonValue();
-	bool getQuarterSpeedTurningMultiplierButtonValue();
+	bool turn180ButtonPressed() { return turn180Button->Get(); }
+	bool toggleClimberButtonPressed() { return toggleClimberButton->Get(); }
 	
-	bool getDriveReverseButtonValue();
-	bool getStopDriveButtonValue();
+	bool fireButtonPressed() { return fireButton->Get(); }
 	
-	bool getRaiseClimberButtonValue();
-	bool getFireButtonValue();
-	
-	bool getSetpointZeroButtonValue();
-	bool getSetpointOneButtonValue();
-	bool getSetpointTwoButtonValue();
-	bool getSetpointThreeButtonValue();
+	bool stopShooterButtonPressed() { return stopShooterButton->Get(); }
+	bool lowSetpointButtonPressed() { return lowSetpointButton->Get(); }
+	bool midSetpointButtonPressed() { return midSetpointButton->Get(); }
+	bool highSetpointButtonPressed() { return highSetpointButton->Get(); }
 
-	/// Get LED Button states
-	bool getToggleRedButtonValue();
-	bool getToggleGreenButtonValue();
-	bool getToggleBlueButtonValue();
+	// Underglow controls
+	bool toggleRedButtonPressed() { return toggleRedButton->Get(); }
+	bool toggleGreenButtonPressed() { return toggleGreenButton->Get(); }
+	bool toggleBlueButtonPressed() { return toggleBlueButton->Get(); }
 	
 private:
 	
@@ -73,25 +69,24 @@ private:
 	Joystick *secondaryJoystick;
 
 	               // Primary driver buttons
-	JoystickButton *oneTenthSpeedMultiplierButton,
-	               *halfSpeedMultiplierButton,
+	JoystickButton *tenthSpeedButton,
+	               *halfSpeedButton,
 	               *fullSpeedButton,
+	               
+	               *quarterTurnSpeedButton,
+	               *halfTurnSpeedButton,
+	               *fullTurnSpeedButton,
 
-	               *halfSpeedTurningMultiplierButton,
-	               *quarterSpeedTurningMultiplierButton,
-
-	               *driveReverseButton,
-	               *stopDriveButton,
-
-	               *raiseClimberButton,
+	               *turn180Button,
+	               *toggleClimberButton,
 	               
 	               // Secondary driver buttons
 	               *fireButton,
 
-	               *setpointZeroButton,
-	               *setpointOneButton,
-	               *setpointTwoButton,
-	               *setpointThreeButton,
+	               *stopShooterButton,
+	               *lowSetpointButton,
+	               *midSetpointButton,
+	               *highSetpointButton,
 
                    *toggleRedButton,
 				   *toggleGreenButton,
