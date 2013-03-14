@@ -21,7 +21,7 @@ const float Shooter::P = 0.01,
 
 const float Shooter::MAX_RPS = 45.0;
 
-const float Shooter::MAX_PERCENT_ERROR = 1.0;
+const float Shooter::MAX_PERCENT_ERROR = 5.0;
 #endif
 
 const float Shooter::ENCODER_RESOLUTION = 64.0;
@@ -103,6 +103,11 @@ void Shooter::InitDefaultCommand() {
 #endif
 }
 
+void Shooter::setSetpoint( float setpoint ) {
+	firstMotorController->SetSetpoint( setpoint );
+	secondMotorController->SetSetpoint( setpoint );
+}
+
 float Shooter::getFirstWheelSpeed() {
 	return firstEncoder->GetRate();
 }
@@ -142,11 +147,11 @@ void Shooter::stopShooter() {
 	secondMotor->Set(0.0);
 }
 
-void Shooter::setSetpoints(float firstSetpoint, float secondStepoint) {
+void Shooter::setSetpoints(float firstSetpoint, float secondSetpoint) {
 	firstMotorController->Enable();
 	secondMotorController->Enable();
 	firstMotorController->SetSetpoint(-firstSetpoint);
-	secondMotorController->SetSetpoint(-secondStepoint);
+	secondMotorController->SetSetpoint(-secondSetpoint);
 }
 
 bool Shooter::isAtSpeed() {

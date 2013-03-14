@@ -65,7 +65,7 @@ double ShooterArticulator::getAngle() {
  */
 void ShooterArticulator::moveUp() {
 	if( topLimitSwitch->Get() ) {
-		motor->Set(1.0);
+		motor->Set(-1.0);
 		float distance = STARTING_DISTANCE + encoder->GetDistance();
 		dashboard->PrintfLine( DriverStationLCD::kUser_Line6, "SA: %g", distance );
 		dashboard->UpdateLCD();
@@ -82,7 +82,7 @@ void ShooterArticulator::moveUp() {
  */
 void ShooterArticulator::moveDown() {
 	if( bottomLimitSwitch->Get() ) {
-		motor->Set(-1.0);
+		motor->Set(1.0);
 		float distance = STARTING_DISTANCE + encoder->GetDistance();
 		dashboard->PrintfLine( DriverStationLCD::kUser_Line6, "SA: %g", distance );
 		dashboard->UpdateLCD();

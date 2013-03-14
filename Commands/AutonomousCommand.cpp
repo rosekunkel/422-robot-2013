@@ -1,11 +1,14 @@
 #include "AutonomousCommand.h"
 #include "VariableDelay.h"
+#include "SetShooter.h"
 #include "Shoot.h"
 
 AutonomousCommand::AutonomousCommand() {
+	AddSequential( new SetShooter( 35.0 ) );
 	AddSequential( new VariableDelay() );
-	for( int i = 0; i < 4; ++i ) {
+	for( int i = 0; i < 3; ++i ) {
 		AddSequential( new Shoot() );
-		AddSequential( new WaitCommand(0.5) );
+		AddSequential( new WaitCommand(3) );
 	}
+	AddSequential( new Shoot() );
 }

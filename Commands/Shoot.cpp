@@ -3,7 +3,7 @@
 Shoot::Shoot() {
 	Requires(pusher);
 	SetInterruptible(false);
-	SetTimeout(0.1);
+	SetTimeout(0.3);
 }
 
 // Called just before this Command runs the first time

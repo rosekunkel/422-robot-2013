@@ -19,12 +19,7 @@ public:
 	/// constructor for the climber
 	Climber();
 	
-	/// Raise the climber
-	void raise();
-	
-	/// Lower the climber
-	void lower();
-	
+	/// Toggle the climber
 	void toggle();
 private:
 	Servo *rightServo, *leftServo;

@@ -25,6 +25,7 @@ public:
 	/// Set the default command.
 	void InitDefaultCommand();
 
+	void setSetpoint( float setpoint );
 	float getFirstWheelSpeed();
 	float getSecondWheelSpeed();
 
