@@ -104,8 +104,8 @@ void Shooter::InitDefaultCommand() {
 }
 
 void Shooter::setSetpoint( float setpoint ) {
-	firstMotorController->SetSetpoint( setpoint );
-	secondMotorController->SetSetpoint( setpoint );
+	firstMotorController->SetSetpoint( -setpoint );
+	secondMotorController->SetSetpoint( -setpoint );
 }
 
 float Shooter::getFirstWheelSpeed() {

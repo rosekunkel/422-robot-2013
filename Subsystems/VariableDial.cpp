@@ -17,6 +17,5 @@ float VariableDial::get() {
 
 float VariableDial::getNormalized() {
 	float voltage = potentiometer->GetAverageVoltage();
-	return (MAXIMUM_VOLTAGE - voltage + MINIMUM_VOLTAGE) /
-		   (MAXIMUM_VOLTAGE - MINIMUM_VOLTAGE);
+	return (voltage - MINIMUM_VOLTAGE) / (MAXIMUM_VOLTAGE - MINIMUM_VOLTAGE);
 }

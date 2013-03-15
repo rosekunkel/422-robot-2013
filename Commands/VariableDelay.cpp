@@ -1,6 +1,6 @@
 #include "VariableDelay.h"
 
-const float VariableDelay::SCALING_FACTOR = 1.0;
+const float VariableDelay::SCALING_FACTOR = 5.0;
 
 VariableDelay::VariableDelay() {
 	Requires(shooter);

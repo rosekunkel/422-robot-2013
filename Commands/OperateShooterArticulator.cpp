@@ -8,10 +8,10 @@ OperateShooterArticulator::OperateShooterArticulator() {
 // Called repeatedly when this Command is scheduled to run
 void OperateShooterArticulator::Execute() {
 #ifdef USE_GAMECUBE_CONTROLLER
-	// The gamecube controller maps from -0.75 to 0.75, we need to adjust
+	// The gamecube controller maps from 0.75 to -0.75, we need to adjust
 	float y = operatorInterface
 			  ->getSecondaryJoystick()
-			  ->GetRawAxis(GC_LEFT_Y) * (4/3);
+			  ->GetRawAxis(GC_LEFT_Y) * (-4/3);
 #else
 	float y = operatorInterface->getSecondaryJoystick()->GetY();
 #endif
