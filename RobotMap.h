@@ -64,6 +64,7 @@ const UINT32 ARTICULATOR_ENCODER_CHANNEL_A = 3,
 // Ditital I/O ports for the compressor
 const UINT32 COMPRESSOR_PRESSURE_SWITCH_CHANNEL = 8,
 		     COMPRESSOR_RELAY_CHANNEL = 1;
+const UINT32 FLASHLIGHT_CHANNEL = 8;
 /**@}*/
 
 
@@ -75,7 +76,17 @@ const UINT32 COMPRESSOR_PRESSURE_SWITCH_CHANNEL = 8,
 // Solenoid ports for the shooter
 const UINT32 EXTEND_DISK_PUSHER_CHANNEL = 8,
 	         RETRACT_DISK_PUSHER_CHANNEL = 7;
-// Solenoid ports for the climber
+
+#ifdef USE_PISTON_ARTICULATOR
+// Solenoid ports for the articulator
+const UINT32 RAISE_SHOOTER_CHANNEL = 0,
+		     LOWER_SHOOTER_CHANNEL = 0;
+#endif
+
+const UINT32 EXTEND_NUCLEAR_OPTION_CHANNEL = 0,
+	         RETRACT_NUCLEAR_OPTION_CHANNEL = 0;
+
+// Solenoid ports for the articulator
 const UINT32 CLIMBER_RIGHT_SERVO_CHANNEL = 9,
 		     CLIMBER_LEFT_SERVO_CHANNEL = 10;
 /**@}*/

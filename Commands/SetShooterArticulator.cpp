@@ -1,4 +1,5 @@
 #include "SetShooterArticulator.h"
+#ifndef USE_PISTON_ARTICULATOR
 #include <cmath>
 
 const float SetShooterArticulator::MAX_ERROR = 0.02;
@@ -35,3 +36,4 @@ void SetShooterArticulator::End() {
 void SetShooterArticulator::Interrupted() {
 	shooterArticulator->stop();
 }
+#endif

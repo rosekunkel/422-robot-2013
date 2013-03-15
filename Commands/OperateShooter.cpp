@@ -18,9 +18,9 @@ void OperateShooter::Execute() {
 		rightSetpoint = 20.0;
 	}
 	else if( operatorInterface->midSetpointButtonPressed() ) {
-		shooter->setSetpoints(30.0, 30.0);
-		leftSetpoint = 30.0;
-		rightSetpoint = 30.0;
+		shooter->setSetpoints(35.0, 35.0);
+		leftSetpoint = 35.0;
+		rightSetpoint = 35.0;
 	}
 	else if( operatorInterface->highSetpointButtonPressed() ) {
 		shooter->setSetpoints(40.0, 40.0);

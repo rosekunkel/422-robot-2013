@@ -9,6 +9,7 @@
 #include "Commands/ToggleClimber.h"
 #include "Commands/SpinHalfRotation.h"
 #include "Commands/ControlLights.h"
+#include "Commands/Nuke.h"
 #include "RobotMap.h"
 
 /**
@@ -29,7 +30,7 @@ OI::OI():
 	
 	// Primary driver controls
 #ifdef USE_PS3_CONTROLLER
-	tenthSpeedButton( new JoystickButton( primaryJoystick, PS3_SQUARE ) ),
+	fivePercentSpeedButton( new JoystickButton( primaryJoystick, PS3_SQUARE ) ),
    	halfSpeedButton( new JoystickButton( primaryJoystick, PS3_TRIANGLE ) ),
 	fullSpeedButton( new JoystickButton( primaryJoystick, PS3_CIRCLE ) ),
 
@@ -40,7 +41,7 @@ OI::OI():
 	turn180Button( new JoystickButton( primaryJoystick, PS3_R1 ) ),
 	toggleClimberButton( new JoystickButton( primaryJoystick, PS3_L1 ) ),
 #else
-	tenthSpeedButton( new JoystickButton( leftPrimaryJoystick, 2 ) ),
+	fivePercentSpeedButton( new JoystickButton( leftPrimaryJoystick, 2 ) ),
    	halfSpeedButton( new JoystickButton( leftPrimaryJoystick, 1 ) ),
 	fullSpeedButton( new JoystickButton( rightPrimaryJoystick, 1 ) ),
 
@@ -64,7 +65,9 @@ OI::OI():
 	decreaseSetpointButton( new JoystickButton( secondaryJoystick, GC_X) ),
 
 	toggleRedButton( new JoystickButton( secondaryJoystick, GC_L ) ),
-	toggleBlueButton( new JoystickButton(secondaryJoystick, GC_R ) )
+	toggleBlueButton( new JoystickButton( secondaryJoystick, GC_R ) ),
+	
+	nuclearOptionButton( new JoystickButton( secondaryJoystick, GC_Z ))
 #else
 	fireButton( new JoystickButton( secondaryJoystick, 1 ) ),
 
@@ -75,9 +78,10 @@ OI::OI():
 	increaseSetpointButton( new JoystickButton( secondaryJoystick, 11) ),
 	decreaseSetpointButton( new JoystickButton( secondaryJoystick, 10) ),
 	
-
 	toggleRedButton( new JoystickButton( secondaryJoystick, 6 ) ),
-	toggleBlueButton( new JoystickButton(secondaryJoystick, 7 ) )
+	toggleBlueButton( new JoystickButton(secondaryJoystick, 7 ) ),
+	
+	nuclearOptionButton( new JoystickButton( secondaryJoystick, 9 ))
 #endif
 {
 	toggleClimberButton->WhenPressed( new ToggleClimber() );
@@ -87,4 +91,6 @@ OI::OI():
 	toggleBlueButton->WhenPressed( new ControlLights(ControlLights::BLUE) );
 
 	fireButton->WhenPressed( new Shoot() );
+	
+	nuclearOptionButton->WhenPressed( new Nuke() );
 }

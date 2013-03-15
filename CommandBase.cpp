@@ -29,10 +29,16 @@ CompressorSystem* CommandBase::compressorSystem = 0;
 Drive* CommandBase::drive = 0;
 Pusher* CommandBase::pusher = 0;
 Shooter* CommandBase::shooter = 0;
+#ifdef USE_PISTON_ARTICULATOR
+PistonArticulator* CommandBase::pistonArticulator = 0;
+#else
 ShooterArticulator* CommandBase::shooterArticulator = 0;
+#endif
 Lights* CommandBase::lights = 0;
 VariableDial* CommandBase::variableDial = 0;
 Antennae* CommandBase::antennae = 0;
+NuclearOption* CommandBase::nuclearOption = 0;
+Flashlight* CommandBase::flashlight = 0;
 OI* CommandBase::operatorInterface = 0;
 
 /**
@@ -47,9 +53,15 @@ void CommandBase::init() {
 	drive = new Drive();
 	pusher = new Pusher();
 	shooter = new Shooter();
+#ifdef USE_PISTON_ARTICULATOR
+	pistonArticulator = new PistonArticulator();
+#else
 	shooterArticulator = new ShooterArticulator();
+#endif
 	lights = new Lights();
 	variableDial = new VariableDial();
 	antennae = new Antennae();
+	nuclearOption = new NuclearOption();
+	flashlight = new Flashlight();
 	operatorInterface = new OI();
 }

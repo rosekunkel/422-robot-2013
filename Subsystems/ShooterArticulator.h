@@ -7,8 +7,9 @@
 #define SHOOTER_ARTICULATOR_H
 #include "Commands/Subsystem.h"
 #include "WPILib.h"
-#include "../CompilationSettings.h"
 
+#include "../CompilationSettings.h"
+#ifndef USE_PISTON_ARTICULATOR
 /**
  * @brief The shooter articulation subsystem
  * 
@@ -55,5 +56,5 @@ private:
 					   STARTING_DISTANCE;
 	DriverStationLCD *dashboard;
 };
-
-#endif //SHOOTER_ARTICULATOR_H
+#endif // USE_PISTON_ARTICULATOR
+#endif // SHOOTER_ARTICULATOR_H

@@ -3,10 +3,10 @@
  * @brief Implementation of the Shooter articulator subsystem
  * @author Nyle Rodgers
  */
-#define _USE_MATH_DEFINES
-#include <cmath>
 
 #include "ShooterArticulator.h"
+#ifndef USE_PISTON_ARTICULATOR
+#include <cmath>
 #include "../Commands/OperateShooterArticulator.h"
 #include "../RobotMap.h"
 
@@ -100,3 +100,4 @@ void ShooterArticulator::moveDown() {
 void ShooterArticulator::stop() {
 	motor->Set(0.0);
 }
+#endif

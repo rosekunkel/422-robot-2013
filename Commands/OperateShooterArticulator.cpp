@@ -2,7 +2,11 @@
 #include "../RobotMap.h"
 
 OperateShooterArticulator::OperateShooterArticulator() {
+#ifdef USE_PISTON_ARTICULATOR
+	Requires(pistonArticulator);
+#else
 	Requires(shooterArticulator);
+#endif
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -16,14 +20,24 @@ void OperateShooterArticulator::Execute() {
 	float y = operatorInterface->getSecondaryJoystick()->GetY();
 #endif
 	if (y > 0.5) {
+#ifdef USE_PISTON_ARTICULATOR
+		pistonArticulator->raise();
+#else
 		shooterArticulator->moveUp();
+#endif
 	}
 	else if (y < -0.5) {
+#ifdef USE_PISTON_ARTICULATOR
+		pistonArticulator->lower();
+#else
 		shooterArticulator->moveDown();
+#endif
 	}
+#ifndef USE_PISTON_ARTICULATOR
 	else {
 		shooterArticulator->stop();
 	}
+#endif
 }
 
 // Make this return true when this Command no longer needs to run execute()

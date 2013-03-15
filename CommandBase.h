@@ -16,10 +16,16 @@
 #include "Subsystems/Drive.h"
 #include "Subsystems/Pusher.h"
 #include "Subsystems/Shooter.h"
+#ifdef USE_PISTON_ARTICULATOR
+#include "Subsystems/PistonArticulator.h"
+#else
 #include "Subsystems/ShooterArticulator.h"
+#endif
 #include "Subsystems/Lights.h"
 #include "Subsystems/VariableDial.h"
 #include "Subsystems/Antennae.h"
+#include "Subsystems/NuclearOption.h"
+#include "Subsystems/Flashlight.h"
 #include "OI.h"
 
 
@@ -53,13 +59,19 @@ protected:
 	/// The robot's Shooter
 	static Shooter *shooter;
 	/// The robot's Shooter Articulator
+#ifdef USE_PISTON_ARTICULATOR
+	static PistonArticulator *pistonArticulator;
+#else
 	static ShooterArticulator *shooterArticulator;
+#endif
 	/// The robot's LED's
 	static Lights *lights;
 	/// The dial used to delay autonomous
 	static VariableDial *variableDial;
 	/// The sensor antennae
 	static Antennae *antennae;
+	static NuclearOption *nuclearOption;
+	static Flashlight *flashlight;
 	/// The operator interface for the robot
 	static OI *operatorInterface;
 };

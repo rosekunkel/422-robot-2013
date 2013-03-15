@@ -18,10 +18,10 @@ const float CheesyDrive::DEADZONE = 0.1;
  *
  * @author William Kunkel
  */
-CheesyDrive::CheesyDrive() {
+CheesyDrive::CheesyDrive() :
+	forwardMultiplier( 1.0 ),
+	turningMultiplier( 0.5 ) {
 	Requires(drive);
-	forwardMultiplier = 1.0;
-	turningMultiplier = 0.5;
 }
 
 /**
@@ -32,41 +32,62 @@ CheesyDrive::CheesyDrive() {
  */
 void CheesyDrive::Execute() {
 	updateMultipliers();
+	if( operatorInterface->fivePercentSpeedButtonPressed() ) {
 #ifdef USE_PS3_CONTROLLER
-	float forward = operatorInterface
-					->getPrimaryJoystick()
-					->GetRawAxis(PS3_LEFT_Y);
-	float turning = operatorInterface
-					->getPrimaryJoystick()
-					->GetRawAxis(PS3_RIGHT_X);
+		float left = operatorInterface
+					 ->getPrimaryJoystick()
+					 ->GetRawAxis(PS3_LEFT_Y);
+		float right = operatorInterface
+					  ->getPrimaryJoystick()
+					  ->GetRawAxis(PS3_RIGHT_Y);
 #else
-	float forward = operatorInterface
-					->getLeftPrimaryJoystick()
-					->GetY();
-	float turning = operatorInterface
-					->getRightPrimaryJoystick()
-					->GetX();
+		float left = operatorInterface
+					 ->getLeftPrimaryJoystick()
+					 ->GetY();
+		float right = operatorInterface
+					  ->getRightPrimaryJoystick()
+					  ->GetY();
 #endif
-	// We add a dead zone around 0 to circumvent joysticks not being perfectly centered
-	forward = valueWithDeadzone( forward, DEADZONE );
-	turning = valueWithDeadzone( turning, DEADZONE );
-
-	// Scale the values by the multiplier we selected
-	forward *= forwardMultiplier;
-	turning *= turningMultiplier;
-
-	// We determine the speed multiplier by adding and subtracting the turning
-	// value from the base speed
-	float leftMultiplier  = forward-turning,
-		  rightMultiplier = forward+turning;
+		drive->setMotorsNormalizedDirect( left * forwardMultiplier,
+			                              right * forwardMultiplier );
+	}
+	else {
+#ifdef USE_PS3_CONTROLLER
+		float forward = operatorInterface
+						->getPrimaryJoystick()
+						->GetRawAxis(PS3_LEFT_Y);
+		float turning = operatorInterface
+						->getPrimaryJoystick()
+						->GetRawAxis(PS3_RIGHT_X);
+#else
+		float forward = operatorInterface
+						->getLeftPrimaryJoystick()
+						->GetY();
+		float turning = operatorInterface
+						->getRightPrimaryJoystick()
+						->GetX();
+#endif
+		// We add a dead zone around 0 to circumvent joysticks not being perfectly centered
+		forward = valueWithDeadzone( forward, DEADZONE );
+		turning = valueWithDeadzone( turning, DEADZONE );
 	
-	// We need to make sure that our speed multiplier does not exceed 100%, but
-	// simple scaling between -2 and 2 would limit linear top speed.	
-	leftMultiplier  = truncateOutOfBounds( leftMultiplier );
-	rightMultiplier = truncateOutOfBounds( rightMultiplier );
-
-	// Set the speed, using the multiplier as a percentage of the top speed
-	drive->setMotorsNormalized( leftMultiplier, rightMultiplier );
+		// Scale the values by the multiplier we selected
+		forward *= forwardMultiplier;
+		turning *= turningMultiplier;
+	
+		// We determine the speed multiplier by adding and subtracting the turning
+		// value from the base speed
+		float leftMultiplier  = forward-turning,
+			  rightMultiplier = forward+turning;
+		
+		// We need to make sure that our speed multiplier does not exceed 100%, but
+		// simple scaling between -2 and 2 would limit linear top speed.	
+		leftMultiplier  = truncateOutOfBounds( leftMultiplier );
+		rightMultiplier = truncateOutOfBounds( rightMultiplier );
+	
+		// Set the speed, using the multiplier as a percentage of the top speed
+		drive->setMotorsNormalized( leftMultiplier, rightMultiplier );
+	}
 }
 
 /**
@@ -114,8 +135,8 @@ float CheesyDrive::truncateOutOfBounds( float value ) {
 }
 
 void CheesyDrive::updateMultipliers() {
-   	if( operatorInterface->tenthSpeedButtonPressed() ) {
-		forwardMultiplier = 0.1;
+   	if( operatorInterface->fivePercentSpeedButtonPressed() ) {
+		forwardMultiplier = 0.05;
 	}
 	else if( operatorInterface->halfSpeedButtonPressed() ) {
 		forwardMultiplier = 0.5;

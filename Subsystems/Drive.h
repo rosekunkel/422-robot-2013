@@ -38,9 +38,12 @@ public:
 	void stop();
 	
 	void stopAndDisable();
+	
+	void setMotorsNormalizedDirect( float leftSpeed, float rightSpeed );
 
 	void resetEncoders();
 
+	float getRotations();
 	float getAmountSpun();
 	
 private:

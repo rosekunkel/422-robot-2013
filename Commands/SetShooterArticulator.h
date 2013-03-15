@@ -1,8 +1,9 @@
 #ifndef SET_SHOOTER_ARTICULATOR_H
 #define SET_SHOOTER_ARTICULATOR_H
 
-#include "../CommandBase.h"
 #include "../CompilationSettings.h"
+#ifndef USE_PISTON_ARTICULATOR
+#include "../CommandBase.h"
 
 /**
  *
@@ -23,4 +24,5 @@ private:
 	static const float MAX_ERROR;
 };
 
+#endif
 #endif

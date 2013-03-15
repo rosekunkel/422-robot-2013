@@ -18,7 +18,7 @@ const float Drive::MAX_RPS = 13.5;
 
 const double Drive::ENCODER_RESOLUTION = 256.0;
 
-const float Drive::MAX_PERCENT_ERROR = 1.0;
+const float Drive::MAX_PERCENT_ERROR = 5.0;
 
 /**
  * Initialize the PID controllers for each side of the drive, and enable them,
@@ -163,6 +163,19 @@ void Drive::resetEncoders() {
 	rightEncoder->Reset();
 }
 
+float Drive::getRotations() {
+	return leftEncoder->GetDistance();
+}
+
 float Drive::getAmountSpun() {
 	return fabs( leftEncoder->GetDistance() + rightEncoder->GetDistance() );
+}
+
+void Drive::setMotorsNormalizedDirect( float leftSpeed, float rightSpeed ) {
+	leftController->SetSetpoint( 0.0 );
+	rightController->SetSetpoint( 0.0 );
+	leftController->Disable();
+	rightController->Disable();
+	leftMotor->Set( leftSpeed );
+	rightMotor->Set( -rightSpeed );
 }
