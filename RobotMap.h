@@ -39,6 +39,8 @@ const UINT32 FIRST_SHOOTER_WHEEL_CHANNEL = 4,
 	         SECOND_SHOOTER_WHEEL_CHANNEL = 5;
 // PWM channels for the shooter articulator
 const UINT32 ARTICULATOR_MOTOR_CHANNEL = 3;
+
+const UINT32 FLASHLIGHT_CHANNEL = 0;
 /**@}*/
 
 
@@ -64,7 +66,6 @@ const UINT32 ARTICULATOR_ENCODER_CHANNEL_A = 3,
 // Ditital I/O ports for the compressor
 const UINT32 COMPRESSOR_PRESSURE_SWITCH_CHANNEL = 8,
 		     COMPRESSOR_RELAY_CHANNEL = 1;
-const UINT32 FLASHLIGHT_CHANNEL = 8;
 /**@}*/
 
 
@@ -107,7 +108,7 @@ const UINT32 GREEN_RELAY_CHANNEL = 5;
  * @defgroup Analog Channel Numbers
  * @{
  */
-const UINT32 LEFT_ANTENNA_CHANNEL = 8,
+const UINT32 LEFT_ANTENNA_CHANNEL = 6,
 	         RIGHT_ANTENNA_CHANNEL = 7,
 	         VARIABLE_DIAL_CHANNEL = 1;
 

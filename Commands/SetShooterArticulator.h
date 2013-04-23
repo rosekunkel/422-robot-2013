@@ -13,7 +13,7 @@
 class SetShooterArticulator: public CommandBase {
 public:
 	/// angle is in radians
-	SetShooterArticulator(float angle);
+	SetShooterArticulator(float displacement);
 	virtual void Initialize() {};
 	virtual void Execute();
 	virtual bool IsFinished();

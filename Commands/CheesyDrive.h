@@ -45,6 +45,7 @@ private:
 	static const float DEADZONE;
 	float forwardMultiplier,
 	      turningMultiplier;
+	bool tankDrive;
 };
 
 #endif // CHEESY_DRIVE_H

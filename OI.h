@@ -33,7 +33,7 @@ public:
 
 	Joystick* getSecondaryJoystick() { return secondaryJoystick; }
 	
-	bool fivePercentSpeedButtonPressed() { return fivePercentSpeedButton->Get(); }
+	bool lowSpeedButtonPressed() { return lowSpeedButton->Get(); }
 	bool halfSpeedButtonPressed() { return halfSpeedButton->Get(); }
 	bool fullSpeedButtonPressed() { return fullSpeedButton->Get(); }
 	
@@ -59,7 +59,7 @@ public:
 	bool toggleRedButtonPressed() { return toggleRedButton->Get(); }
 	bool toggleBlueButtonPressed() { return toggleBlueButton->Get(); }
 	
-	bool nuclearOptionButtonPressed() { return nuclearOptionButton->Get(); }
+	bool liftResetButtonPressed() { return liftResetButton->Get(); }
 private:
 	
 #ifdef USE_PS3_CONTROLLER
@@ -72,7 +72,7 @@ private:
 	Joystick *secondaryJoystick;
 
 	               // Primary driver buttons
-	JoystickButton *fivePercentSpeedButton,
+	JoystickButton *lowSpeedButton,
 	               *halfSpeedButton,
 	               *fullSpeedButton,
 	               
@@ -97,7 +97,7 @@ private:
                    *toggleRedButton,
 				   *toggleBlueButton,
 				   
-				   *nuclearOptionButton;
+				   *liftResetButton;
 };
 
 #endif // OI_H

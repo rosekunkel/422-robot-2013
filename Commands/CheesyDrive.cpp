@@ -20,7 +20,8 @@ const float CheesyDrive::DEADZONE = 0.1;
  */
 CheesyDrive::CheesyDrive() :
 	forwardMultiplier( 1.0 ),
-	turningMultiplier( 0.5 ) {
+	turningMultiplier( 0.5 ),
+	tankDrive( true ) {
 	Requires(drive);
 }
 
@@ -32,7 +33,7 @@ CheesyDrive::CheesyDrive() :
  */
 void CheesyDrive::Execute() {
 	updateMultipliers();
-	if( operatorInterface->fivePercentSpeedButtonPressed() ) {
+	if( tankDrive ) {
 #ifdef USE_PS3_CONTROLLER
 		float left = operatorInterface
 					 ->getPrimaryJoystick()
@@ -135,14 +136,17 @@ float CheesyDrive::truncateOutOfBounds( float value ) {
 }
 
 void CheesyDrive::updateMultipliers() {
-   	if( operatorInterface->fivePercentSpeedButtonPressed() ) {
-		forwardMultiplier = 0.05;
+   	if( operatorInterface->lowSpeedButtonPressed() ) {
+		forwardMultiplier = 0.5;
+		tankDrive = true;
 	}
 	else if( operatorInterface->halfSpeedButtonPressed() ) {
 		forwardMultiplier = 0.5;
+		tankDrive = true;
 	}
 	else if( operatorInterface->fullSpeedButtonPressed() ) {
 		forwardMultiplier = 1.0;
+		tankDrive = true;
 	}
 
 	if( operatorInterface->quarterTurnSpeedButtonPressed() ) {

@@ -9,7 +9,7 @@
 #include "Commands/ToggleClimber.h"
 #include "Commands/SpinHalfRotation.h"
 #include "Commands/ControlLights.h"
-#include "Commands/Nuke.h"
+#include "Commands/SetShooterArticulator.h"
 #include "RobotMap.h"
 
 /**
@@ -30,7 +30,7 @@ OI::OI():
 	
 	// Primary driver controls
 #ifdef USE_PS3_CONTROLLER
-	fivePercentSpeedButton( new JoystickButton( primaryJoystick, PS3_SQUARE ) ),
+	lowSpeedButton( new JoystickButton( primaryJoystick, PS3_SQUARE ) ),
    	halfSpeedButton( new JoystickButton( primaryJoystick, PS3_TRIANGLE ) ),
 	fullSpeedButton( new JoystickButton( primaryJoystick, PS3_CIRCLE ) ),
 
@@ -41,7 +41,7 @@ OI::OI():
 	turn180Button( new JoystickButton( primaryJoystick, PS3_R1 ) ),
 	toggleClimberButton( new JoystickButton( primaryJoystick, PS3_L1 ) ),
 #else
-	fivePercentSpeedButton( new JoystickButton( leftPrimaryJoystick, 2 ) ),
+	lowSpeedButton( new JoystickButton( leftPrimaryJoystick, 2 ) ),
    	halfSpeedButton( new JoystickButton( leftPrimaryJoystick, 1 ) ),
 	fullSpeedButton( new JoystickButton( rightPrimaryJoystick, 1 ) ),
 
@@ -50,7 +50,7 @@ OI::OI():
 	fullTurnSpeedButton( new JoystickButton( rightPrimaryJoystick, 5 ) ),
 	
 	turn180Button( new JoystickButton( rightPrimaryJoystick, 2 ) ),
-	toggleClimberButton( new JoystickButton( rightPrimaryJoystick, 10 ) ),
+	toggleClimberButton( new JoystickButton( rightPrimaryJoystick, 7 ) ),
 #endif
 	
 	// Secondary driver controls
@@ -67,7 +67,7 @@ OI::OI():
 	toggleRedButton( new JoystickButton( secondaryJoystick, GC_L ) ),
 	toggleBlueButton( new JoystickButton( secondaryJoystick, GC_R ) ),
 	
-	nuclearOptionButton( new JoystickButton( secondaryJoystick, GC_Z ))
+	liftResetButton( new JoystickButton( secondaryJoystick, GC_Z ))
 #else
 	fireButton( new JoystickButton( secondaryJoystick, 1 ) ),
 
@@ -79,9 +79,9 @@ OI::OI():
 	decreaseSetpointButton( new JoystickButton( secondaryJoystick, 10) ),
 	
 	toggleRedButton( new JoystickButton( secondaryJoystick, 6 ) ),
-	toggleBlueButton( new JoystickButton(secondaryJoystick, 7 ) ),
+	toggleBlueButton( new JoystickButton( secondaryJoystick, 7 ) ),
 	
-	nuclearOptionButton( new JoystickButton( secondaryJoystick, 9 ))
+	liftResetButton( new JoystickButton( secondaryJoystick, 9 ) )
 #endif
 {
 	toggleClimberButton->WhenPressed( new ToggleClimber() );
@@ -92,5 +92,5 @@ OI::OI():
 
 	fireButton->WhenPressed( new Shoot() );
 	
-	nuclearOptionButton->WhenPressed( new Nuke() );
+	liftResetButton->WhenPressed( new SetShooterArticulator( 0.0 ) );
 }
