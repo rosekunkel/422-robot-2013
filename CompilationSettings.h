@@ -9,6 +9,10 @@
 // Make sure the jumpers are set to coast when using bang-bang
 //#define USE_BANG_BANG
 
-//#define USE_PISTON_ARTICULATOR
+#define USE_PISTON_ARTICULATOR
+
+#ifdef USE_PISTON_ARTICULATOR
+#define PRIMARY_CONTROLS_ARTICULATOR
+#endif
 
 #endif // COMPILATION_SETTINGS_H

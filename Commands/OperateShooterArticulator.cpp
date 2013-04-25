@@ -1,4 +1,5 @@
 #include "OperateShooterArticulator.h"
+#ifndef PRIMARY_CONTROLS_ARTICULATOR
 #include "../RobotMap.h"
 
 OperateShooterArticulator::OperateShooterArticulator() {
@@ -44,3 +45,4 @@ void OperateShooterArticulator::Execute() {
 bool OperateShooterArticulator::IsFinished() {
 	return false;
 }
+#endif

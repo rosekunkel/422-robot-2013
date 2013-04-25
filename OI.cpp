@@ -9,7 +9,15 @@
 #include "Commands/ToggleClimber.h"
 #include "Commands/SpinHalfRotation.h"
 #include "Commands/ControlLights.h"
+
+#ifndef USE_PISTON_ARTICULATOR
 #include "Commands/SetShooterArticulator.h"
+#else
+#ifdef PRIMARY_CONTROLS_ARTICULATOR
+#include "Commands/ToggleArticulator.h"
+#endif
+#endif
+
 #include "RobotMap.h"
 
 /**
@@ -50,7 +58,14 @@ OI::OI():
 	fullTurnSpeedButton( new JoystickButton( rightPrimaryJoystick, 5 ) ),
 	
 	turn180Button( new JoystickButton( rightPrimaryJoystick, 2 ) ),
-	toggleClimberButton( new JoystickButton( rightPrimaryJoystick, 7 ) ),
+	toggleClimberButton( new JoystickButton( rightPrimaryJoystick, 10 ) ),
+
+#ifdef USE_PISTON_ARTICULATOR
+#ifdef PRIMARY_CONTROLS_ARTICULATOR
+	toggleArticulatorButton( new JoystickButton( leftPrimaryJoystick, 7) ),
+#endif
+#endif
+	
 #endif
 	
 	// Secondary driver controls
@@ -85,6 +100,13 @@ OI::OI():
 #endif
 {
 	toggleClimberButton->WhenPressed( new ToggleClimber() );
+
+#ifdef USE_PISTON_ARTICULATOR
+#ifdef PRIMARY_CONTROLS_ARTICULATOR
+	toggleArticulatorButton->WhenPressed( new ToggleArticulator() );
+#endif
+#endif
+	
 	turn180Button->WhenPressed( new SpinHalfRotation() );
 	
 	toggleRedButton->WhenPressed( new ControlLights(ControlLights::RED) );
@@ -92,5 +114,7 @@ OI::OI():
 
 	fireButton->WhenPressed( new Shoot() );
 	
+#ifndef USE_PISTON_ARTICULATOR
 	liftResetButton->WhenPressed( new SetShooterArticulator( 0.0 ) );
+#endif
 }

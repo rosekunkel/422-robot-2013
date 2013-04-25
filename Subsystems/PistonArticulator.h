@@ -13,8 +13,10 @@ public:
 	void InitDefaultCommand();
 	void raise();
 	void lower();
+	void toggle();
 private:
 	DoubleSolenoid *articulator;
+	bool isRaised;
 };
 
 #endif // USE_PISTON_ARTICULATOR

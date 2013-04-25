@@ -3,6 +3,7 @@
 
 #include "../CommandBase.h"
 #include "../CompilationSettings.h"
+#ifndef PRIMARY_CONTROLS_ARTICULATOR
 
 class OperateShooterArticulator: public CommandBase {
 public:
@@ -13,5 +14,5 @@ public:
 	void End() {}
 	void Interrupted() {}
 };
-
+#endif
 #endif
