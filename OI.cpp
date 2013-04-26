@@ -9,6 +9,7 @@
 #include "Commands/ToggleClimber.h"
 #include "Commands/SpinHalfRotation.h"
 #include "Commands/ControlLights.h"
+#include "Commands/ToggleFlashlight.h"
 
 #ifndef USE_PISTON_ARTICULATOR
 #include "Commands/SetShooterArticulator.h"
@@ -82,7 +83,9 @@ OI::OI():
 	toggleRedButton( new JoystickButton( secondaryJoystick, GC_L ) ),
 	toggleBlueButton( new JoystickButton( secondaryJoystick, GC_R ) ),
 	
-	liftResetButton( new JoystickButton( secondaryJoystick, GC_Z ))
+	toggleFlashlightButton( new JoystickButton( secondaryJoystick, GC_Z ) ),
+
+	liftResetButton( new JoystickButton( secondaryJoystick, 0 ) )
 #else
 	fireButton( new JoystickButton( secondaryJoystick, 1 ) ),
 
@@ -96,7 +99,9 @@ OI::OI():
 	toggleRedButton( new JoystickButton( secondaryJoystick, 6 ) ),
 	toggleBlueButton( new JoystickButton( secondaryJoystick, 7 ) ),
 	
-	liftResetButton( new JoystickButton( secondaryJoystick, 9 ) )
+	toggleFlashlightButton( new JoystickButton( secondaryJoystick, 0 ) ),
+	
+	liftResetButton( new JoystickButton( secondaryJoystick, 0 ) )
 #endif
 {
 	toggleClimberButton->WhenPressed( new ToggleClimber() );
@@ -113,6 +118,8 @@ OI::OI():
 	toggleBlueButton->WhenPressed( new ControlLights(ControlLights::BLUE) );
 
 	fireButton->WhenPressed( new Shoot() );
+	
+	toggleFlashlightButton->WhenPressed( new ToggleFlashlight() );
 	
 #ifndef USE_PISTON_ARTICULATOR
 	liftResetButton->WhenPressed( new SetShooterArticulator( 0.0 ) );

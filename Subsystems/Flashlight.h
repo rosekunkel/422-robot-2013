@@ -8,8 +8,12 @@
 class Flashlight : public Subsystem {
 public:
 	Flashlight();
+	void turnOn();
+	void turnOff();
+	void toggle();
 private:
-	Servo *flashlight;
+	Talon *flashlight;
+	bool isOn;
 };
 
 #endif // FLASHLIGHT_H

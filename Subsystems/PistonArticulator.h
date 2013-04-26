@@ -10,7 +10,9 @@
 class PistonArticulator : public Subsystem {
 public:
 	PistonArticulator();
+#ifndef PRIMARY_CONTROLS_ARTICULATOR
 	void InitDefaultCommand();
+#endif
 	void raise();
 	void lower();
 	void toggle();

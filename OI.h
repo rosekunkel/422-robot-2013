@@ -65,6 +65,8 @@ public:
 	bool toggleRedButtonPressed() { return toggleRedButton->Get(); }
 	bool toggleBlueButtonPressed() { return toggleBlueButton->Get(); }
 	
+	bool toggleFlashlightButtonPressed() { return toggleFlashlightButton->Get(); }
+	
 	bool liftResetButtonPressed() { return liftResetButton->Get(); }
 private:
 	
@@ -108,7 +110,8 @@ private:
 
                    *toggleRedButton,
 				   *toggleBlueButton,
-				   
+
+				   *toggleFlashlightButton,
 				   *liftResetButton;
 };
 
