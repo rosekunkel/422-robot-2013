@@ -15,9 +15,9 @@ Lights::Lights() :
 			              Relay::kForwardOnly ) ),
 	blueLight( new Relay( BLUE_RELAY_CHANNEL,
 			               Relay::kForwardOnly ) ){
-	redLight->Set(Relay::kOn);
-	greenLight->Set(Relay::kOn);
-	blueLight->Set(Relay::kOn);
+	redLight->Set(Relay::kOff);
+	greenLight->Set(Relay::kOff);
+	blueLight->Set(Relay::kOff);
 }
  
 void Lights::toggleRedLight() {
