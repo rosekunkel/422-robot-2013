@@ -97,11 +97,11 @@ const UINT32 CLIMBER_RIGHT_SERVO_CHANNEL = 9,
  * @{
  */
 // Red Relay Ports
-const UINT32 RED_RELAY_CHANNEL = 3;
+const UINT32 RED_RELAY_CHANNEL = 5;
 // Blue Relay Ports
-const UINT32 BLUE_RELAY_CHANNEL = 4;
+const UINT32 BLUE_RELAY_CHANNEL = 3;
 // Green Relay Ports
-const UINT32 GREEN_RELAY_CHANNEL = 5;
+const UINT32 GREEN_RELAY_CHANNEL = 4;
 /**@}*/
 
 /**

@@ -81,9 +81,8 @@ OI::OI():
 	decreaseSetpointButton( new JoystickButton( secondaryJoystick, GC_X) ),
 
 	toggleRedButton( new JoystickButton( secondaryJoystick, GC_L ) ),
-	toggleBlueButton( new JoystickButton( secondaryJoystick, GC_R ) ),
-	
-	toggleFlashlightButton( new JoystickButton( secondaryJoystick, GC_Z ) ),
+	toggleGreenButton( new JoystickButton( secondaryJoystick, GC_R ) ),	
+	toggleBlueButton( new JoystickButton( secondaryJoystick, GC_Z ) ),
 
 	liftResetButton( new JoystickButton( secondaryJoystick, 0 ) )
 #else
@@ -95,11 +94,10 @@ OI::OI():
 	highSetpointButton( new JoystickButton( secondaryJoystick, 5 ) ),
 	increaseSetpointButton( new JoystickButton( secondaryJoystick, 11) ),
 	decreaseSetpointButton( new JoystickButton( secondaryJoystick, 10) ),
-	
-	toggleRedButton( new JoystickButton( secondaryJoystick, 6 ) ),
-	toggleBlueButton( new JoystickButton( secondaryJoystick, 7 ) ),
-	
-	toggleFlashlightButton( new JoystickButton( secondaryJoystick, 0 ) ),
+
+	toggleRedButton( new JoystickButton( secondaryJoystick, 0 ) ),
+	toggleGreenButton( new JoystickButton( secondaryJoystick, 0 ) ),
+	toggleBlueButton( new JoystickButton( secondaryJoystick, 0 ) ),
 	
 	liftResetButton( new JoystickButton( secondaryJoystick, 0 ) )
 #endif
@@ -116,11 +114,9 @@ OI::OI():
 	
 	toggleRedButton->WhenPressed( new ControlLights(ControlLights::RED) );
 	toggleBlueButton->WhenPressed( new ControlLights(ControlLights::BLUE) );
+	toggleGreenButton->WhenPressed( new ControlLights(ControlLights::GREEN) );
 
 	fireButton->WhenPressed( new Shoot() );
-	
-	toggleFlashlightButton->WhenPressed( new ToggleFlashlight() );
-	
 #ifndef USE_PISTON_ARTICULATOR
 	liftResetButton->WhenPressed( new SetShooterArticulator( 0.0 ) );
 #endif

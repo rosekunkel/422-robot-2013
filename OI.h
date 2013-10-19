@@ -63,9 +63,8 @@ public:
 
 	// Underglow controls
 	bool toggleRedButtonPressed() { return toggleRedButton->Get(); }
+	bool toggleGreenButtonPressed() { return toggleGreenButton->Get(); }
 	bool toggleBlueButtonPressed() { return toggleBlueButton->Get(); }
-	
-	bool toggleFlashlightButtonPressed() { return toggleFlashlightButton->Get(); }
 	
 	bool liftResetButtonPressed() { return liftResetButton->Get(); }
 private:
@@ -109,9 +108,9 @@ private:
 	               *decreaseSetpointButton,
 
                    *toggleRedButton,
+				   *toggleGreenButton,
 				   *toggleBlueButton,
-
-				   *toggleFlashlightButton,
+				   
 				   *liftResetButton;
 };
 
