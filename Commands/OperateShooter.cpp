@@ -31,7 +31,7 @@ void OperateShooter::Execute() {
 	if( operatorInterface->increaseSetpointButtonPressed()
 		&& !isIncreaseButtonPressed ) {
 		isIncreaseButtonPressed = true;
-		shooter->setSetpoints( ++leftSetpoint, ++rightSetpoint );
+		shooter->setSetpoints( leftSetpoint += 0.5, rightSetpoint += 0.5 );
 	}
 	else if( !operatorInterface->increaseSetpointButtonPressed() ) {
 		isIncreaseButtonPressed = false;
@@ -40,7 +40,7 @@ void OperateShooter::Execute() {
 	if( operatorInterface->decreaseSetpointButtonPressed()
 		&& !isDecreaseButtonPressed ) {
 		isDecreaseButtonPressed = true;
-		shooter->setSetpoints( --leftSetpoint, --rightSetpoint );
+		shooter->setSetpoints( leftSetpoint -= 0.5, rightSetpoint -= 0.5 );
 	}
 	else if( !operatorInterface->decreaseSetpointButtonPressed() ) {
 		isDecreaseButtonPressed = false;
