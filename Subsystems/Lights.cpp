@@ -21,7 +21,7 @@ Lights::Lights() :
 }
  
 void Lights::toggleRedLight() {
-	if( redLight->Get() ) {
+	if( redLight->Get() == Relay::kOn ) {
 		redLight->Set(Relay::kOff);
 	}
 	else {
@@ -30,7 +30,7 @@ void Lights::toggleRedLight() {
 }
 
 void Lights::toggleGreenLight() {
-	if( greenLight->Get() ) {
+	if( greenLight->Get() == Relay::kOn ) {
 		greenLight->Set(Relay::kOff);
 	}
 	else {
@@ -39,7 +39,7 @@ void Lights::toggleGreenLight() {
 }
 	
 void Lights::toggleBlueLight() {
-	if( blueLight->Get() ) {
+	if( blueLight->Get() == Relay::kOn ) {
 		blueLight->Set(Relay::kOff);
 	}
 	else {
