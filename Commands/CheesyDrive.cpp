@@ -7,10 +7,6 @@
 #include "CheesyDrive.h"
 #include "../RobotMap.h"
 
-#ifdef USE_CPP_11
-#include <cmath>
-#endif
-
 const float CheesyDrive::DEADZONE = 0.1;
 
 /**
@@ -126,7 +122,7 @@ float CheesyDrive::truncateOutOfBounds( float value ) {
 	 || ( value < -1 ) ) {
 		// We set the multiplier to +-100%, based on its original sign
 #ifdef USE_CPP_11
-		value = std::copysign( 1.0, value )
+		value = std::copysign( 1.0, value );
 #else
 		value = ((0.0 < value) - (value < 0.0));
 #endif
