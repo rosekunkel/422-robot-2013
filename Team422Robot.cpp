@@ -15,12 +15,7 @@
  */
 void Team422Robot::RobotInit() {
 	CommandBase::init();
-	cheesyDrive = new CheesyDrive();
-	moveShooterArticulator = new MoveShooterArticulator();
-	operateShooter = new OperateShooter();
-	operateShooterArticulator = new OperateShooterArticulator();
-	raiseClimber = new RaiseClimber();
-	shoot = new Shoot();
+	autonomousCommand = new AutonomousCommand();
 	liveWindow = LiveWindow::GetInstance();
 	dashboard = DriverStationLCD::GetInstance();
 }
@@ -32,7 +27,7 @@ void Team422Robot::RobotInit() {
  * @author William Kunkel
  */
 void Team422Robot::AutonomousInit() {
-	
+	autonomousCommand->Start();
 }
 
 /**
@@ -45,6 +40,9 @@ void Team422Robot::AutonomousPeriodic() {
 	Scheduler::GetInstance()->Run();
 }
 
+void Team422Robot::TeleopInit() {
+	autonomousCommand->Cancel();
+}
 /**
  * Code to run periodically during the autonomous phase, namely running the
  * scheduler

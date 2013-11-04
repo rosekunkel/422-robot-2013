@@ -1,21 +1,18 @@
-#ifndef OPERATESHOOTERARTICULATOR_H
-#define OPERATESHOOTERARTICULATOR_H
+#ifndef OPERATE_SHOOTER_ARTICULATOR_H
+#define OPERATE_SHOOTER_ARTICULATOR_H
 
 #include "../CommandBase.h"
+#include "../CompilationSettings.h"
+#ifndef PRIMARY_CONTROLS_ARTICULATOR
 
-/**
- *
- *
- * @author Nyle
- */
 class OperateShooterArticulator: public CommandBase {
 public:
 	OperateShooterArticulator();
-	virtual void Initialize() {};
-	virtual void Execute();
-	virtual bool IsFinished();
-	virtual void End() {};
-	virtual void Interrupted() {};
+	void Initialize() {}
+	void Execute();
+	bool IsFinished();
+	void End() {}
+	void Interrupted() {}
 };
-
+#endif
 #endif

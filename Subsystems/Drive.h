@@ -9,6 +9,7 @@
 #define DRIVE_H
 
 #include "WPILib.h"
+#include "../CompilationSettings.h"
 #include "PIDTalonWrapper.h"
 
 /**
@@ -37,9 +38,12 @@ public:
 	void stop();
 	
 	void stopAndDisable();
+	
+	void setMotorsNormalizedDirect( float leftSpeed, float rightSpeed );
 
 	void resetEncoders();
 
+	float getRotations();
 	float getAmountSpun();
 	
 private:

@@ -2,6 +2,7 @@
 #define CONTROLLIGHTS_H
 
 #include "../CommandBase.h"
+#include "../CompilationSettings.h"
 
 /**
  *
@@ -10,14 +11,20 @@
  */
 class ControlLights: public CommandBase {
 public:
-	ControlLights(int whichLight);
-	virtual void Initialize();
-	virtual void Execute();
-	virtual bool IsFinished();
-	virtual void End() {};
-	virtual void Interrupted() {};
+	enum Color {
+		RED,
+		GREEN,
+		BLUE
+	};
+	
+	ControlLights(Color whichLight);
+	void Initialize();
+	void Execute() {}
+	bool IsFinished();
+	void End() {}
+	void Interrupted() {}
 private:
-	int light;
+	Color light;
 };
 
 #endif

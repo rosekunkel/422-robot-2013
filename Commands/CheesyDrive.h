@@ -8,6 +8,7 @@
 #define CHEESY_DRIVE_H
 
 #include "../CommandBase.h"
+#include "../CompilationSettings.h"
 
 /**
  * @brief The CheesyDrive command
@@ -40,13 +41,11 @@ private:
 	float valueWithDeadzone( float, float );
 	float truncateOutOfBounds( float );
 	void updateMultipliers();
-	void updateReverseStatus();
 
 	static const float DEADZONE;
-	float multiplier,
-	      forwardMultiplier,
+	float forwardMultiplier,
 	      turningMultiplier;
-	bool isReversePressed;
+	bool tankDrive;
 };
 
 #endif // CHEESY_DRIVE_H

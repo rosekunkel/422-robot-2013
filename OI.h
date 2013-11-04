@@ -8,6 +8,7 @@
 #define OI_H
 
 #include "WPILib.h"
+#include "CompilationSettings.h"
 
 /**
  * @brief The operator interface
@@ -22,88 +23,95 @@ public:
 	/// Constructor for the Operator Interface
 	OI();
 
-	/// Get the left Joystick for the primary driver
-	Joystick* getLeftPrimaryJoystick();
-	
-	/// Get the right Joystick for the primary driver
-	Joystick* getRightPrimaryJoystick();
-	
-	/// Get the joystick for the secondary driver
-	Joystick* getSecondaryJoystick();
-	
-	/// Get the one tenth speed multiplier button state
-	bool getOneTenthSpeedMultiplierButtonValue();
-	
-	/// Get the half speed multiplier button state
-	bool getHalfSpeedMultiplierButtonValue();
-	
-	/// Get the full speed button state
-	bool getFullSpeedButtonValue();
-	
-	/// Get the half speed turning multiplier button state
-	bool getHalfSpeedTurningMultiplierButtonValue();
-	
-	/// Get the quarter speed turning multiplier button state
-	bool getQuarterSpeedTurningMultiplierButtonValue();
-	
-	/// Get the drive reverse button state
-	bool getDriveReverseButtonValue();
-	
-	/// Get the stop drive button state
-	bool getStopDriveButtonValue();
-	
-	/// Get the toggle climber button state
-	bool getRaiseClimberButtonValue();
-	
-	/// Get the fire button state
-	bool getFireButtonValue();
-	
-	/// Get the setpoint zero button state
-	bool getSetpointZeroButtonValue();
-	
-	/// Get the setpoint one button state
-	bool getSetpointOneButtonValue();
-	
-	/// Get the setpoint two button state
-	bool getSetpointTwoButtonValue();
-	
-	/// Get the setpoint three button state
-	bool getSetpointThreeButtonValue();
+#ifdef USE_PS3_CONTROLLER
+	Joystick* getPrimaryJoystick() { return primaryJoystick; }
+#else
+	Joystick* getLeftPrimaryJoystick() { return leftPrimaryJoystick; }
 
-	/// Get LED Button states
-	bool getToggleRedButtonValue();
-	bool getToggleGreenButtonValue();
-	bool getToggleBlueButtonValue();
+	Joystick* getRightPrimaryJoystick() { return rightPrimaryJoystick; }
+#endif
+
+	Joystick* getSecondaryJoystick() { return secondaryJoystick; }
 	
+	bool lowSpeedButtonPressed() { return lowSpeedButton->Get(); }
+	bool halfSpeedButtonPressed() { return halfSpeedButton->Get(); }
+	bool fullSpeedButtonPressed() { return fullSpeedButton->Get(); }
+	
+	// TODO: Resolve line below not being <= 80 columns
+	bool quarterTurnSpeedButtonPressed() { return quarterTurnSpeedButton->Get(); }
+	bool halfTurnSpeedButtonPressed() { return halfTurnSpeedButton->Get(); }
+	bool fullTurnSpeedButtonPressed() { return fullTurnSpeedButton->Get(); }
+	
+	bool turn180ButtonPressed() { return turn180Button->Get(); }
+	bool toggleClimberButtonPressed() { return toggleClimberButton->Get(); }
+	
+#ifdef USE_PISTON_ARTICULATOR
+#ifdef PRIMARY_CONTROLS_ARTICULATOR
+	bool toggleArticulatorButtonPressed() { return toggleArticulatorButton->Get(); }
+#endif
+#endif
+	
+	bool fireButtonPressed() { return fireButton->Get(); }
+	
+	bool stopShooterButtonPressed() { return stopShooterButton->Get(); }
+	bool lowSetpointButtonPressed() { return lowSetpointButton->Get(); }
+	bool midSetpointButtonPressed() { return midSetpointButton->Get(); }
+	bool highSetpointButtonPressed() { return highSetpointButton->Get(); }
+	// TODO: Resolve lines below not being <= 80 columns
+	bool increaseSetpointButtonPressed() { return increaseSetpointButton->Get(); }
+	bool decreaseSetpointButtonPressed() { return decreaseSetpointButton->Get(); }
+
+	// Underglow controls
+	bool toggleRedButtonPressed() { return toggleRedButton->Get(); }
+	bool toggleGreenButtonPressed() { return toggleGreenButton->Get(); }
+	bool toggleBlueButtonPressed() { return toggleBlueButton->Get(); }
+	
+	bool liftResetButtonPressed() { return liftResetButton->Get(); }
 private:
+	
+#ifdef USE_PS3_CONTROLLER
+	Joystick *primaryJoystick;
+#else
 	Joystick *leftPrimaryJoystick,
-	         *rightPrimaryJoystick,
-	         *secondaryJoystick;
+	         *rightPrimaryJoystick;
+#endif
+	
+	Joystick *secondaryJoystick;
 
 	               // Primary driver buttons
-	JoystickButton *oneTenthSpeedMultiplierButton,
-	               *halfSpeedMultiplierButton,
+	JoystickButton *lowSpeedButton,
+	               *halfSpeedButton,
 	               *fullSpeedButton,
+	               
+	               *quarterTurnSpeedButton,
+	               *halfTurnSpeedButton,
+	               *fullTurnSpeedButton,
 
-	               *halfSpeedTurningMultiplierButton,
-	               *quarterSpeedTurningMultiplierButton,
+	               *turn180Button,
+	               *toggleClimberButton,
 
-	               *driveReverseButton,
-	               *stopDriveButton,
-
-	               *raiseClimberButton,
+#ifdef USE_PISTON_ARTICULATOR
+#ifdef PRIMARY_CONTROLS_ARTICULATOR
+	               *toggleArticulatorButton,
+#endif
+#endif
 	               
 	               // Secondary driver buttons
 	               *fireButton,
 
-	               *setpointZeroButton,
-	               *setpointOneButton,
-	               *setpointTwoButton,
-	               *setpointThreeButton,
+	               *stopShooterButton,
+	               *lowSetpointButton,
+	               *midSetpointButton,
+	               *highSetpointButton,
+	               
+	               *increaseSetpointButton,
+	               *decreaseSetpointButton,
 
                    *toggleRedButton,
 				   *toggleGreenButton,
-				   *toggleBlueButton;
+				   *toggleBlueButton,
+				   
+				   *liftResetButton;
 };
 
 #endif // OI_H

@@ -3,25 +3,28 @@
  * @brief Implementation of the Shooter articulator subsystem
  * @author Nyle Rodgers
  */
-#define _USE_MATH_DEFINES
-#include <math.h>
 
 #include "ShooterArticulator.h"
+#ifndef USE_PISTON_ARTICULATOR
+#include <cmath>
 #include "../Commands/OperateShooterArticulator.h"
 #include "../RobotMap.h"
 
 const float PI = 3.14159;
 
-// TODO: put actual numbers in here
-const float ShooterArticulator::ZERO_RADIAN_VOLTAGE = 0;
-const float ShooterArticulator::ONE_RADIAN_VOLTAGE = 1;
-const float ShooterArticulator::ENCODER_RESOLUTION = 64;
-const float ShooterArticulator::DISTANCE_PER_REVOLUTION = 0.5;//< in inches
-const float ShooterArticulator::BASE_LENGTH = 24.0;//< in inches
-const float ShooterArticulator::SHOOTER_LENGTH = 28.0;//< in inches
-const float ShooterArticulator::ARTICULATOR_MOUNT_LENGTH = 2.0;//< in inches
-// TODO: Put in actual value for this
-const float ShooterArticulator::ARTICULATOR_SHAFT_ZERO = 10.0;//< in inches
+// TODO: Get accurate numbers for all measurements
+const int ShooterArticulator::ENCODER_RESOLUTION = 64,
+		  ShooterArticulator::ENCODER_GEAR_TEETH = 12,
+		  ShooterArticulator::SCREW_GEAR_TEETH = 40;
+
+// TODO: Measure real screw lead
+const float ShooterArticulator::SCREW_LEAD = 1.0/16.0;
+
+const float ShooterArticulator::DISTANCE_PER_TICK = 
+	ShooterArticulator::SCREW_LEAD *
+	ShooterArticulator::ENCODER_GEAR_TEETH /
+	ShooterArticulator::SCREW_GEAR_TEETH /
+	ShooterArticulator::ENCODER_RESOLUTION;
 
 
 ShooterArticulator::ShooterArticulator() : 
@@ -33,34 +36,19 @@ ShooterArticulator::ShooterArticulator() :
 	                      ARTICULATOR_ENCODER_CHANNEL_A,
 	                      DIGITAL_MODULE_PORT,
 	                      ARTICULATOR_ENCODER_CHANNEL_B,
-	                      false,
+	                      true,
 	                      Encoder::k1X  ) ),
-	potentiometer( new AnalogChannel( DIGITAL_MODULE_PORT,
-			                          ARTICULATOR_POTENTIOMETER_CHANNEL ) ),
 	topLimitSwitch( new DigitalInput( DIGITAL_MODULE_PORT,
 			                          ARTICULATOR_TOP_LIMIT_SWITCH_CHANNEL ) ),
 	bottomLimitSwitch( new DigitalInput( DIGITAL_MODULE_PORT,
-			                             ARTICULATOR_BOTTOM_LIMIT_SWITCH_CHANNEL ) ) {
-	encoder->SetDistancePerPulse( DISTANCE_PER_REVOLUTION / ENCODER_RESOLUTION );
+			                             ARTICULATOR_BOTTOM_LIMIT_SWITCH_CHANNEL ) ),
+	dashboard( DriverStationLCD::GetInstance() ) {
+	encoder->SetDistancePerPulse( DISTANCE_PER_TICK );
 	encoder->Start();
-	
 }
     
 void ShooterArticulator::InitDefaultCommand() {
 	SetDefaultCommand( new OperateShooterArticulator() );
-}
-
-/**
- * Get the current angle, in radians, above horizontal
- *
- * @author Nyle Rodgers
- */ 
-double ShooterArticulator::getAngle() {
-	return acos( ( pow( BASE_LENGTH, 2.0 )
-			       + pow( SHOOTER_LENGTH, 2.0 )
-			       - ( pow( encoder->GetDistance() + ARTICULATOR_SHAFT_ZERO, 2.0 ) 
-			           + pow( ARTICULATOR_MOUNT_LENGTH, 2.0 ) ) )
-			     / ( 2 * BASE_LENGTH * SHOOTER_LENGTH ) );
 }
 
 /**
@@ -71,7 +59,8 @@ double ShooterArticulator::getAngle() {
 void ShooterArticulator::moveUp() {
 	if( topLimitSwitch->Get() ) {
 		motor->Set(1.0);
-	} else {
+	}
+	else {
 		stop();
 	}
 }
@@ -84,7 +73,8 @@ void ShooterArticulator::moveUp() {
 void ShooterArticulator::moveDown() {
 	if( bottomLimitSwitch->Get() ) {
 		motor->Set(-1.0);
-	} else {
+	}
+	else {
 		stop();
 	}
 }
@@ -97,3 +87,13 @@ void ShooterArticulator::moveDown() {
 void ShooterArticulator::stop() {
 	motor->Set(0.0);
 }
+
+void ShooterArticulator::resetEncoder() {
+	encoder->Reset();
+}
+
+double ShooterArticulator::getDisplacement() {
+	return encoder->GetDistance();
+}
+
+#endif

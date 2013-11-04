@@ -7,6 +7,7 @@
 #define CLIMBER_H
 #include "Commands/Subsystem.h"
 #include "WPILib.h"
+#include "../CompilationSettings.h"
 
 /**
  * @brief The Climber subsystem
@@ -18,12 +19,7 @@ public:
 	/// constructor for the climber
 	Climber();
 	
-	/// Raise the climber
-	void raise();
-	
-	/// Lower the climber
-	void lower();
-	
+	/// Toggle the climber
 	void toggle();
 private:
 	Servo *rightServo, *leftServo;

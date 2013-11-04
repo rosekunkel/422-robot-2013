@@ -6,233 +6,118 @@
 
 #include "OI.h"
 #include "Commands/Shoot.h"
-#include "Commands/RaiseClimber.h"
 #include "Commands/ToggleClimber.h"
 #include "Commands/SpinHalfRotation.h"
 #include "Commands/ControlLights.h"
+#include "Commands/ToggleFlashlight.h"
+
+#ifndef USE_PISTON_ARTICULATOR
+#include "Commands/SetShooterArticulator.h"
+#else
+#ifdef PRIMARY_CONTROLS_ARTICULATOR
+#include "Commands/ToggleArticulator.h"
+#endif
+#endif
+
+#include "RobotMap.h"
 
 /**
  * Initilize the Operator Interface.
  *
  * @author Nyle Rodgers
+ * @author William Kunkel
  */
 OI::OI():
 	// Joysticks
+#ifdef USE_PS3_CONTROLLER
+	primaryJoystick( new Joystick(1) ),
+#else
 	leftPrimaryJoystick( new Joystick(1) ),
 	rightPrimaryJoystick( new Joystick(2) ),
+#endif
 	secondaryJoystick( new Joystick(3) ),
 	
-	// Primary
-	oneTenthSpeedMultiplierButton(
-   	   new JoystickButton( leftPrimaryJoystick, 2 ) ),
-	halfSpeedMultiplierButton(
-		new JoystickButton( leftPrimaryJoystick, 1 ) ),
-	fullSpeedButton(
-		new JoystickButton( rightPrimaryJoystick, 1 ) ),
+	// Primary driver controls
+#ifdef USE_PS3_CONTROLLER
+	lowSpeedButton( new JoystickButton( primaryJoystick, PS3_SQUARE ) ),
+   	halfSpeedButton( new JoystickButton( primaryJoystick, PS3_TRIANGLE ) ),
+	fullSpeedButton( new JoystickButton( primaryJoystick, PS3_CIRCLE ) ),
 
-	halfSpeedTurningMultiplierButton(
-		new JoystickButton( rightPrimaryJoystick, 5 ) ),
-	quarterSpeedTurningMultiplierButton(
-		new JoystickButton( rightPrimaryJoystick, 4 ) ),
+	quarterTurnSpeedButton( new JoystickButton( primaryJoystick, PS3_LEFT ) ),
+	halfTurnSpeedButton( new JoystickButton( primaryJoystick, PS3_UP ) ),
+	fullTurnSpeedButton( new JoystickButton( primaryJoystick, PS3_RIGHT ) ),
 	
-	driveReverseButton( new JoystickButton( leftPrimaryJoystick, 3 ) ),
-	stopDriveButton( new JoystickButton( leftPrimaryJoystick, 3 ) ),
+	turn180Button( new JoystickButton( primaryJoystick, PS3_R1 ) ),
+	toggleClimberButton( new JoystickButton( primaryJoystick, PS3_L1 ) ),
+#else
+	lowSpeedButton( new JoystickButton( leftPrimaryJoystick, 2 ) ),
+   	halfSpeedButton( new JoystickButton( leftPrimaryJoystick, 1 ) ),
+	fullSpeedButton( new JoystickButton( rightPrimaryJoystick, 1 ) ),
+
+	quarterTurnSpeedButton( new JoystickButton( rightPrimaryJoystick, 4 ) ),
+	halfTurnSpeedButton( new JoystickButton( rightPrimaryJoystick, 3 ) ),
+	fullTurnSpeedButton( new JoystickButton( rightPrimaryJoystick, 5 ) ),
 	
-	raiseClimberButton( new JoystickButton( rightPrimaryJoystick, 2 ) ),
+	turn180Button( new JoystickButton( rightPrimaryJoystick, 2 ) ),
+	toggleClimberButton( new JoystickButton( rightPrimaryJoystick, 10 ) ),
+
+#ifdef USE_PISTON_ARTICULATOR
+#ifdef PRIMARY_CONTROLS_ARTICULATOR
+	toggleArticulatorButton( new JoystickButton( leftPrimaryJoystick, 7) ),
+#endif
+#endif
 	
-	// Secondary for Joysticks	
-	/*
+#endif
+	
+	// Secondary driver controls
+#ifdef USE_GAMECUBE_CONTROLLER
+	fireButton( new JoystickButton( secondaryJoystick, GC_A ) ),
+
+	stopShooterButton( new JoystickButton( secondaryJoystick, GC_B )),
+	lowSetpointButton( new JoystickButton( secondaryJoystick, GC_LEFT ) ),
+	midSetpointButton( new JoystickButton( secondaryJoystick, GC_UP ) ),
+	highSetpointButton( new JoystickButton( secondaryJoystick, GC_RIGHT ) ),
+	increaseSetpointButton( new JoystickButton( secondaryJoystick, GC_Y) ),
+	decreaseSetpointButton( new JoystickButton( secondaryJoystick, GC_X) ),
+
+	toggleRedButton( new JoystickButton( secondaryJoystick, GC_L ) ),
+	toggleGreenButton( new JoystickButton( secondaryJoystick, GC_R ) ),	
+	toggleBlueButton( new JoystickButton( secondaryJoystick, GC_Z ) ),
+
+	liftResetButton( new JoystickButton( secondaryJoystick, 0 ) )
+#else
 	fireButton( new JoystickButton( secondaryJoystick, 1 ) ),
 
-	setpointZeroButton( new JoystickButton ( secondaryJoystick, 2 )),
-	setpointOneButton( new JoystickButton( secondaryJoystick, 4 ) ),
-	setpointTwoButton( new JoystickButton( secondaryJoystick, 3 ) ),
-	setpointThreeButton( new JoystickButton( secondaryJoystick, 5 ) ),
+	stopShooterButton( new JoystickButton( secondaryJoystick, 2 )),
+	lowSetpointButton( new JoystickButton( secondaryJoystick, 4 ) ),
+	midSetpointButton( new JoystickButton( secondaryJoystick, 3 ) ),
+	highSetpointButton( new JoystickButton( secondaryJoystick, 5 ) ),
+	increaseSetpointButton( new JoystickButton( secondaryJoystick, 11) ),
+	decreaseSetpointButton( new JoystickButton( secondaryJoystick, 10) ),
 
-	toggleRedButton( new JoystickButton ( secondaryJoystick, 6)),
-    toggleGreenButton( new JoystickButton (secondaryJoystick, 7)),
-	toggleBlueButton( new JoystickButton (secondaryJoystick, 8)) {
+	toggleRedButton( new JoystickButton( secondaryJoystick, 0 ) ),
+	toggleGreenButton( new JoystickButton( secondaryJoystick, 0 ) ),
+	toggleBlueButton( new JoystickButton( secondaryJoystick, 0 ) ),
 	
-	raiseClimberButton->WhenPressed( new ToggleClimber() );
-	toggleRedButton->WhenPressed( new ControlLights(0) );
-	toggleGreenButton->WhenPressed( new ControlLights(1) );
-	toggleBlueButton->WhenPressed( new ControlLights(2) );
+	liftResetButton( new JoystickButton( secondaryJoystick, 0 ) )
+#endif
+{
+	toggleClimberButton->WhenPressed( new ToggleClimber() );
 
-	fireButton->WhenPressed(new Shoot());
-
-}
-*/
-//Controls for the Gamecube Controller
-	fireButton( new JoystickButton( secondaryJoystick, 1 ) ),
-
-	setpointZeroButton( new JoystickButton ( secondaryJoystick, 2 )),
-	setpointOneButton( new JoystickButton( secondaryJoystick, 9 ) ),
-	setpointTwoButton( new JoystickButton( secondaryJoystick, 12 ) ),
-	setpointThreeButton( new JoystickButton( secondaryJoystick, 10 ) ),
-
-	toggleRedButton( new JoystickButton ( secondaryJoystick, 5)),
-    toggleGreenButton( new JoystickButton (secondaryJoystick, 6)),
-	toggleBlueButton( new JoystickButton (secondaryJoystick, 7)) {
+#ifdef USE_PISTON_ARTICULATOR
+#ifdef PRIMARY_CONTROLS_ARTICULATOR
+	toggleArticulatorButton->WhenPressed( new ToggleArticulator() );
+#endif
+#endif
 	
-	raiseClimberButton->WhenPressed( new ToggleClimber() );
-	toggleRedButton->WhenPressed( new ControlLights(0) );
-	toggleGreenButton->WhenPressed( new ControlLights(1) );
-	toggleBlueButton->WhenPressed( new ControlLights(2) );
+	turn180Button->WhenPressed( new SpinHalfRotation() );
+	
+	toggleRedButton->WhenPressed( new ControlLights(ControlLights::RED) );
+	toggleBlueButton->WhenPressed( new ControlLights(ControlLights::BLUE) );
+	toggleGreenButton->WhenPressed( new ControlLights(ControlLights::GREEN) );
 
-	fireButton->WhenPressed(new Shoot());
-
-}
-/**
- * Get the left joystick for the primary driver.
- *
- * @author Nyle Rodgers
- */
-Joystick* OI::getLeftPrimaryJoystick() {
-	return leftPrimaryJoystick;
-}
-
-/**
- * Get the right joystick for the primary driver.
- *
- * @author Nyle Rodgers
- */
-Joystick* OI::getRightPrimaryJoystick() {
-	return rightPrimaryJoystick;
-}
-
-/**
- * Get the joystick for the secondary driver.
- *
- * @author Nyle Rodgers
- */
-Joystick* OI::getSecondaryJoystick() {
-	return secondaryJoystick;
-}
-
-/**
- * Get the one tenth speed multiplier button state.
- *
- * @author Nyle Rodgers
- */
-bool OI::getOneTenthSpeedMultiplierButtonValue() {
-	return oneTenthSpeedMultiplierButton->Get();
-}
-
-/**
- * Get the half speed multiplier button state.
- *
- * @author Nyle Rodgers
- */
-bool OI::getHalfSpeedMultiplierButtonValue() {
-	return halfSpeedMultiplierButton->Get();
-}
-
-/**
- * Get the full speed multiplier button state.
- *
- * @author Nyle Rodgers
- */
-bool OI::getFullSpeedButtonValue() {
-	return fullSpeedButton->Get();
-}
-
-/**
- * Get the half speed turning multiplier button state.
- *
- * @author Nyle Rodgers
- */
-bool OI::getHalfSpeedTurningMultiplierButtonValue() {
-	return halfSpeedTurningMultiplierButton->Get();
-}
-
-/**
- * Get the quarter speed turning multiplier button state.
- *
- * @author Nyle Rodgers
- */
-bool OI::getQuarterSpeedTurningMultiplierButtonValue() {
-	return quarterSpeedTurningMultiplierButton->Get();
-}
-
-/**
- * Get the drive reverse button state.
- *
- * @author Nyle Rodgers
- */
-bool OI::getDriveReverseButtonValue() {
-	return driveReverseButton->Get();
-}
-
-/**
- * Get the stop drive button state.
- *
- * @author Nyle Rodgers
- */
-bool OI::getStopDriveButtonValue() {
-	return stopDriveButton->Get();
-}
-
-/**
- * Get the toggle climber button state.
- *
- * @author Nyle Rodgers
- */
-bool OI::getRaiseClimberButtonValue() {
-	return raiseClimberButton->Get();
-}
-
-/**
- * Get the half speed turning multiplier button state.
- *
- * @author Nyle Rodgers
- */
-bool OI::getFireButtonValue() {
-	return fireButton->Get();
-}
-
-bool OI::getSetpointZeroButtonValue() {
-	return setpointZeroButton->Get();
-}
-
-/**
- * Get the setpoint one button state.
- *
- * @author Nyle Rodgers
- */
-bool OI::getSetpointOneButtonValue() {
-	return setpointOneButton->Get();
-}
-
-/**
- * Get the setpoint two button state.
- *
- * @author Nyle Rodgers
- */
-bool OI::getSetpointTwoButtonValue() {
-	return setpointTwoButton->Get();
-}
-
-/**
- * Get the setpoint three button state.
- *
- * @author Nyle Rodgers
- */
-bool OI::getSetpointThreeButtonValue() {
-	return setpointThreeButton->Get();
-}
-
-
-/**
- * Color States
- *
- * @author Lucario
- */
-bool OI::getToggleRedButtonValue() {
-	return toggleRedButton->Get();
-}
-bool OI::getToggleBlueButtonValue() {
-	return toggleBlueButton->Get();
-}
-bool OI::getToggleGreenButtonValue() {
-	return toggleGreenButton->Get();
+	fireButton->WhenPressed( new Shoot() );
+#ifndef USE_PISTON_ARTICULATOR
+	liftResetButton->WhenPressed( new SetShooterArticulator( 0.0 ) );
+#endif
 }

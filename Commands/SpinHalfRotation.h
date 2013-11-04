@@ -1,7 +1,8 @@
-#ifndef SPINHALFROTATION_H
-#define SPINHALFROTATION_H
+#ifndef SPIN_HALF_ROTATION_H
+#define SPIN_HALF_ROTATION_H
 
 #include "../CommandBase.h"
+#include "../CompilationSettings.h"
 
 /**
  *
@@ -10,14 +11,12 @@
  */
 class SpinHalfRotation: public CommandBase {
 public:
-	SpinHalfRotation( bool isLeft );
-	virtual void Initialize();
-	virtual void Execute() {};
-	virtual bool IsFinished();
-	virtual void End();
-	virtual void Interrupted();
-private:
-	bool isLeft;
+	SpinHalfRotation();
+	void Initialize();
+	void Execute() {}
+	bool IsFinished();
+	void End();
+	void Interrupted();
 };
 
 #endif

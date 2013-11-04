@@ -2,6 +2,7 @@
 #define SHOOT_H
 
 #include "../CommandBase.h"
+#include "../CompilationSettings.h"
 
 /**
  *
@@ -11,13 +12,11 @@
 class Shoot: public CommandBase {
 public:
 	Shoot();
-	virtual void Initialize() {};
-	virtual void Execute() ;
-	virtual bool IsFinished();
-	virtual void End();
-	virtual void Interrupted(){};
-private:
-	bool isFired;
+	void Initialize() {}
+	void Execute();
+	bool IsFinished();
+	void End();
+	void Interrupted() {}
 };
 
 #endif

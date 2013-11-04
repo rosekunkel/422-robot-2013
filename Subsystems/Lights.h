@@ -1,12 +1,13 @@
 /**
  * @file Lights.h
  * @brief Declaration of the LED subsystem
- * @author Lucario
+ * @author Alan
  */
 #ifndef LIGHTS_H
 #define LIGHTS_H
 #include "Commands/Subsystem.h"
 #include "WPILib.h"
+#include "../CompilationSettings.h"
 
 /**
  * @brief The Lights subsystem
@@ -24,7 +25,14 @@ public:
 	void toggleBlueLight();
 
 	/// Turn the Light off.
-	void turnLightOff();
+	void turnOffRedLight();
+	void turnOffGreenLight();
+	void turnOffBlueLight();
+	
+	void turnOnRedLight();
+	void turnOnGreenLight();
+	void turnOnBlueLight();
+
 private:
 	Relay *redLight;
 	Relay *greenLight;

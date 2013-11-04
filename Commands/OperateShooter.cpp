@@ -1,7 +1,5 @@
 #include "OperateShooter.h"
-#include "../Team422Robot.h"
-#include <cmath>
-#include <iostream>
+#ifndef USE_BANG_BANG
 
 OperateShooter::OperateShooter() {
 	Requires(shooter);
@@ -10,25 +8,53 @@ OperateShooter::OperateShooter() {
 
 // Called repeatedly when this Command is scheduled to run
 void OperateShooter::Execute() {
-//	// This part operates the shooter wheels
-//	if ( operatorInterface->getSetpointZeroButtonValue() ) {
-//		shooter->stopShooter();
-//	 }else if ( operatorInterface->getSetpointOneButtonValue() ) {
-//		shooter->setSetpoints(20.0, 20.0);
-//	} else if ( operatorInterface->getSetpointTwoButtonValue() ) {
-//		shooter->setSetpoints(30.0, 30.0);
-//	} else if ( operatorInterface->getSetpointThreeButtonValue() ) {
-//		shooter->setSetpoints(40.0, 40.0);
-//	}
+	// This part operates the shooter wheels
+	if( operatorInterface->stopShooterButtonPressed() ) {
+		shooter->stopShooter();
+	}
+	else if( operatorInterface->lowSetpointButtonPressed() ) {
+		shooter->setSetpoints(20.0, 20.0);
+		leftSetpoint = 20.0;
+		rightSetpoint = 20.0;
+	}
+	else if( operatorInterface->midSetpointButtonPressed() ) {
+		shooter->setSetpoints(35.0, 35.0);
+		leftSetpoint = 35.0;
+		rightSetpoint = 35.0;
+	}
+	else if( operatorInterface->highSetpointButtonPressed() ) {
+		shooter->setSetpoints(40.0, 40.0);
+		leftSetpoint = 40.0;
+		rightSetpoint = 40.0;
+	}
+	
+	if( operatorInterface->increaseSetpointButtonPressed()
+		&& !isIncreaseButtonPressed ) {
+		isIncreaseButtonPressed = true;
+		shooter->setSetpoints( leftSetpoint += 0.5, rightSetpoint += 0.5 );
+	}
+	else if( !operatorInterface->increaseSetpointButtonPressed() ) {
+		isIncreaseButtonPressed = false;
+	}
+
+	if( operatorInterface->decreaseSetpointButtonPressed()
+		&& !isDecreaseButtonPressed ) {
+		isDecreaseButtonPressed = true;
+		shooter->setSetpoints( leftSetpoint -= 0.5, rightSetpoint -= 0.5 );
+	}
+	else if( !operatorInterface->decreaseSetpointButtonPressed() ) {
+		isDecreaseButtonPressed = false;
+	}
 	
 	dashboard->Clear();
-//	if ( shooter->isAtSpeed() ) {
-//		dashboard->Printf(DriverStationLCD::kUser_Line1, 1, "At Speed");
-//	} else {
-//		dashboard->Printf(DriverStationLCD::kUser_Line1, 1, "Spinning up");
-//	}
-	dashboard->Printf(DriverStationLCD::kUser_Line1, 1, "%f", shooter->getFirstWheelSpeed() );
-	dashboard->Printf(DriverStationLCD::kUser_Line2, 1, "%f", shooter->getSecondWheelSpeed() );
+	if ( shooter->isAtSpeed() ) {
+		dashboard->Printf(DriverStationLCD::kUser_Line1, 1, "At Speed");
+	}
+	else {
+		dashboard->Printf(DriverStationLCD::kUser_Line1, 1, "Spinning up");
+	}
+	dashboard->PrintfLine(DriverStationLCD::kUser_Line2, "%f", shooter->getFirstWheelSpeed() );
+	dashboard->PrintfLine(DriverStationLCD::kUser_Line3, "%f", shooter->getSecondWheelSpeed() );
 	dashboard->UpdateLCD();
 }
 
@@ -36,3 +62,5 @@ void OperateShooter::Execute() {
 bool OperateShooter::IsFinished() {
 	return false;
 }
+
+#endif

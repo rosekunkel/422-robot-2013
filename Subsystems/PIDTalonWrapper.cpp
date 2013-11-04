@@ -50,7 +50,8 @@ void PIDTalonWrapper::PIDWrite(float output) {
 	// Make sure that the speed we give the talon doesn'n exceed -1 to 1 range
 	if (speed > 1.0) {
 		speed = 1.0;
-	} else if (speed < -1.0) {
+	}
+	else if (speed < -1.0) {
 		speed = -1.0;
 	}
 	talon->Set(speed);

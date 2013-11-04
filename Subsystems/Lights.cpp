@@ -1,7 +1,7 @@
 /**
  * @file Lights.cpp
  * @brief Implementation of the LED subsystem
- * @author Lucario
+ * @author Alan
  */
 #include "Lights.h"
 #include "Relay.h"
@@ -15,13 +15,13 @@ Lights::Lights() :
 			              Relay::kForwardOnly ) ),
 	blueLight( new Relay( BLUE_RELAY_CHANNEL,
 			               Relay::kForwardOnly ) ){
-	redLight->Set(Relay::kOn);
-	greenLight->Set(Relay::kOn);
-	blueLight->Set(Relay::kOn);
+	redLight->Set(Relay::kOff);
+	greenLight->Set(Relay::kOff);
+	blueLight->Set(Relay::kOff);
 }
  
 void Lights::toggleRedLight() {
-	if( redLight->Get() ) {
+	if( redLight->Get() == Relay::kOn ) {
 		redLight->Set(Relay::kOff);
 	}
 	else {
@@ -30,7 +30,7 @@ void Lights::toggleRedLight() {
 }
 
 void Lights::toggleGreenLight() {
-	if( greenLight->Get() ) {
+	if( greenLight->Get() == Relay::kOn ) {
 		greenLight->Set(Relay::kOff);
 	}
 	else {
@@ -39,10 +39,34 @@ void Lights::toggleGreenLight() {
 }
 	
 void Lights::toggleBlueLight() {
-	if( blueLight->Get() ) {
+	if( blueLight->Get() == Relay::kOn ) {
 		blueLight->Set(Relay::kOff);
 	}
 	else {
 		blueLight->Set(Relay::kOn);
 	}
+}
+
+void Lights::turnOnRedLight() {
+	redLight->Set(Relay::kOn);
+}
+
+void Lights::turnOnGreenLight() {
+	greenLight->Set(Relay::kOn);
+}
+
+void Lights::turnOnBlueLight() {
+	blueLight->Set(Relay::kOn);
+}
+
+void Lights::turnOffRedLight() {
+	redLight->Set(Relay::kOff);
+}
+
+void Lights::turnOffGreenLight() {
+	greenLight->Set(Relay::kOff);
+}
+
+void Lights::turnOffBlueLight() {
+	blueLight->Set(Relay::kOff);
 }

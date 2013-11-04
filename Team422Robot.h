@@ -7,16 +7,10 @@
 
 #include "WPILib.h"
 #include "Commands/Command.h"
-#include "CommandBase.h"
-#include "Commands/CheesyDrive.h"
-#include "Commands/MoveShooterArticulator.h"
-#include "Commands/OperateShooter.h"
-#include "Commands/OperateShooterArticulator.h"
-#include "Commands/RaiseClimber.h"
-#include "Commands/SetShooterArticulator.h"
-#include "Commands/Shoot.h"
-#include "Commands/SpinHalfRotation.h"
+#include "CompilationSettings.h"
 
+#include "CommandBase.h"
+#include "Commands/AutonomousCommand.h"
 /**
  * @brief The main class for the robot
  * 
@@ -28,13 +22,7 @@
  */
 class Team422Robot : public IterativeRobot {
 private:
-	Command *cheesyDrive,
-	        *moveShooterArticulator,
-	        *operateShooter,
-	        *operateShooterArticulator,
-	        *raiseClimber,
-	        *setShooterArticulator,
-	        *shoot;
+	Command *autonomousCommand;
 
 	DriverStationLCD *dashboard;
 	LiveWindow *liveWindow;
@@ -49,7 +37,7 @@ private:
 	void AutonomousPeriodic();
 
 	/// Initialization for the teleoperated phase
-	void TeleopInit() {};
+	void TeleopInit();
 
 	/// Run periodically during the teleoperated phase
 	void TeleopPeriodic();

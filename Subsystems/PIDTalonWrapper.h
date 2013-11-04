@@ -7,12 +7,13 @@
 #define PIDTALONWRAPPER_H
 
 #include "WPILib.h"
+#include "../CompilationSettings.h"
 
 /**
- * @brief the wrapper used to allow the PID controll to work with the tallons
+ * @brief the wrapper used to allow the PID control to work with the tallons
  * 
- * This is to compensate for the fact that PID controll seems to have been 
- * writen to controll position of things rather than speed of things.
+ * This is to compensate for the fact that PID control seems to have been 
+ * writen to control position of things rather than speed of things.
  *
  * @author Nyle
  */

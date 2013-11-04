@@ -1,37 +1,48 @@
 #include "SetShooterArticulator.h"
+#ifndef USE_PISTON_ARTICULATOR
 #include <cmath>
 
-const float SetShooterArticulator::MAX_ERROR = 0.02;
+#include <iostream>
+
+const float SetShooterArticulator::MAX_ERROR = 0.05;
 
 /// angle is in radians
-SetShooterArticulator::SetShooterArticulator(float angle) {
+SetShooterArticulator::SetShooterArticulator(float displacement) {
 	Requires(shooterArticulator);
-	setpoint = angle;
+	setpoint = displacement;
+	std::cerr << "Entered SetShooterArticulator" << std::endl;
 }
 
 // Called repeatedly when this Command is scheduled to run
 void SetShooterArticulator::Execute() {
-	if ( shooterArticulator->getAngle() > setpoint ) {
+	if ( shooterArticulator->getDisplacement() > setpoint ) {
+		shooterArticulator->moveUp();
+	}
+	else if ( shooterArticulator->getDisplacement() < setpoint ) {
 		shooterArticulator->moveDown();
-	} else if ( shooterArticulator->getAngle() < setpoint ) {
-		shooterArticulator->moveDown();
-	} else {
+	}
+	else {
 		shooterArticulator->stop();
 	}
+	std::cerr << "Running SetShooterArticulator" << std::endl;
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool SetShooterArticulator::IsFinished() {
-	return fabs(shooterArticulator->getAngle() - setpoint) <= MAX_ERROR;
+	std::cerr << "Displacement: " << shooterArticulator->getDisplacement() << std::endl;
+	return fabs(shooterArticulator->getDisplacement() - setpoint) <= MAX_ERROR;
 }
 
 // Called once after isFinished returns true
 void SetShooterArticulator::End() {
 	shooterArticulator->stop();
+	std::cerr << "Finished SetShooterArticulator" << std::endl;
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void SetShooterArticulator::Interrupted() {
 	shooterArticulator->stop();
+	std::cerr << "Interrupted SetShooterArticulator" << std::endl;
 }
+#endif
