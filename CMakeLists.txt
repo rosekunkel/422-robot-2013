@@ -1,17 +1,15 @@
-cmake_minimum_required( VERSION 2.8 )
+cmake_minimum_required(VERSION 2.8)
+include(FRCDeploy)
 
-include( FRCDeploy )
+project(NidhoggCompetition)
+find_package(WPILib)
+include_directories(SYSTEM ${WPILib_INCLUDE_DIRS})
 
-project( 422-Robot-2013 )
+file(GLOB_RECURSE SOURCE_CODE *.cpp)
 
-file( GLOB_RECURSE SOURCE_CODE *.cpp )
+add_executable(nidhogg-competition ${SOURCE_CODE})
+target_link_libraries(nidhogg-competition ${WPILib_LIBRARY})
 
-find_package( WPILib )
+add_make_deploy(nidhogg-competition 10.4.22.2)
 
-include_directories( SYSTEM ${WPILib_INCLUDE_DIR} )
-
-add_executable( bin/422-robot-2013 ${SOURCE_CODE} )
-
-target_link_libraries( bin/422-robot-2013 ${WPILib_LIBRARY} )
-
-add_make_deploy( bin/422-robot-2013 10.4.22.2 )
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -DUSE_CPP_11")
