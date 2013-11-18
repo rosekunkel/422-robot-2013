@@ -8,7 +8,7 @@
 #include "Team422Robot.h"
 
 /**
- * Robot-wide initialization, such as allocating Commands. 
+ * Robot-wide initialization, such as allocating Commands.
  *
  * @author Nyle Rodgers
  * @author William Kunkel

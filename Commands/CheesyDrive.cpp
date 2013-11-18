@@ -121,13 +121,13 @@ float CheesyDrive::truncateOutOfBounds( float value ) {
 	if( ( value > 1 )
 	 || ( value < -1 ) ) {
 		// We set the multiplier to +-100%, based on its original sign
-//#ifdef USE_CPP_11
-//		value = std::copysign( 1.0, value );
-//#else
+#ifdef USE_CPP_11
+		value = std::copysign( 1.0, value );
+#else
 		value = ((0.0 < value) - (value < 0.0));
-//#endif
+#endif
 	}
-//test
+
 	return value;
 }
 
